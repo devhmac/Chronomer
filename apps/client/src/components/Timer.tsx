@@ -1,46 +1,60 @@
 "use client";
 
-import { useTimer } from "react-timer-hook";
+import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import { off } from "process";
+import { timeStamp } from "console";
 
-export const Timer = ({ expiryTimestamp }) => {
-  const {
-    totalSeconds,
-    seconds,
-    minutes,
-    hours,
-    days,
-    isRunning,
-    start,
-    pause,
-    resume,
-    restart,
-  } = useTimer({
-    expiryTimestamp,
-    onExpire: () => console.warn("onExpire called"),
-  });
+export const Timer = () => {
+  // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
+
+  // at a high level I will need to
+  // - timer on or off
+  // - time amount
+  // - start or end timeStamp
+  // - is paused? - no dont think i need this I can just do if time past end date done
+
+  // could also export from custom hook hours, mins, seconds
+
+  const [time, setTime] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [dt, setDt] = useState<null | string>(null);
+
+  const displayTime = new Date(time * 1000).toISOString().substring(12, 19);
+  // const startDT = new Date(Date.now()).toISOString();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (time === 0) {
+        setTimerRunning(false);
+        clearInterval(interval);
+      }
+      setTime((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [time, timerRunning]);
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>react-timer-hook </h1>
-      <p>Timer Demo</p>
-      <div style={{ fontSize: "100px" }}>
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:
-        <span>{seconds}</span>
-      </div>
-      <p>{isRunning ? "Running" : "Not running"}</p>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={resume}>Resume</button>
-      <button
+    <div>
+      <div>{dt}</div>
+      <div>{time}</div>
+      <div>{displayTime}</div>
+      <div>timer</div>
+      <Button
         onClick={() => {
-          // Restarts to 5 minutes timer
-          const time = new Date();
-          time.setSeconds(time.getSeconds() + 300);
-          restart(time);
+          setTime(900);
+          setDt(new Date(Date.now()).toISOString());
         }}
       >
-        Restart
-      </button>
+        15 min
+      </Button>
+      <Button
+        onClick={() => {
+          setTimerRunning(true);
+        }}
+      >
+        Start
+      </Button>
     </div>
   );
 };
