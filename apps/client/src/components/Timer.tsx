@@ -51,23 +51,14 @@ export const Timer = () => {
       >
         15 min
       </Button>
-      {timerRunning ? (
-        <Button
-          onClick={() => {
-            setTimerRunning(false);
-          }}
-        >
-          pause
-        </Button>
-      ) : (
-        <Button
-          onClick={() => {
-            setTimerRunning(true);
-          }}
-        >
-          Start
-        </Button>
-      )}
+
+      <Button
+        onClick={() => {
+          setTimerRunning((prev) => !prev);
+        }}
+      >
+        {timerRunning ? "pause" : "start"}
+      </Button>
     </div>
   );
 };
