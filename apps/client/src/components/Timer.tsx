@@ -4,8 +4,13 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { off } from "process";
 import { timeStamp } from "console";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 
 export const Timer = () => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
   // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
 
   // at a high level I will need to
@@ -18,7 +23,8 @@ export const Timer = () => {
 
   const [time, setTime] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
-  const [dt, setDt] = useState<null | string>(null);
+  const [startTS, setStartTS] = useState<null | string>(null);
+  const [endTS, setEndTS] = useState<null | string>(null);
 
   const displayTime = new Date(time * 1000).toISOString().substring(12, 19);
   // const startDT = new Date(Date.now()).toISOString();
@@ -36,17 +42,25 @@ export const Timer = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, [time, timerRunning]);
+  // console.log(dayjs().add(900, "second").format());
+  // console.log(dayjs().format());
 
   return (
-    <div>
-      <div>{dt}</div>
+    <div className="bg-gradient-to-tr from-sky-300 to-purple-300 p-5 rounded-md">
+      <div>start timestamp: {startTS}</div>
+      <div>end timestamp: {endTS}</div>
       <div>{time}</div>
       <div>{displayTime}</div>
       <div>timer</div>
       <Button
         onClick={() => {
           setTime(900);
-          setDt(new Date(Date.now()).toISOString());
+          // console.log(dayjs().add(900, "second").format());
+          // console.log(dayjs().format());
+          const start = dayjs().utc();
+          const end = start.add(900, "second");
+          setStartTS(start.format());
+          setEndTS(end.format());
         }}
       >
         15 min
@@ -55,6 +69,7 @@ export const Timer = () => {
       <Button
         onClick={() => {
           setTimerRunning((prev) => !prev);
+          setEndTS(dayjs().utc().add(time, "seconds").format());
         }}
       >
         {timerRunning ? "pause" : "start"}
