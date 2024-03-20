@@ -25,11 +25,14 @@ export const Timer = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (time === 0) {
-        setTimerRunning(false);
-        clearInterval(interval);
+      if (timerRunning) {
+        if (time === 0) {
+          setTimerRunning(false);
+          clearInterval(interval);
+        } else {
+          setTime((prev) => prev - 1);
+        }
       }
-      setTime((prev) => prev - 1);
     }, 1000);
     return () => clearInterval(interval);
   }, [time, timerRunning]);
@@ -48,13 +51,23 @@ export const Timer = () => {
       >
         15 min
       </Button>
-      <Button
-        onClick={() => {
-          setTimerRunning(true);
-        }}
-      >
-        Start
-      </Button>
+      {timerRunning ? (
+        <Button
+          onClick={() => {
+            setTimerRunning(false);
+          }}
+        >
+          pause
+        </Button>
+      ) : (
+        <Button
+          onClick={() => {
+            setTimerRunning(true);
+          }}
+        >
+          Start
+        </Button>
+      )}
     </div>
   );
 };
