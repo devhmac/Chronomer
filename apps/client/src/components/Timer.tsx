@@ -23,6 +23,12 @@ export const Timer = () => {
 
   // could also export from custom hook hours, mins, seconds
 
+  // What do i need to know to set a timer with as little info saved as possible
+  // --time remaining as of last start button press
+  // -- time stamp it should finish? Do i even need this?
+
+  // could do timestamp of last timer start/resume & end timeStamp, or remaining time as of last start/resume begin decrementing if current timestamp is not later than end timestamp
+
   const [time, setTime] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
   const [startTS, setStartTS] = useState<null | string>(null);
@@ -42,6 +48,7 @@ export const Timer = () => {
         if (time === 0 || dayjs().isSameOrAfter(endTS)) {
           clearInterval(interval);
           setTimerRunning(false);
+          // send notifification
           setTime(lastTimerSelected || 300);
           return;
         }
@@ -74,8 +81,8 @@ export const Timer = () => {
           >
             15 min
           </Button>
-
           <Button
+            className="bg-[rgba(255,255,255,0.4)] text-zinc-600 "
             onClick={() => {
               setTimerRunning((prev) => !prev);
               setEndTS(dayjs().utc().add(time, "seconds").format());
