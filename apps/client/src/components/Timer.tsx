@@ -79,7 +79,7 @@ export const Timer = () => {
   return (
     <>
       <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2">
-        <div className="rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5">
+        <div className="dark rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-white">
           <div>start timestamp: {startTS}</div>
           <div>end timestamp: {endTS}</div>
           <div>{time}</div>
@@ -100,7 +100,7 @@ export const Timer = () => {
             15 min
           </Button>
           <Button
-            className=" text-zinc-600 "
+            className="dark "
             onClick={() => {
               setTimerRunning((prev) => !prev);
               setEndTS(dayjs().utc().add(time, "seconds").format());
