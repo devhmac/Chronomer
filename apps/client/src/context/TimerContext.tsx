@@ -22,6 +22,8 @@ type Timer = {
 type TimerContext{
   timerState: Timer,
   setTimerState: Dispatch<SetStateAction<Timer>>,
+  isRunning: boolean, 
+  setIsRunning: Dispatch<SetStateAction<boolean>>,
 
 }
 
@@ -38,7 +40,10 @@ const defaultTimerState = {
     timersComplete: 0,
     restsComplete: 0,
   } as Timer,
-  setTimerState:()=>{}
+  setTimerState:()=>{},
+  isRunning: false,
+  setIsRunning:()=>{},
+
 }
 
 
@@ -47,6 +52,7 @@ const timerContext = createContext<TimerContext>(defaultTimerState);
 
 export const TimerContextProvider = ({ children }: { children: ReactNode }) => {
   const [timerState, setTimerState] = useState<Timer>(defaultTimerState.timerState);
+  const [isRunning, setIsRunning] = useState(false)
   
-  return <timerContext.Provider value={{ timerState, setTimerState }}>{children}</timerContext.Provider>;
+  return <timerContext.Provider value={{ timerState, setTimerState, isRunning, setIsRunning }}>{children}</timerContext.Provider>;
 };
