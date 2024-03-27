@@ -29,12 +29,16 @@ export const Timer = () => {
 
   // could do timestamp of last timer start/resume & end timeStamp, or remaining time as of last start/resume begin decrementing if current timestamp is not later than end timestamp
 
+  // if pomodoro selected, build array of pomodoro order
+  const pomOrder = [];
+  const timeMap = { shortBreak: 300, longBreak: 1200 };
+
   const [time, setTime] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
   const [startTS, setStartTS] = useState<null | string>(null);
   const [endTS, setEndTS] = useState<null | string>(null);
   const [lastTimerSelected, setLastTimerSelected] = useState<null | number>(
-    null
+    null,
   );
 
   const displayTime = new Date(time * 1000).toISOString().substring(12, 19);
@@ -60,8 +64,8 @@ export const Timer = () => {
 
   return (
     <>
-      <div className="bg-[rgba(255,255,255,0.2)] p-2 rounded-lg border-[rgba(255,255,255,0.2)] border">
-        <div className="bg-gradient-to-tr from-sky-300 to-purple-300 p-5 rounded-md">
+      <div className="rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2">
+        <div className="rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5">
           <div>start timestamp: {startTS}</div>
           <div>end timestamp: {endTS}</div>
           <div>{time}</div>
