@@ -33,15 +33,28 @@ export const Timer = () => {
   const pomOrder = [];
   const timeMap = { shortBreak: 300, longBreak: 1200 };
 
-  const [time, setTime] = useState(0);
-  const [timerRunning, setTimerRunning] = useState(false);
-  const [startTS, setStartTS] = useState<null | string>(null);
-  const [endTS, setEndTS] = useState<null | string>(null);
-  const [lastTimerSelected, setLastTimerSelected] = useState<null | number>(
-    null,
-  );
+  const timerState = {
+    time: 1500,
+    lastTimerSelected: undefined,
+    startTS: undefined,
+    endTS: undefined,
+    mode: undefined,
+    timersComplete: 0,
+    restsComplete: 0,
+  };
 
-  const displayTime = new Date(time * 1000).toISOString().substring(12, 19);
+  const [time, setTime] = useState(1500);
+  const [rest, setRest] = useState(300);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [startTS, setStartTS] = useState<undefined | string>(undefined);
+  const [endTS, setEndTS] = useState<undefined | string>(undefined);
+  const [lastTimerSelected, setLastTimerSelected] = useState<
+    undefined | number
+  >(undefined);
+
+  const displayTime = new Date(time * 1000)
+    .toISOString()
+    .substring(time < 3600 ? 14 : 12, 19);
   // const startDT = new Date(Date.now()).toISOString();
 
   const seconds = 10;
@@ -50,6 +63,7 @@ export const Timer = () => {
     const interval = setInterval(() => {
       if (timerRunning) {
         if (time === 0 || dayjs().isSameOrAfter(endTS)) {
+          time === 0 ? (timerState.timersComplete += 1) : null;
           clearInterval(interval);
           setTimerRunning(false);
           // send notifification
@@ -64,7 +78,7 @@ export const Timer = () => {
 
   return (
     <>
-      <div className="rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2">
+      <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2">
         <div className="rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5">
           <div>start timestamp: {startTS}</div>
           <div>end timestamp: {endTS}</div>
@@ -86,7 +100,7 @@ export const Timer = () => {
             15 min
           </Button>
           <Button
-            className="bg-[rgba(255,255,255,0.4)] text-zinc-600 "
+            className=" text-zinc-600 "
             onClick={() => {
               setTimerRunning((prev) => !prev);
               setEndTS(dayjs().utc().add(time, "seconds").format());
