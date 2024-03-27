@@ -1,3 +1,4 @@
+"use client";
 import {
   ReactNode,
   SetStateAction,
@@ -27,7 +28,8 @@ type TimerContext = {
   // timeRemaining: number;
   // setTimerRemaining: Dispatch<SetStateAction<number>>;
 };
-
+// YOU DID ALL THIS BUT ACTUALLY WHAT DO YOU NEED AS A CONTEXT CANT ALL THIS JUST BE IN THE TIMER HOOK?
+// MAYBE JUST KEEP TIMER ON, #'s COMPLETED, MAYBE TIMESTAMPS?
 const defaultTimerState = {
   timerState: {
     timerLength: 1500,
@@ -44,7 +46,6 @@ const defaultTimerState = {
   isRunning: false,
   setIsRunning: () => {},
 };
-
 export const timerContext = createContext<TimerContext>(defaultTimerState);
 
 export const TimerContextProvider = ({ children }: { children: ReactNode }) => {

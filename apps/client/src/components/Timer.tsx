@@ -36,17 +36,7 @@ export const Timer = () => {
   const pomOrder = [];
   const timeMap = { shortBreak: 300, longBreak: 1200 };
 
-  // const timerState = {
-  //   time: 1500,
-  //   lastTimerSelected: undefined,
-  //   startTS: undefined,
-  //   endTS: undefined,
-  //   mode: undefined,
-  //   timersComplete: 0,
-  //   restsComplete: 0,
-  // };
-
-  const [time, setTime] = useState(1500);
+  const [time, setTime] = useState(timerState.timerLength);
   const [rest, setRest] = useState(300);
   const [timerRunning, setTimerRunning] = useState(false);
   const [startTS, setStartTS] = useState<undefined | string>(undefined);
