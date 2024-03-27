@@ -8,7 +8,7 @@ import {
 } from "react";
 
 type Timer = {
-  time: number;
+  timerLength: number;
   rest: number;
   lastTimerSelected: number | undefined;
   startTS: Date | undefined;
@@ -24,11 +24,13 @@ type TimerContext = {
   setTimerState: Dispatch<SetStateAction<Timer>>;
   isRunning: boolean;
   setIsRunning: Dispatch<SetStateAction<boolean>>;
+  // timeRemaining: number;
+  // setTimerRemaining: Dispatch<SetStateAction<number>>;
 };
 
 const defaultTimerState = {
   timerState: {
-    time: 1500,
+    timerLength: 1500,
     rest: 300,
     lastTimerSelected: undefined,
     startTS: undefined,
@@ -43,17 +45,27 @@ const defaultTimerState = {
   setIsRunning: () => {},
 };
 
-const timerContext = createContext<TimerContext>(defaultTimerState);
+export const timerContext = createContext<TimerContext>(defaultTimerState);
 
 export const TimerContextProvider = ({ children }: { children: ReactNode }) => {
   const [timerState, setTimerState] = useState<Timer>(
     defaultTimerState.timerState,
   );
   const [isRunning, setIsRunning] = useState(false);
+  // const [timeRemaining, setTimeRemaining] = useState(
+  //   defaultTimerState.timerState.timerLength,
+  // );
 
   return (
     <timerContext.Provider
-      value={{ timerState, setTimerState, isRunning, setIsRunning }}
+      value={{
+        timerState,
+        setTimerState,
+        isRunning,
+        setIsRunning,
+        // timerRemaining,
+        // setTimeRemaining,
+      }}
     >
       {children}
     </timerContext.Provider>

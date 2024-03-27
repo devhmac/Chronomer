@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TimerContextProvider } from "@/context/TimerContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +26,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+
           <ThemeToggle />
+        <TimerContextProvider>
           {children}
+        </TimerContextProvider>
         </ThemeProvider>
       </body>
     </html>

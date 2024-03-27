@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Button } from "./ui/button";
 import { off } from "process";
 import { timeStamp } from "console";
@@ -11,37 +11,40 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
+import { timerContext } from "@/context/TimerContext";
 
+// new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
+
+// at a high level I will need to
+// - timer on or off
+// - time amount
+// - start or end timeStamp
+// - is paused? - no dont think i need this I can just do if time past end date done
+
+// could also export from custom hook hours, mins, seconds
+
+// What do i need to know to set a timer with as little info saved as possible
+// --time remaining as of last start button press
+// -- time stamp it should finish? Do i even need this?
+
+// could do timestamp of last timer start/resume & end timeStamp, or remaining time as of last start/resume begin decrementing if current timestamp is not later than end timestamp
+
+// if pomodoro selected, build array of pomodoro order
 export const Timer = () => {
-  // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
-
-  // at a high level I will need to
-  // - timer on or off
-  // - time amount
-  // - start or end timeStamp
-  // - is paused? - no dont think i need this I can just do if time past end date done
-
-  // could also export from custom hook hours, mins, seconds
-
-  // What do i need to know to set a timer with as little info saved as possible
-  // --time remaining as of last start button press
-  // -- time stamp it should finish? Do i even need this?
-
-  // could do timestamp of last timer start/resume & end timeStamp, or remaining time as of last start/resume begin decrementing if current timestamp is not later than end timestamp
-
-  // if pomodoro selected, build array of pomodoro order
+  const { timerState, setTimerState, isRunning, setIsRunning } =
+    useContext(timerContext);
   const pomOrder = [];
   const timeMap = { shortBreak: 300, longBreak: 1200 };
 
-  const timerState = {
-    time: 1500,
-    lastTimerSelected: undefined,
-    startTS: undefined,
-    endTS: undefined,
-    mode: undefined,
-    timersComplete: 0,
-    restsComplete: 0,
-  };
+  // const timerState = {
+  //   time: 1500,
+  //   lastTimerSelected: undefined,
+  //   startTS: undefined,
+  //   endTS: undefined,
+  //   mode: undefined,
+  //   timersComplete: 0,
+  //   restsComplete: 0,
+  // };
 
   const [time, setTime] = useState(1500);
   const [rest, setRest] = useState(300);
