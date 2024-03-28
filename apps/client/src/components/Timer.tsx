@@ -52,6 +52,11 @@ export const Timer = () => {
 
   const seconds = 10;
 
+  const buttons = [
+    { text: "15 Min", val: 900 },
+    { text: "25 Min", val: 1500 },
+  ];
+
   return (
     <>
       <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2 ">
@@ -65,21 +70,44 @@ export const Timer = () => {
           <div>{secondsRemaining}</div>
           <p className="text-6xl">{displayTimer}</p>
           <div>timer</div>
-          <Button
-            onClick={() => {
-              // console.log(dayjs().add(900, "second").format());
-              // console.log(dayjs().format());
-              setTimerRunning(false);
-              setTimerSelected(seconds);
-              setSecondsRemaining(seconds);
-              const start = dayjs().utc();
-              const end = start.add(seconds, "second");
-              setStartTS(start.format());
-              setEndTS(end.format());
-            }}
-          >
-            15 min
-          </Button>
+          <div>
+            {buttons.map((button) => {
+              return (
+                <Button
+                  onClick={() => {
+                    // console.log(dayjs().add(900, "second").format());
+                    // console.log(dayjs().format());
+                    setTimerRunning(false);
+                    setTimerSelected(button.val);
+                    setSecondsRemaining(button.val);
+                    const start = dayjs().utc();
+                    const end = start.add(button.val, "second");
+                    setStartTS(start.format());
+                    setEndTS(end.format());
+                  }}
+                >
+                  {button.text}
+                </Button>
+              );
+            })}
+
+            <Button
+              variant="outline"
+              onClick={() => {
+                // console.log(dayjs().add(900, "second").format());
+                // console.log(dayjs().format());
+                setTimerRunning(false);
+                setTimerSelected(seconds);
+                setSecondsRemaining(seconds);
+                const start = dayjs().utc();
+                const end = start.add(seconds, "second");
+                setStartTS(start.format());
+                setEndTS(end.format());
+              }}
+            >
+              5 sec
+            </Button>
+          </div>
           <Button
             className="dark "
             onClick={() => {
