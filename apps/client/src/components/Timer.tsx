@@ -54,7 +54,11 @@ export const Timer = () => {
 
   return (
     <>
-      <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2">
+      <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2 ">
+        <div className="mb-3 flex justify-center gap-3">
+          <Button>Pomodoro</Button>
+          <Button>Custom</Button>
+        </div>
         <div className="dark rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white">
           <div>start timestamp: {startTS}</div>
           <div>end timestamp: {endTS}</div>
