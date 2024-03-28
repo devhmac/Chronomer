@@ -47,26 +47,10 @@ export const Timer = () => {
     setStartTS,
     endTS,
     setEndTS,
+    mode,
   } = useTimer();
 
   const seconds = 10;
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (timerRunning) {
-  //       if (time === 0 || dayjs().isSameOrAfter(endTS)) {
-  //         time === 0 ? (timerState.timersComplete += 1) : null;
-  //         clearInterval(interval);
-  //         setTimerRunning(false);
-  //         // send notifification
-  //         setTime(timerSelected || 300);
-  //         return;
-  //       }
-  //       setTime((prev) => prev - 1);
-  //     }
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, [time, timerRunning]);
 
   return (
     <>
@@ -103,6 +87,7 @@ export const Timer = () => {
           </Button>
         </div>
         <p>num timers {timerState.timersComplete}</p>
+        {mode}
       </div>
     </>
   );

@@ -22,21 +22,25 @@ export const useTimer = () => {
   const [timerRunning, setTimerRunning] = useState(false);
   const [startTS, setStartTS] = useState<undefined | string>(undefined);
   const [endTS, setEndTS] = useState<undefined | string>(undefined);
-  const [timerSelected, setTimerSelected] = useState<undefined | number>(
-    undefined,
+  const [timerSelected, setTimerSelected] = useState<number>(
+    timerState.timerLength,
   );
-  const [mode, setMode] = useState<"TIMER" | "REST">("TIMER");
+  // const [mode, setMode] = useState<"TIMER" | "REST">("TIMER");
   const displayTimer = new Date(secondsRemaining * 1000)
     .toISOString()
     .substring(secondsRemaining < 3600 ? 14 : 12, 19);
   // const startDT = new Date(Date.now()).toISOString();
-
-  const seconds = 10;
+  let mode = "TIMER";
+  const map = { REST: rest, TIMER: timerSelected };
+  console.log("timer map", map);
+  console.log(map[mode]);
+  console.log(mode);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (timerRunning) {
-        if (secondsRemaining === 0 || dayjs().isAfter(endTS)) {
+        // || dayjs().isAfter(endTS) had this as part of or condition line 40 - to figure out with local store
+        if (secondsRemaining === 0) {
           console.log("inside main stop condition");
           if (secondsRemaining === 0) {
             console.log("inside timer runout stop condition");
@@ -44,13 +48,14 @@ export const useTimer = () => {
               ...prev,
               timersComplete: prev.timersComplete + 1,
             }));
-            setMode((prev) => (prev === "TIMER" ? "REST" : "TIMER"));
+            // setMode((prev) => (prev === "TIMER" ? "REST" : "TIMER"));
+            mode = "REST";
           }
           console.log("timers complete", timerState.timersComplete);
           clearInterval(interval);
           setTimerRunning(false);
           // send notifification
-          setSecondsRemaining(timerSelected || 300);
+          setSecondsRemaining(map[mode] || 300);
           return;
         }
         setSecondsRemaining((prev) => prev - 1);
@@ -71,5 +76,6 @@ export const useTimer = () => {
     setStartTS,
     endTS,
     setEndTS,
+    mode,
   };
 };
