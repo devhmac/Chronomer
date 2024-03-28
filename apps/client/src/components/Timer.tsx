@@ -70,7 +70,7 @@ export const Timer = () => {
           <div>{secondsRemaining}</div>
           <p className="text-6xl">{displayTimer}</p>
           <div>timer</div>
-          <div>
+          <div className="my-2 flex justify-center gap-2">
             {buttons.map((button) => {
               return (
                 <Button
