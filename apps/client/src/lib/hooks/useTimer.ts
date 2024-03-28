@@ -25,13 +25,16 @@ export const useTimer = () => {
   const [timerSelected, setTimerSelected] = useState<number>(
     timerState.timerLength,
   );
-  // const [mode, setMode] = useState<"TIMER" | "REST">("TIMER");
+  const [mode, setMode] = useState<"TIMER" | "REST">("TIMER");
   const displayTimer = new Date(secondsRemaining * 1000)
     .toISOString()
     .substring(secondsRemaining < 3600 ? 14 : 12, 19);
   // const startDT = new Date(Date.now()).toISOString();
-  let mode = "TIMER";
-  const map = { REST: rest, TIMER: timerSelected };
+  // let mode = "TIMER";
+  const map: { REST: number; TIMER: number } = {
+    REST: rest,
+    TIMER: timerSelected,
+  };
   console.log("timer map", map);
   console.log(map[mode]);
   console.log(mode);
@@ -49,7 +52,7 @@ export const useTimer = () => {
               timersComplete: prev.timersComplete + 1,
             }));
             // setMode((prev) => (prev === "TIMER" ? "REST" : "TIMER"));
-            mode = "REST";
+            // mode = "REST";
           }
           console.log("timers complete", timerState.timersComplete);
           clearInterval(interval);

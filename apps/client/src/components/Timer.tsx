@@ -53,6 +53,8 @@ export const Timer = () => {
   const seconds = 10;
 
   const buttons = [
+    { text: "5 sec", val: 5 },
+
     { text: "15 Min", val: 900 },
     { text: "25 Min", val: 1500 },
   ];
@@ -68,12 +70,13 @@ export const Timer = () => {
           <div>start timestamp: {startTS}</div>
           <div>end timestamp: {endTS}</div>
           <div>{secondsRemaining}</div>
-          <p className="text-6xl">{displayTimer}</p>
-          <div>timer</div>
+          <p className=" my-5 text-8xl">{displayTimer}</p>
+
           <div className="my-2 flex justify-center gap-2">
             {buttons.map((button) => {
               return (
                 <Button
+                  key={button.text}
                   onClick={() => {
                     // console.log(dayjs().add(900, "second").format());
                     // console.log(dayjs().format());
@@ -90,28 +93,12 @@ export const Timer = () => {
                 </Button>
               );
             })}
-
-            <Button
-              variant="outline"
-              onClick={() => {
-                // console.log(dayjs().add(900, "second").format());
-                // console.log(dayjs().format());
-                setTimerRunning(false);
-                setTimerSelected(seconds);
-                setSecondsRemaining(seconds);
-                const start = dayjs().utc();
-                const end = start.add(seconds, "second");
-                setStartTS(start.format());
-                setEndTS(end.format());
-              }}
-            >
-              5 sec
-            </Button>
           </div>
           <Button
             className="dark "
             onClick={() => {
               setTimerRunning((prev) => !prev);
+              setStartTS(dayjs().utc().format());
               setEndTS(dayjs().utc().add(secondsRemaining, "seconds").format());
             }}
           >
