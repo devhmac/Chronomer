@@ -103,7 +103,7 @@ export const Timer = () => {
               setEndTS(dayjs().utc().add(secondsRemaining, "seconds").format());
             }}
           >
-            {timerRunning ? "pause" : "start"}
+            {timerRunning ? "Pause" : "Start"}
           </Button>
         </div>
         <p>num timers {timerState.timersComplete}</p>
