@@ -4,6 +4,9 @@
 
 @layer base {
   :root {
+    /* --gradient: bg-gradient-to-tr from-sky-500 to-purple-400; */
+    --gradient: linear-gradient(to top right, #0ea5e9, #c084fc);
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -36,8 +39,11 @@
   }
 
   .dark {
+    --gradient: linear-gradient(to top right, #7dd3fc, #d8b4fe);
+
     /* original */
-    --background: 222.2 84% 4.9%;
+    /* blacker background */ /* --background: 222.2 84% 4.9%; */
+    --background: 226 54.8% 8.450000000000001%; /*bluer Background */
     --foreground: 210 40% 98%;
 
     /* original */
@@ -47,7 +53,7 @@
     /* --card: 226 54.8% 8.450000000000001%;
     --card-foreground: 226 5.1% 98.25%; */
 
-    --popover: 226 54.8% 8.450000000000001%;
+    --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
     /* --primary: 226 51% 65%;
@@ -80,5 +86,14 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .dots {
+    @apply absolute -z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)];
+  }
+  .dark-dots {
+    @apply absolute -z-10 h-full w-full bg-[radial-gradient(#383d47_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)];
   }
 }

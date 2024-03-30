@@ -61,7 +61,8 @@ export const Timer = () => {
 
   return (
     <>
-      <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] p-2 ">
+      {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
+      <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.3)] bg-[rgba(10,15,33,0.3)] p-2 ">
         <div className="mb-3 flex justify-center gap-3">
           <Button>Pomodoro</Button>
           <Button>Custom</Button>

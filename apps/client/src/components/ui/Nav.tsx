@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Nav = () => {
   return (
-    <nav className="h-15 mt-2 flex h-12 flex-row  items-center justify-between gap-2 px-6 md:px-20">
+    <nav className="h-15 mt-2 flex h-12  flex-row items-center justify-between gap-2 px-6 md:px-20">
       <Link href="/" className="flex items-center gap-2">
         <Image
           src="/assets/logos/logo1_nobg.png"
