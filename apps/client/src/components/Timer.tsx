@@ -73,6 +73,7 @@ export const Timer = () => {
               {buttons.map((button) => {
                 return (
                   <Button
+                    className="bg-white/50"
                     key={button.text}
                     onClick={() => {
                       // console.log(dayjs().add(900, "second").format());
