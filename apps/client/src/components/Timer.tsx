@@ -62,12 +62,12 @@ export const Timer = () => {
   return (
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
-      <div className="w-1/2 rounded-lg border border-[rgba(255,255,255,0.3)] bg-[rgba(10,15,33,0.3)] p-2 ">
+      <div className="bg-muted/1 w-1/2 rounded-lg border border-[rgba(255,255,255,0.3)] bg-popover/25 p-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
         <div className="mb-3 flex justify-center gap-3">
           <Button>Pomodoro</Button>
           <Button>Custom</Button>
         </div>
-        <div className="dark rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white">
+        <div className="dark rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white ">
           <div>start timestamp: {startTS}</div>
           <div>end timestamp: {endTS}</div>
           <div>{secondsRemaining}</div>
@@ -96,7 +96,8 @@ export const Timer = () => {
             })}
           </div>
           <Button
-            className="dark "
+            className="dark"
+            variant={timerRunning ? "outline" : "default"}
             onClick={() => {
               setTimerRunning((prev) => !prev);
               setStartTS(dayjs().utc().format());

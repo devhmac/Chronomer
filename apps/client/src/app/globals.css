@@ -42,8 +42,9 @@
     --gradient: linear-gradient(to top right, #7dd3fc, #d8b4fe);
 
     /* original */
-    /* blacker background */ /* --background: 222.2 84% 4.9%; */
-    --background: 226 54.8% 8.450000000000001%; /*bluer Background */
+    /* blacker background */
+    --background: 222.2 84% 4.9%;
+    /* --background: 226 54.8% 8.450000000000001%; bluer Background */
     --foreground: 210 40% 98%;
 
     /* original */
