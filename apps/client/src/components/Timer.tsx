@@ -62,56 +62,62 @@ export const Timer = () => {
   return (
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
-      <div className="bg-muted/1 mx-auto w-1/2 rounded-lg border border-[rgba(255,255,255,0.3)] bg-popover/25 p-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+      {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
+      <div className="bg-muted/1 mx-auto w-1/3  rounded-lg border p-4 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
         <div className="mb-3 flex justify-center gap-3">
           <Button>Pomodoro</Button>
           <Button>Custom</Button>
         </div>
-        <div className="dark rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white ">
-          <div className="flex items-center justify-between border border-red-400">
-            <div className=" flex w-1/4 flex-col gap-2">
-              {buttons.map((button) => {
-                return (
-                  <Button
-                    className="bg-white/50"
-                    key={button.text}
-                    onClick={() => {
-                      // console.log(dayjs().add(900, "second").format());
-                      // console.log(dayjs().format());
-                      setTimerRunning(false);
-                      setTimerSelected(button.val);
-                      setSecondsRemaining(button.val);
-                      const start = dayjs().utc();
-                      const end = start.add(button.val, "second");
-                      setStartTS(start.format());
-                      setEndTS(end.format());
-                    }}
-                  >
-                    {button.text}
-                  </Button>
-                );
-              })}
-            </div>
-            <div>
-              {/* <div>start timestamp: {startTS}</div>
+        <div className=" rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white ">
+          {/* <div className="flex items-center justify-between border border-red-400"> */}
+          <div>
+            {/* <div>start timestamp: {startTS}</div>
               <div>end timestamp: {endTS}</div>
               <div>{secondsRemaining}</div> */}
-              <p className=" my-5 text-9xl">{displayTimer}</p>
-            </div>
-            <div className="w-1/4">
+            <p className=" my-5 text-9xl">{displayTimer}</p>
+          </div>
+          {/* <div className="w-1/4">
               <p>num timers {timerState.timersComplete}</p>
               {mode}
-            </div>
+            </div> */}
+          {/* </div> */}
+        </div>
+        <div className="my-2 flex flex-col items-center justify-center gap-2">
+          <div className=" flex flex-row gap-2">
+            {buttons.map((button) => {
+              return (
+                <Button
+                  // className="outline"
+                  variant="outline"
+                  key={button.text}
+                  onClick={() => {
+                    // console.log(dayjs().add(900, "second").format());
+                    // console.log(dayjs().format());
+                    setTimerRunning(false);
+                    setTimerSelected(button.val);
+                    setSecondsRemaining(button.val);
+                    const start = dayjs().utc();
+                    const end = start.add(button.val, "second");
+                    setStartTS(start.format());
+                    setEndTS(end.format());
+                  }}
+                >
+                  {button.text}
+                </Button>
+              );
+            })}
           </div>
-
-          <div className="my-2 flex justify-center gap-2"></div>
           <Button
-            className="dark"
+            className="w-1/3"
             variant={timerRunning ? "outline" : "default"}
             onClick={() => {
               setTimerRunning((prev) => !prev);
               setStartTS(dayjs().utc().format());
               setEndTS(dayjs().utc().add(secondsRemaining, "seconds").format());
+              let endTimestamp = dayjs()
+                .utc()
+                .add(secondsRemaining, "seconds")
+                .format();
             }}
           >
             {timerRunning ? "Pause" : "Start"}
