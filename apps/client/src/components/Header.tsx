@@ -8,7 +8,7 @@ const Header = () => {
         <span className=" bg-gradient-to-tr from-sky-400 to-purple-500 bg-clip-text text-transparent dark:from-sky-300 dark:to-purple-300">
           Cronomer
         </span>{" "}
-        - Focus with others in parallel
+        - Deep work with others in parallel
         {/* Co-Work with others */}
       </h1>
       <p className="text-md text-slate-300 sm:text-xl">
