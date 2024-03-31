@@ -6,7 +6,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="max-h-screen px-8 pt-[61px] ">
+    <main className="max-h-screen px-8  ">
       <DashboardLayout />
     </main>
   );

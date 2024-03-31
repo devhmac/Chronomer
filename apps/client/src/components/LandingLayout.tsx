@@ -41,8 +41,8 @@ const LandingLayout = () => {
       </div>
 
       <div className=""></div>
-      <Button className="hover:accent/50 bg-popover/50" variant="outline">
-        Create Live Space
+      <Button className="hover:accent/50 bg-gradient" variant="outline">
+        Start Live Space
       </Button>
     </>
   );
