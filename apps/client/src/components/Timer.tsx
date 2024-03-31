@@ -63,7 +63,7 @@ export const Timer = () => {
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
       {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
-      <div className="bg-muted/1 mx-auto w-1/3  min-w-[460px] rounded-lg border p-4 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
+      <div className="bg-muted/1  w-1/3  min-w-[460px] rounded-lg border p-4 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
         <div className="mb-3 flex justify-center gap-3">
           <Button>Pomodoro</Button>
           <Button>Custom</Button>
