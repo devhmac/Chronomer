@@ -62,39 +62,48 @@ export const Timer = () => {
   return (
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
-      <div className="bg-muted/1 mx-auto w-1/2 rounded-lg border border-[rgba(255,255,255,0.3)] bg-popover/25 p-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+      <div className="bg-muted/1 mx-auto w-1/2 rounded-lg border border-[rgba(255,255,255,0.3)] bg-popover/25 p-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
         <div className="mb-3 flex justify-center gap-3">
           <Button>Pomodoro</Button>
           <Button>Custom</Button>
         </div>
         <div className="dark rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white ">
-          <div>start timestamp: {startTS}</div>
-          <div>end timestamp: {endTS}</div>
-          <div>{secondsRemaining}</div>
-          <p className=" my-5 text-8xl">{displayTimer}</p>
-
-          <div className="my-2 flex justify-center gap-2">
-            {buttons.map((button) => {
-              return (
-                <Button
-                  key={button.text}
-                  onClick={() => {
-                    // console.log(dayjs().add(900, "second").format());
-                    // console.log(dayjs().format());
-                    setTimerRunning(false);
-                    setTimerSelected(button.val);
-                    setSecondsRemaining(button.val);
-                    const start = dayjs().utc();
-                    const end = start.add(button.val, "second");
-                    setStartTS(start.format());
-                    setEndTS(end.format());
-                  }}
-                >
-                  {button.text}
-                </Button>
-              );
-            })}
+          <div className="flex items-center justify-between border border-red-400">
+            <div className=" flex w-1/4 flex-col gap-2">
+              {buttons.map((button) => {
+                return (
+                  <Button
+                    key={button.text}
+                    onClick={() => {
+                      // console.log(dayjs().add(900, "second").format());
+                      // console.log(dayjs().format());
+                      setTimerRunning(false);
+                      setTimerSelected(button.val);
+                      setSecondsRemaining(button.val);
+                      const start = dayjs().utc();
+                      const end = start.add(button.val, "second");
+                      setStartTS(start.format());
+                      setEndTS(end.format());
+                    }}
+                  >
+                    {button.text}
+                  </Button>
+                );
+              })}
+            </div>
+            <div>
+              {/* <div>start timestamp: {startTS}</div>
+              <div>end timestamp: {endTS}</div>
+              <div>{secondsRemaining}</div> */}
+              <p className=" my-5 text-9xl">{displayTimer}</p>
+            </div>
+            <div className="w-1/4">
+              <p>num timers {timerState.timersComplete}</p>
+              {mode}
+            </div>
           </div>
+
+          <div className="my-2 flex justify-center gap-2"></div>
           <Button
             className="dark"
             variant={timerRunning ? "outline" : "default"}
@@ -107,8 +116,6 @@ export const Timer = () => {
             {timerRunning ? "Pause" : "Start"}
           </Button>
         </div>
-        <p>num timers {timerState.timersComplete}</p>
-        {mode}
       </div>
     </>
   );
