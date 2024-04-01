@@ -14,8 +14,8 @@ const TimerSettings = () => {
   const customRests = [];
   return (
     <Popover>
-      <PopoverTrigger>
-        <Settings />
+      <PopoverTrigger className="h-10 w-10 rounded-md hover:border hover:bg-accent">
+        <Settings className="m-auto h-6 w-6 hover:bg-accent" />
       </PopoverTrigger>
       <PopoverContent>
         <Button variant="ghost">Pomodoro</Button>
@@ -31,7 +31,7 @@ const TimerSettings = () => {
                 <p className="font-medium underline underline-offset-4">
                   Timer Length:
                 </p>
-                const
+
                 <Button variant="ghost">10min</Button>
                 <Button>25min</Button>
                 <Button>45min</Button>
