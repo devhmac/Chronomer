@@ -12,7 +12,7 @@ dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
 import { timerContext } from "@/context/TimerContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Settings } from "lucide-react";
+import { RotateCcw, Settings } from "lucide-react";
 import TimerSettings from "./TimerSettings";
 
 // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
@@ -112,6 +112,16 @@ export const Timer = () => {
           </div>
           <div className="flex flex-row items-center gap-2">
             <Button
+              variant="ghost"
+              className="h-10 w-10 p-0"
+              onClick={() => {
+                setSecondsRemaining(timerSelected);
+                setTimerRunning(false);
+              }}
+            >
+              <RotateCcw className="h-6 w-6" />
+            </Button>
+            <Button
               className=""
               variant={timerRunning ? "outline" : "default"}
               onClick={() => {
@@ -128,7 +138,12 @@ export const Timer = () => {
             >
               {timerRunning ? "Pause" : "Start"}
             </Button>
-            <TimerSettings />
+            <TimerSettings
+              timerSelected={timerSelected}
+              setTimerSelected={setTimerSelected}
+              setTimerRunning={setTimerRunning}
+              setSecondsRemaining={setSecondsRemaining}
+            />
           </div>
         </div>
       </div>
