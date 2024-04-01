@@ -14,7 +14,7 @@ const Nav = () => {
           height={47}
           className="rounded"
         />
-        <h3 className="text-2xl font-medium">Cronomer</h3>
+        <h3 className="text-2xl font-medium">Chronomer</h3>
       </Link>
 
       <div>
