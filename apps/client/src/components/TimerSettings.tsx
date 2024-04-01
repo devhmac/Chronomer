@@ -20,6 +20,10 @@ const TimerSettings = () => {
       <PopoverContent>
         <Button variant="ghost">Pomodoro</Button>
         <Accordion type="single" collapsible>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Pomodoro</AccordionTrigger>
+            {/* <AccordionContent className="ml-3 flex flex-wrap gap-1"></AccordionContent> */}
+          </AccordionItem>
           <AccordionItem value="item-1">
             <AccordionTrigger>Custom</AccordionTrigger>
             <AccordionContent className="ml-3 flex flex-wrap gap-1">
