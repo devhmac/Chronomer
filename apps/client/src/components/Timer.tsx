@@ -11,6 +11,9 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
 import { timerContext } from "@/context/TimerContext";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Settings } from "lucide-react";
+import TimerSettings from "./TimerSettings";
 
 // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
 
@@ -54,7 +57,6 @@ export const Timer = () => {
 
   const buttons = [
     { text: "5 sec", val: 5 },
-
     { text: "15 Min", val: 900 },
     { text: "25 Min", val: 1500 },
   ];
@@ -84,6 +86,7 @@ export const Timer = () => {
         </div>
         <div className="my-2 flex flex-col items-center justify-center gap-2">
           <div className=" flex flex-row gap-2">
+            Timer Selected:
             {buttons.map((button) => {
               return (
                 <Button
@@ -107,21 +110,26 @@ export const Timer = () => {
               );
             })}
           </div>
-          <Button
-            className="w-1/3"
-            variant={timerRunning ? "outline" : "default"}
-            onClick={() => {
-              setTimerRunning((prev) => !prev);
-              setStartTS(dayjs().utc().format());
-              setEndTS(dayjs().utc().add(secondsRemaining, "seconds").format());
-              let endTimestamp = dayjs()
-                .utc()
-                .add(secondsRemaining, "seconds")
-                .format();
-            }}
-          >
-            {timerRunning ? "Pause" : "Start"}
-          </Button>
+          <div>
+            <Button
+              className=""
+              variant={timerRunning ? "outline" : "default"}
+              onClick={() => {
+                setTimerRunning((prev) => !prev);
+                setStartTS(dayjs().utc().format());
+                setEndTS(
+                  dayjs().utc().add(secondsRemaining, "seconds").format(),
+                );
+                let endTimestamp = dayjs()
+                  .utc()
+                  .add(secondsRemaining, "seconds")
+                  .format();
+              }}
+            >
+              {timerRunning ? "Pause" : "Start"}
+            </Button>
+            <TimerSettings />
+          </div>
         </div>
       </div>
     </>
