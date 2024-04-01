@@ -65,12 +65,8 @@ export const Timer = () => {
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
       {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
-      <div className="bg-muted/1  w-1/3  min-w-[460px] rounded-lg border p-4 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
-        <div className="mb-3 flex justify-center gap-3">
-          <Button>Pomodoro</Button>
-          <Button>Custom</Button>
-        </div>
-        <div className=" rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 p-5 text-center text-white ">
+      <div className="bg-muted/1  w-1/3  min-w-[460px]  rounded-lg border p-6 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
+        <div className=" rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-10 text-center text-white">
           {/* <div className="flex items-center justify-between border border-red-400"> */}
           <div>
             {/* <div>start timestamp: {startTS}</div>
@@ -87,7 +83,7 @@ export const Timer = () => {
         <div className="my-2 flex flex-col items-center justify-center gap-2">
           <div className=" flex flex-row gap-2">
             Timer Selected:
-            {buttons.map((button) => {
+            {/* {buttons.map((button) => {
               return (
                 <Button
                   // className="outline"
@@ -108,21 +104,21 @@ export const Timer = () => {
                   {button.text}
                 </Button>
               );
-            })}
+            })} */}
           </div>
           <div className="flex flex-row items-center gap-2">
             <Button
               variant="ghost"
               className="h-10 w-10 p-0"
               onClick={() => {
-                setSecondsRemaining(timerSelected);
                 setTimerRunning(false);
+                setSecondsRemaining(timerSelected);
               }}
             >
               <RotateCcw className="h-6 w-6" />
             </Button>
             <Button
-              className=""
+              className="w-20"
               variant={timerRunning ? "outline" : "default"}
               onClick={() => {
                 setTimerRunning((prev) => !prev);
