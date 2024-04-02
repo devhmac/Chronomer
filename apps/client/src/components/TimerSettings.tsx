@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Switch } from "@/components/ui/switch";
 
@@ -49,15 +49,16 @@ const TimerSettings = ({
     type: "timer" | "rest",
   ) => {
     setTimerRunning(false);
-    if (type === "timer") {
-      setSecondsRemaining(timer.val);
-    }
     setTimerConfig((prev) =>
       type === "rest"
         ? { ...prev, rest: timer.val, isPomodoro: false }
         : { ...prev, timer: timer.val, isPomodoro: false },
     );
   };
+
+  useEffect(() => {
+    setSecondsRemaining(timerConfig.timer);
+  }, [timerConfig.timer]);
 
   return (
     <Popover>
@@ -86,7 +87,7 @@ const TimerSettings = ({
           >
             Pomodoro
           </Button>
-          <Switch />
+          <Switch checked={!timerConfig.isPomodoro} />
           <Button
             className={!timerConfig.isPomodoro ? "bg-accent" : ""}
             variant="ghost"
