@@ -72,7 +72,7 @@ export const Timer = () => {
             {/* <div>start timestamp: {startTS}</div>
               <div>end timestamp: {endTS}</div>
               <div>{secondsRemaining}</div> */}
-            <p className="  text-9xl">{displayTimer}</p>
+            <p className=" text-9xl ">{displayTimer}</p>
           </div>
           {/* <div className="w-1/4">
               <p>num timers {timerState.timersComplete}</p>
@@ -83,7 +83,7 @@ export const Timer = () => {
         <div className="my-2 flex flex-col items-center justify-center gap-2">
           <div className=" flex flex-row gap-2">
             Timer Settings:{" "}
-            {new Date(secondsRemaining * 1000)
+            {new Date(timerConfig.timer * 1000)
               .toISOString()
               .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
             {/* {buttons.map((button) => {

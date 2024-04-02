@@ -1,5 +1,7 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Switch } from "@/components/ui/switch";
+
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { Settings } from "lucide-react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 type props = {
   timerConfig: { timer: number; rest: number; isPomodoro: boolean };
@@ -24,6 +27,10 @@ const TimerSettings = ({
   setTimerRunning,
   setSecondsRemaining,
 }: props) => {
+  const openAccordion = timerConfig.isPomodoro ? "item-2" : "item-1";
+
+  const [open, setOpen] = useState<string>("");
+  console.log(timerConfig);
   const customTimes = [
     { text: "5 sec", val: 5 },
     { text: "15 Min", val: 900 },
@@ -32,7 +39,7 @@ const TimerSettings = ({
     { text: "1 Hr", val: 3600 },
   ];
   const customRests = [
-    { text: "5 min", val: 30 },
+    { text: "5 min", val: 300 },
     { text: "10 Min", val: 600 },
     { text: "25 Min", val: 1500 },
   ];
@@ -58,20 +65,50 @@ const TimerSettings = ({
         <Settings className="m-auto h-6 w-6 hover:bg-accent" />
       </PopoverTrigger>
       <PopoverContent>
-        <Button variant="ghost">Pomodoro</Button>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>Pomodoro</AccordionTrigger>
-            {/* <AccordionContent className="ml-3 flex flex-wrap gap-1"></AccordionContent> */}
-          </AccordionItem>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Custom</AccordionTrigger>
-            <AccordionContent className="ml-3 flex flex-wrap gap-1">
-              <div className="">
+        <div
+          className={cn(
+            " flex items-center justify-around  ",
+            open ? "mb-2 border-b pb-2" : "",
+          )}
+        >
+          <Button
+            className={timerConfig.isPomodoro ? "bg-accent" : ""}
+            variant="ghost"
+            onClick={() => {
+              setOpen("");
+              setTimerConfig((prev) => ({
+                ...prev,
+                timer: 1500,
+                rest: 300,
+                isPomodoro: true,
+              }));
+            }}
+          >
+            Pomodoro
+          </Button>
+          <Switch />
+          <Button
+            className={!timerConfig.isPomodoro ? "bg-accent" : ""}
+            variant="ghost"
+            onClick={() => {
+              setOpen("item-1");
+              setTimerConfig((prev) => ({ ...prev, isPomodoro: false }));
+            }}
+          >
+            Custom
+          </Button>
+        </div>
+
+        <Accordion type="single" collapsible value="item-1">
+          <AccordionItem value={open} className="border-b-0">
+            {/* <AccordionTrigger className=" "></AccordionTrigger> */}
+            <AccordionContent className="ml-3 flex flex-wrap gap-1 ">
+              <div className="border-b">
                 <p className="font-medium ">Timer Length:</p>
                 {customTimes.map((button) => {
                   return (
                     <Button
+                      key={button.text}
                       onClick={() => {
                         setTimerVars(button, "timer");
                       }}
@@ -87,16 +124,13 @@ const TimerSettings = ({
                     </Button>
                   );
                 })}
-                {/* <Button variant="ghost">10min</Button> */}
-                {/* <Button>25min</Button> */}
-                {/* <Button>45min</Button> */}
-                {/* <Button>1hr</Button> */}
               </div>
               <div>
                 <p>Rest Length:</p>
                 {customRests.map((button) => {
                   return (
                     <Button
+                      key={button.text}
                       onClick={() => {
                         setTimerVars(button, "rest");
                       }}
