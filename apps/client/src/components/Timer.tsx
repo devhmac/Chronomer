@@ -82,7 +82,7 @@ export const Timer = () => {
         </div>
         <div className="my-2 flex flex-col items-center justify-center gap-2">
           <div className=" flex flex-row gap-2">
-            Timer Selected:
+            Timer Selected: {timerSelected}
             {/* {buttons.map((button) => {
               return (
                 <Button
@@ -109,11 +109,12 @@ export const Timer = () => {
           <div className="flex flex-row items-center gap-2">
             <Button
               variant="ghost"
-              className="h-10 w-10 p-0"
+              className=""
               onClick={() => {
                 setTimerRunning(false);
                 setSecondsRemaining(timerSelected);
               }}
+              size="icon"
             >
               <RotateCcw className="h-6 w-6" />
             </Button>

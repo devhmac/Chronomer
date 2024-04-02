@@ -22,7 +22,6 @@ const TimerSettings = ({
   setTimerRunning,
   setSecondsRemaining,
 }: props) => {
-  const customRests = [];
   const customTimes = [
     { text: "5 sec", val: 5 },
     { text: "15 Min", val: 900 },
@@ -30,6 +29,17 @@ const TimerSettings = ({
     { text: "45 Min", val: 2700 },
     { text: "1 Hr", val: 3600 },
   ];
+  const customRests = [
+    { text: "5 min", val: 30 },
+    { text: "10 Min", val: 900 },
+    { text: "25 Min", val: 1500 },
+  ];
+
+  const setTimerVars = (timer: { text: string; val: number }) => {
+    setTimerRunning(false);
+    setTimerSelected(timer.val);
+    setSecondsRemaining(timer.val);
+  };
 
   return (
     <Popover>
@@ -47,17 +57,20 @@ const TimerSettings = ({
             <AccordionTrigger>Custom</AccordionTrigger>
             <AccordionContent className="ml-3 flex flex-wrap gap-1">
               <div className="">
-                <p className="font-medium underline underline-offset-4">
-                  Timer Length:
-                </p>
+                <p className="font-medium ">Timer Length:</p>
                 {customTimes.map((button) => {
                   return (
                     <Button
                       onClick={() => {
-                        setTimerRunning(false);
-                        setTimerSelected(button.val);
-                        setSecondsRemaining(button.val);
+                        setTimerVars(button);
                       }}
+                      className={`w-13 m-1 gap-1  ${
+                        button.val === timerSelected
+                          ? "bg-secondary"
+                          : "bg-popover"
+                      }`}
+                      variant="ghost"
+                      size="sm"
                     >
                       {button.text}
                     </Button>
@@ -70,10 +83,24 @@ const TimerSettings = ({
               </div>
               <div>
                 <p>Rest Length:</p>
-                <Button>5min</Button>
-                <Button>10min</Button>
-                <Button>15min</Button>
-                <Button>25min</Button>
+                {customRests.map((button) => {
+                  return (
+                    <Button
+                      onClick={() => {
+                        setTimerVars(button);
+                      }}
+                      className={`w-13 m-1 gap-1  ${
+                        button.val === timerSelected
+                          ? "bg-secondary"
+                          : "bg-popover"
+                      }`}
+                      variant="ghost"
+                      size="sm"
+                    >
+                      {button.text}
+                    </Button>
+                  );
+                })}
               </div>
             </AccordionContent>
           </AccordionItem>
