@@ -50,7 +50,6 @@ export const Timer = () => {
     setStartTS,
     endTS,
     setEndTS,
-    mode,
   } = useTimer();
 
   const seconds = 10;

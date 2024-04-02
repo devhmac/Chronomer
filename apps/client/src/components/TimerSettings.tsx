@@ -13,24 +13,32 @@ import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 
 type props = {
-  timerConfig: { timer: number; rest: number; isPomodoro: boolean };
+  timerConfig: {
+    timer: number;
+    rest: number;
+    isPomodoro: boolean;
+    mode: "timer" | "rest";
+  };
   setTimerConfig: Dispatch<
-    SetStateAction<{ timer: number; rest: number; isPomodoro: boolean }>
+    SetStateAction<{
+      timer: number;
+      rest: number;
+      isPomodoro: boolean;
+      mode: "timer" | "rest";
+    }>
   >;
   setTimerRunning: Dispatch<SetStateAction<boolean>>;
-  setSecondsRemaining: Dispatch<SetStateAction<number>>;
 };
 
 const TimerSettings = ({
   timerConfig,
   setTimerConfig,
   setTimerRunning,
-  setSecondsRemaining,
 }: props) => {
   const openAccordion = timerConfig.isPomodoro ? "item-2" : "item-1";
 
   const [open, setOpen] = useState<string>("");
-  console.log(timerConfig);
+
   const customTimes = [
     { text: "5 sec", val: 5 },
     { text: "15 Min", val: 900 },
@@ -55,10 +63,6 @@ const TimerSettings = ({
         : { ...prev, timer: timer.val, isPomodoro: false },
     );
   };
-
-  useEffect(() => {
-    setSecondsRemaining(timerConfig.timer);
-  }, [timerConfig.timer]);
 
   return (
     <Popover>

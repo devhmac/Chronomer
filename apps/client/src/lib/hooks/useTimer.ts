@@ -22,25 +22,27 @@ export const useTimer = () => {
   const [startTS, setStartTS] = useState<undefined | string>(undefined);
   const [endTS, setEndTS] = useState<undefined | string>(undefined);
 
-  const [timerConfig, setTimerConfig] = useState({
+  const [timerConfig, setTimerConfig] = useState<{
+    timer: number;
+    rest: number;
+    isPomodoro: boolean;
+    mode: "timer" | "rest";
+  }>({
     timer: 1500,
     rest: 300,
     isPomodoro: true,
+    mode: "timer",
   });
-  const [mode, setMode] = useState<"TIMER" | "REST">("TIMER");
 
   const displayTimer = new Date(secondsRemaining * 1000)
     .toISOString()
     .substring(secondsRemaining < 3600 ? 14 : 12, 19);
   // const startDT = new Date(Date.now()).toISOString();
   // let mode = "TIMER";
-  const map: { REST: number; TIMER: number } = {
-    REST: timerConfig.rest,
-    TIMER: timerConfig.timer,
-  };
-  console.log("timer map", map);
-  console.log(map[mode]);
-  console.log(mode);
+
+  useEffect(() => {
+    setSecondsRemaining(timerConfig[timerConfig.mode]);
+  }, [timerConfig.mode, timerConfig.timer, timerConfig.rest]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -61,7 +63,11 @@ export const useTimer = () => {
           clearInterval(interval);
           setTimerRunning(false);
           // send notifification
-          setSecondsRemaining(map[mode] || 300);
+          setTimerConfig((prev) => ({
+            ...prev,
+            mode: prev.mode === "timer" ? "rest" : "timer",
+          }));
+
           return;
         }
         setSecondsRemaining((prev) => prev - 1);
@@ -82,6 +88,5 @@ export const useTimer = () => {
     setStartTS,
     endTS,
     setEndTS,
-    mode,
   };
 };
