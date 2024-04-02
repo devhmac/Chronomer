@@ -72,6 +72,7 @@ export const Timer = () => {
             timerConfig.mode === "rest" ? "py-5" : "py-12",
           )}
         >
+
           {/* <div className="flex items-center justify-between border border-red-400"> */}
           <div>
             {/* <div>start timestamp: {startTS}</div>
@@ -80,6 +81,7 @@ export const Timer = () => {
             {timerConfig.mode === "rest" && (
               <p className="pb-2 text-6xl">Rest</p>
             )}
+
             <p className=" overflow-clip text-7xl sm:text-9xl ">
               {displayTimer}
             </p>
@@ -121,7 +123,6 @@ export const Timer = () => {
           <div className="flex w-1/2 flex-row items-center justify-center gap-2  ">
             <Button
               variant="ghost"
-              className=""
               onClick={() => {
                 setTimerRunning(false);
                 setSecondsRemaining(timerConfig.timer);
