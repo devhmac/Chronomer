@@ -141,7 +141,6 @@ export const Timer = () => {
               timerConfig={timerConfig}
               setTimerConfig={setTimerConfig}
               setTimerRunning={setTimerRunning}
-              setSecondsRemaining={setSecondsRemaining}
             />
           </div>
         </div>
