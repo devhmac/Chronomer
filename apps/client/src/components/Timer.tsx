@@ -64,14 +64,14 @@ export const Timer = () => {
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
       {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
-      <div className="bg-muted/1  w-1/3  min-w-[460px]  rounded-lg border p-6 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
+      <div className="min-w-full rounded-lg border p-6 shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]">
         <div className=" rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-10 text-center text-white">
           {/* <div className="flex items-center justify-between border border-red-400"> */}
           <div>
             {/* <div>start timestamp: {startTS}</div>
               <div>end timestamp: {endTS}</div>
               <div>{secondsRemaining}</div> */}
-            <p className=" text-9xl ">{displayTimer}</p>
+            <p className="text-8xl sm:text-9xl ">{displayTimer}</p>
           </div>
           {/* <div className="w-1/4">
               <p>num timers {timerState.timersComplete}</p>
