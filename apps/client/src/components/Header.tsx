@@ -12,8 +12,8 @@ const Header = () => {
         {/* Co-Work with others */}
       </h1>
       <p className="text-md text-slate-600 dark:text-slate-300 sm:text-xl">
-        A live Co-working platform to enhance your productivity, colaboratively
-        or independently.
+        A live Co-working platform to enhance your productivity, independently
+        or colaboratively.
       </p>
       {/* </section> */}
     </>
