@@ -12,7 +12,7 @@ const LandingLayout = () => {
       <MaxWidthWrapper className="sm:mt-30 mb-12 mt-28 flex flex-col items-center justify-center text-center">
         <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 bg-popover/25 px-6 py-2 shadow-md backdrop-blur-sm transition-all hover:bg-accent/50">
 
-          <p className="text-sm font-semibold text-primary">Coming Soon!</p>
+          <p className="text-sm font-semibold text-primary">v0.5 - More Coming Soon!</p>
 
         </div>
         <Header />
