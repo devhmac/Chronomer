@@ -14,6 +14,7 @@ import { timerContext } from "@/context/TimerContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { RotateCcw, Settings } from "lucide-react";
 import TimerSettings from "./TimerSettings";
+import { cn } from "@/lib/utils";
 
 // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
 
@@ -64,13 +65,21 @@ export const Timer = () => {
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
       {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
-      <div className="w-1/3 min-w-full rounded-lg border p-6 shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]">
-        <div className=" rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-10 text-center text-white">
+      <div className="w-1/3 min-w-full rounded-lg border p-6  shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]">
+        <div
+          className={cn(
+            "rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 text-center text-white",
+            timerConfig.mode === "rest" ? "py-5" : "py-12",
+          )}
+        >
           {/* <div className="flex items-center justify-between border border-red-400"> */}
           <div>
             {/* <div>start timestamp: {startTS}</div>
               <div>end timestamp: {endTS}</div>
               <div>{secondsRemaining}</div> */}
+            {timerConfig.mode === "rest" && (
+              <p className="pb-2 text-6xl">Rest</p>
+            )}
             <p className=" overflow-clip text-7xl sm:text-9xl ">
               {displayTimer}
             </p>
@@ -81,13 +90,8 @@ export const Timer = () => {
             </div> */}
           {/* </div> */}
         </div>
-        <div className="my-2 flex flex-col items-center justify-center gap-2">
-          <div className=" flex flex-row gap-2">
-            Timer Settings:{" "}
-            {new Date(timerConfig.timer * 1000)
-              .toISOString()
-              .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
-            {/* {buttons.map((button) => {
+        <div className="mt-4 flex flex-row justify-between gap-2 ">
+          {/* {buttons.map((button) => {
               return (
                 <Button
                   // className="outline"
@@ -109,8 +113,12 @@ export const Timer = () => {
                 </Button>
               );
             })} */}
+          <div className="w-1/4">
+            <p>Sessions Complete: {timerState.timersComplete}</p>
+            <p>Rests: {timerState.restsComplete}</p>
           </div>
-          <div className="flex flex-row items-center gap-2">
+
+          <div className="flex w-1/2 flex-row items-center justify-center gap-2  ">
             <Button
               variant="ghost"
               className=""
@@ -144,6 +152,25 @@ export const Timer = () => {
               setTimerConfig={setTimerConfig}
               setTimerRunning={setTimerRunning}
             />
+          </div>
+          <div className=" flex w-1/4 flex-col items-end justify-end gap-2">
+            <div>
+              <p className="">
+                {timerConfig.isPomodoro ? "Pomodoro" : "Custom"}
+              </p>
+              <p>
+                Timer:{" "}
+                {new Date(timerConfig.timer * 1000)
+                  .toISOString()
+                  .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
+              </p>
+              <p>
+                Rest:{" "}
+                {new Date(timerConfig.rest * 1000)
+                  .toISOString()
+                  .substring(timerConfig.rest < 3600 ? 14 : 12, 19)}
+              </p>
+            </div>
           </div>
         </div>
       </div>
