@@ -78,7 +78,7 @@ const TimerSettings = ({
         >
           <Button
             className={timerConfig.isPomodoro ? "bg-accent" : ""}
-            variant="ghost"
+            variant="outline"
             onClick={() => {
               setOpen("");
               setTimerConfig((prev) => ({
@@ -94,7 +94,7 @@ const TimerSettings = ({
           <Switch checked={!timerConfig.isPomodoro} />
           <Button
             className={!timerConfig.isPomodoro ? "bg-accent" : ""}
-            variant="ghost"
+            variant="outline"
             onClick={() => {
               setOpen("item-1");
               setTimerConfig((prev) => ({ ...prev, isPomodoro: false }));
