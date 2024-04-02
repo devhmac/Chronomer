@@ -10,15 +10,17 @@ import { Settings } from "lucide-react";
 import { Button } from "./ui/button";
 
 type props = {
-  timerSelected: number;
-  setTimerSelected: Dispatch<SetStateAction<number>>;
+  timerConfig: { timer: number; rest: number; isPomodoro: boolean };
+  setTimerConfig: Dispatch<
+    SetStateAction<{ timer: number; rest: number; isPomodoro: boolean }>
+  >;
   setTimerRunning: Dispatch<SetStateAction<boolean>>;
   setSecondsRemaining: Dispatch<SetStateAction<number>>;
 };
 
 const TimerSettings = ({
-  timerSelected,
-  setTimerSelected,
+  timerConfig,
+  setTimerConfig,
   setTimerRunning,
   setSecondsRemaining,
 }: props) => {
@@ -31,14 +33,23 @@ const TimerSettings = ({
   ];
   const customRests = [
     { text: "5 min", val: 30 },
-    { text: "10 Min", val: 900 },
+    { text: "10 Min", val: 600 },
     { text: "25 Min", val: 1500 },
   ];
 
-  const setTimerVars = (timer: { text: string; val: number }) => {
+  const setTimerVars = (
+    timer: { text: string; val: number },
+    type: "timer" | "rest",
+  ) => {
     setTimerRunning(false);
-    setTimerSelected(timer.val);
-    setSecondsRemaining(timer.val);
+    if (type === "timer") {
+      setSecondsRemaining(timer.val);
+    }
+    setTimerConfig((prev) =>
+      type === "rest"
+        ? { ...prev, rest: timer.val, isPomodoro: false }
+        : { ...prev, timer: timer.val, isPomodoro: false },
+    );
   };
 
   return (
@@ -62,10 +73,10 @@ const TimerSettings = ({
                   return (
                     <Button
                       onClick={() => {
-                        setTimerVars(button);
+                        setTimerVars(button, "timer");
                       }}
                       className={`w-13 m-1 gap-1  ${
-                        button.val === timerSelected
+                        button.val === timerConfig.timer
                           ? "bg-secondary"
                           : "bg-popover"
                       }`}
@@ -87,10 +98,10 @@ const TimerSettings = ({
                   return (
                     <Button
                       onClick={() => {
-                        setTimerVars(button);
+                        setTimerVars(button, "rest");
                       }}
                       className={`w-13 m-1 gap-1  ${
-                        button.val === timerSelected
+                        button.val === timerConfig.rest
                           ? "bg-secondary"
                           : "bg-popover"
                       }`}

@@ -39,8 +39,8 @@ export const Timer = () => {
   const timeMap = { shortBreak: 300, longBreak: 1200 };
 
   const {
-    timerSelected,
-    setTimerSelected,
+    timerConfig,
+    setTimerConfig,
     timerRunning,
     setTimerRunning,
     secondsRemaining,
@@ -82,7 +82,10 @@ export const Timer = () => {
         </div>
         <div className="my-2 flex flex-col items-center justify-center gap-2">
           <div className=" flex flex-row gap-2">
-            Timer Selected: {timerSelected}
+            Timer Settings:{" "}
+            {new Date(secondsRemaining * 1000)
+              .toISOString()
+              .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
             {/* {buttons.map((button) => {
               return (
                 <Button
@@ -112,7 +115,7 @@ export const Timer = () => {
               className=""
               onClick={() => {
                 setTimerRunning(false);
-                setSecondsRemaining(timerSelected);
+                setSecondsRemaining(timerConfig.timer);
               }}
               size="icon"
             >
@@ -136,8 +139,8 @@ export const Timer = () => {
               {timerRunning ? "Pause" : "Start"}
             </Button>
             <TimerSettings
-              timerSelected={timerSelected}
-              setTimerSelected={setTimerSelected}
+              timerConfig={timerConfig}
+              setTimerConfig={setTimerConfig}
               setTimerRunning={setTimerRunning}
               setSecondsRemaining={setSecondsRemaining}
             />

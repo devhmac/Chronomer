@@ -18,22 +18,25 @@ export const useTimer = () => {
   const [secondsRemaining, setSecondsRemaining] = useState(
     timerState.timerLength,
   );
-  const [rest, setRest] = useState(300);
   const [timerRunning, setTimerRunning] = useState(false);
   const [startTS, setStartTS] = useState<undefined | string>(undefined);
   const [endTS, setEndTS] = useState<undefined | string>(undefined);
-  const [timerSelected, setTimerSelected] = useState<number>(
-    timerState.timerLength,
-  );
+
+  const [timerConfig, setTimerConfig] = useState({
+    timer: 1500,
+    rest: 300,
+    isPomodoro: true,
+  });
   const [mode, setMode] = useState<"TIMER" | "REST">("TIMER");
+
   const displayTimer = new Date(secondsRemaining * 1000)
     .toISOString()
     .substring(secondsRemaining < 3600 ? 14 : 12, 19);
   // const startDT = new Date(Date.now()).toISOString();
   // let mode = "TIMER";
   const map: { REST: number; TIMER: number } = {
-    REST: rest,
-    TIMER: timerSelected,
+    REST: timerConfig.rest,
+    TIMER: timerConfig.timer,
   };
   console.log("timer map", map);
   console.log(map[mode]);
@@ -68,8 +71,8 @@ export const useTimer = () => {
   }, [secondsRemaining, timerRunning]);
 
   return {
-    timerSelected,
-    setTimerSelected,
+    timerConfig,
+    setTimerConfig,
     timerRunning,
     setTimerRunning,
     secondsRemaining,
