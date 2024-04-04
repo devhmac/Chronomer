@@ -20,3 +20,13 @@ export const data: Payment[] = [
   },
   // ...
 ];
+
+type Task = {
+  id: string;
+  task: string;
+  status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
+  isActive: boolean;
+  subTasks: Task[];
+  timeToComplete: number;
+  order: number;
+};

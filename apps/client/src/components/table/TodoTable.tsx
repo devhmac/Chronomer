@@ -17,6 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
+import TaskInput from "./TaskInput";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -59,16 +60,43 @@ export function TodoTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
+              <>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id} onClick={() => console.log(cell)}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* <TableRow>test</TableRow> */}
+
+                <div className="ml-10">
+                  {table.getRowModel().rows.map((row) => (
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell
+                          key={cell.id}
+                          onClick={() => console.log(cell)}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </div>
+              </>
             ))
           ) : (
             <TableRow>
@@ -78,26 +106,11 @@ export function TodoTable<TData, TValue>({
             </TableRow>
           )}
           <TableRow>
-            <TableCell
-              colSpan={columns.length}
-              className="hover:bg-accent"
-              onClick={(e) => {
-                e.preventDefault;
-                setData((prev) => [
-                  ...prev,
-                  {
-                    id: "728ed52f",
-                    amount: 100,
-                    email: "m@example.com",
-                    status: "pending",
-                  },
-                ]);
-              }}
-            >
+            <TableCell colSpan={columns.length} className="hover:bg-accent">
               <span className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
                 Test add new row
               </span>
-              <input type="text" />
+              <TaskInput />
             </TableCell>
           </TableRow>
         </TableBody>
