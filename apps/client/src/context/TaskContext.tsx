@@ -34,8 +34,7 @@ type TaskContext = {
   tasks: Task[];
   setTasks: Dispatch<SetStateAction<Task[]>>;
 };
-// YOU DID ALL THIS BUT ACTUALLY WHAT DO YOU NEED AS A CONTEXT CANT ALL THIS JUST BE IN THE TIMER HOOK?
-// MAYBE JUST KEEP TIMER ON, #'s COMPLETED, MAYBE TIMESTAMPS?
+// INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
   tasks: [],
   setTasks: () => {},
