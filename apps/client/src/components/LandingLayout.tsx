@@ -2,9 +2,9 @@ import Header from "@/components/Header";
 import { TodoTable } from "./table/TodoTable";
 import { Button } from "./ui/button";
 import { Timer } from "./Timer";
-import { Payment, columns } from "@/components/table/columns";
-import { data } from "@/components/table/sample_data";
+
 import MaxWidthWrapper from "./MaxWidthWrapper";
+import ToDoWrapper from "./table/ToDoWrapper";
 
 const LandingLayout = () => {
   return (
@@ -21,8 +21,10 @@ const LandingLayout = () => {
         <div>
           <div className="max-w-8xl mx-auto px-6 lg:px-8">
             <div className="mt-16 flow-root sm:mt-24">
-              <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <TodoTable columns={columns} data={data} />
+              {/* move this into the table component */}
+              {/* <div className="border-shadow-2 m-2 rounded-xl p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"> */}
+              <div>
+                <ToDoWrapper />
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { Dispatch, SetStateAction } from "react";
 
 import {
   Table,
@@ -15,15 +16,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  setData: Dispatch<SetStateAction<TData[]>>;
 }
 
 export function TodoTable<TData, TValue>({
   columns,
   data,
+  setData,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -73,6 +77,28 @@ export function TodoTable<TData, TValue>({
               </TableCell>
             </TableRow>
           )}
+          <TableRow>
+            <TableCell
+              colSpan={columns.length}
+              className="hover:bg-accent"
+              onClick={(e) => {
+                e.preventDefault;
+                setData((prev) => [
+                  ...prev,
+                  {
+                    id: "728ed52f",
+                    amount: 100,
+                    email: "m@example.com",
+                    status: "pending",
+                  },
+                ]);
+              }}
+            >
+              <span className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
+                Test add new row
+              </span>
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </div>
