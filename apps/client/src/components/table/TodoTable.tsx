@@ -97,6 +97,7 @@ export function TodoTable<TData, TValue>({
               <span className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
                 Test add new row
               </span>
+              <input type="text" />
             </TableCell>
           </TableRow>
         </TableBody>
