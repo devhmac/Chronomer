@@ -35,9 +35,9 @@ const TimerSettings = ({
   setTimerConfig,
   setTimerRunning,
 }: props) => {
-  const openAccordion = timerConfig.isPomodoro ? "item-2" : "item-1";
+  const openAccordion = timerConfig.isPomodoro ? "" : "item-1";
 
-  const [open, setOpen] = useState<string>("");
+  // const [open, setOpen] = useState<string>("");
 
   const customTimes = [
     { text: "5 sec", val: 5 },
@@ -73,14 +73,14 @@ const TimerSettings = ({
         <div
           className={cn(
             " flex items-center justify-around  ",
-            open ? "mb-2 border-b pb-2" : "",
+            !timerConfig.isPomodoro ? "mb-2 border-b pb-2" : "",
           )}
         >
           <Button
             className={timerConfig.isPomodoro ? "bg-accent" : ""}
             variant="outline"
             onClick={() => {
-              setOpen("");
+              // setOpen("");
               setTimerConfig((prev) => ({
                 ...prev,
                 timer: 1500,
@@ -91,12 +91,22 @@ const TimerSettings = ({
           >
             Pomodoro
           </Button>
-          <Switch checked={!timerConfig.isPomodoro} />
+          <Switch
+            onClick={() => {
+              // sould try to DRY this switch statment amd buttons
+              return setTimerConfig((prev) =>
+                prev.isPomodoro === false
+                  ? { ...prev, timer: 1500, rest: 300, isPomodoro: true }
+                  : { ...prev, isPomodoro: false },
+              );
+            }}
+            checked={!timerConfig.isPomodoro}
+          />
           <Button
             className={!timerConfig.isPomodoro ? "bg-accent" : ""}
             variant="outline"
             onClick={() => {
-              setOpen("item-1");
+              // setOpen("item-1");
               setTimerConfig((prev) => ({ ...prev, isPomodoro: false }));
             }}
           >
@@ -105,7 +115,7 @@ const TimerSettings = ({
         </div>
 
         <Accordion type="single" collapsible value="item-1">
-          <AccordionItem value={open} className="border-b-0">
+          <AccordionItem value={openAccordion} className="border-b-0">
             {/* <AccordionTrigger className=" "></AccordionTrigger> */}
             <AccordionContent className="ml-3 flex flex-wrap gap-1 ">
               <div className="border-b">
