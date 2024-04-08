@@ -76,26 +76,24 @@ export function TodoTable<TData, TValue>({
                 </TableRow>
                 {/* <TableRow>test</TableRow> */}
 
-                <div className="ml-10">
-                  {table.getRowModel().rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      data-state={row.getIsSelected() && "selected"}
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell
-                          key={cell.id}
-                          onClick={() => console.log(cell)}
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </div>
+                {table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell
+                        key={cell.id}
+                        onClick={() => console.log(cell)}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
               </>
             ))
           ) : (
