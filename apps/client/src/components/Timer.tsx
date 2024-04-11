@@ -76,7 +76,7 @@ export const Timer = () => {
       <div className="w-1/3 min-w-full rounded-lg border p-6  shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]">
         <div
           className={cn(
-            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-12 text-center  text-white",
+            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center  text-white",
           )}
         >
           {/* <div className="flex items-center justify-between border border-red-400"> */}
