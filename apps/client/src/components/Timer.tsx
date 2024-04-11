@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useContext } from "react";
+
 import { Button } from "./ui/button";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
@@ -12,7 +13,14 @@ dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
 import { timerContext } from "@/context/TimerContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { RotateCcw, Settings } from "lucide-react";
+import {
+  Hourglass,
+  MoonStar,
+  RotateCcw,
+  Settings,
+  TimerReset,
+  Clock,
+} from "lucide-react";
 import TimerSettings from "./TimerSettings";
 import { cn } from "@/lib/utils";
 
@@ -68,59 +76,31 @@ export const Timer = () => {
       <div className="w-1/3 min-w-full rounded-lg border p-6  shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]">
         <div
           className={cn(
-            "rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 text-center text-white",
-            timerConfig.mode === "rest" ? "py-5" : "py-12",
+            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-12 text-center  text-white",
           )}
         >
-
           {/* <div className="flex items-center justify-between border border-red-400"> */}
           <div>
-            {/* <div>start timestamp: {startTS}</div>
-              <div>end timestamp: {endTS}</div>
-              <div>{secondsRemaining}</div> */}
-            {timerConfig.mode === "rest" && (
-              <p className="pb-2 text-6xl">Rest</p>
-            )}
-
             <p className=" overflow-clip text-7xl sm:text-9xl ">
               {displayTimer}
             </p>
           </div>
-          {/* <div className="w-1/4">
-              <p>num timers {timerState.timersComplete}</p>
-              {mode}
-            </div> */}
-          {/* </div> */}
-        </div>
-        <div className="mt-4 flex flex-row justify-between gap-2 ">
-          {/* {buttons.map((button) => {
-              return (
-                <Button
-                  // className="outline"
-                  variant="outline"
-                  key={button.text}
-                  onClick={() => {
-                    // console.log(dayjs().add(900, "second").format());
-                    // console.log(dayjs().format());
-                    setTimerRunning(false);
-                    setTimerSelected(button.val);
-                    setSecondsRemaining(button.val);
-                    const start = dayjs().utc();
-                    const end = start.add(button.val, "second");
-                    setStartTS(start.format());
-                    setEndTS(end.format());
-                  }}
-                >
-                  {button.text}
-                </Button>
-              );
-            })} */}
-          <div className="w-1/4">
-            <p>Sessions Complete: {timerState.timersComplete}</p>
-            <p>Rests: {timerState.restsComplete}</p>
+          <div className="absolute bottom-2 left-0 right-0  mx-2 flex flex-row items-center justify-between align-middle">
+            <p>{timerConfig.mode === "rest" ? "Rest" : "Focus"}</p>
+            <span>
+              <span className="mx-1">
+                <Clock className="inline-block h-5 w-5 align-middle" />:{" "}
+                {timerState.timersComplete}
+              </span>
+              <span className="mx-1">
+                <MoonStar className="inline-block h-5 w-5 align-middle" />:{" "}
+                {timerState.restsComplete}
+              </span>
+            </span>
           </div>
-
-          <div className="flex w-1/2 flex-row items-center justify-center gap-2  ">
+        </div>
+        <div className="mt-4 flex flex-col justify-between gap-2 ">
+          <div className="bottom-1 flex  flex-row items-center justify-center gap-2  ">
             <Button
               variant="ghost"
               onClick={() => {
@@ -154,7 +134,8 @@ export const Timer = () => {
               setTimerRunning={setTimerRunning}
             />
           </div>
-          <div className=" flex w-1/4 flex-col items-end justify-end gap-2">
+          {/* removed timer settings thing, dont love it put it in a tooltip */}
+          {/* <div className=" flex w-1/4 flex-col items-end justify-end gap-2">
             <div>
               <p className="">
                 {timerConfig.isPomodoro ? "Pomodoro" : "Custom"}
@@ -172,7 +153,7 @@ export const Timer = () => {
                   .substring(timerConfig.rest < 3600 ? 14 : 12, 19)}
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
