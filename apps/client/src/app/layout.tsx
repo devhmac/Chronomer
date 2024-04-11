@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TimerContextProvider } from "@/context/TimerContext";
 import Nav from "@/components/ui/Nav";
+import { TaskContextProvider } from "@/context/TaskContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,7 +37,9 @@ export default function RootLayout({
           </div>
           <Nav />
 
-          <TimerContextProvider>{children}</TimerContextProvider>
+          <TimerContextProvider>
+            <TaskContextProvider>{children}</TaskContextProvider>
+          </TimerContextProvider>
         </ThemeProvider>
       </body>
     </html>

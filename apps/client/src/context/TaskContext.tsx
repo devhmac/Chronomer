@@ -8,54 +8,62 @@ import {
   Dispatch,
 } from "react";
 
-type Timer = {
-  timerLength: number;
-  rest: number;
-  lastTimerSelected: number | undefined;
-  startTS: Date | undefined;
-  endTS: Date | undefined;
-  timersComplete: number;
-  restsComplete: number;
-  timerType: "POMODORO" | "CUSTOM";
-  currentMode: "TIMER" | "REST";
-};
-
 type Task = {
-  id: string;
   task: string;
+  descripton: string;
   status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
   isActive: boolean;
   subTasks: Task[];
   timeToComplete: number;
   order: number;
+  createdAt: Date;
+  completedAt: Date | null;
+  timersComplete: number;
+};
+
+const statusMap = {
+  COMPLETE: "Complete",
+  INPROGRESS: "In Progress",
+  BACKLOG: "Backlog",
+  BLOCKED: "Blocked",
+} as {
+  COMPLETE: string;
+  INPROGRESS: string;
+  BACKLOG: string;
+  BLOCKED: string;
 };
 
 type TaskContext = {
   tasks: Task[];
-  setTasks: Dispatch<SetStateAction<Task[]>>;
+  // setTasks: Dispatch<SetStateAction<Task[]>>;
+  addTask: (task: Task) => void;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
   tasks: [],
-  setTasks: () => {},
+  addTask: () => {},
 };
-export const timerContext = createContext<TaskContext>(defaultTasksState);
+export const taskContext = createContext<TaskContext>(defaultTasksState);
 
-export const TimerContextProvider = ({ children }: { children: ReactNode }) => {
+export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[] | []>(defaultTasksState.tasks);
+
+  const addTask = (task: Task) => {
+    setTasks((prev) => [...prev, task]);
+  };
 
   // const [timeRemaining, setTimeRemaining] = useState(
   //   defaultTimerState.timerState.timerLength,
   // );
 
   return (
-    <timerContext.Provider
+    <taskContext.Provider
       value={{
         tasks,
-        setTasks,
+        addTask,
       }}
     >
       {children}
-    </timerContext.Provider>
+    </taskContext.Provider>
   );
 };
