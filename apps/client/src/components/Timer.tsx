@@ -86,7 +86,20 @@ export const Timer = () => {
             </p>
           </div>
           <div className="absolute bottom-2 left-0 right-0  mx-2 flex flex-row items-center justify-between align-middle">
-            <p>{timerConfig.mode === "rest" ? "Rest" : "Focus"}</p>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mb-0"
+              onClick={() => {
+                setTimerConfig((prev) => {
+                  return prev.mode === "timer"
+                    ? { ...timerConfig, mode: "rest" }
+                    : { ...timerConfig, mode: "timer" };
+                });
+              }}
+            >
+              {timerConfig.mode === "rest" ? "Rest" : "Focus"}
+            </Button>
             <span>
               <span className="mx-1">
                 <Clock className="inline-block h-5 w-5 align-middle" />:{" "}
@@ -106,7 +119,7 @@ export const Timer = () => {
               className=""
               onClick={() => {
                 setTimerRunning(false);
-                setSecondsRemaining(timerConfig.timer);
+                setSecondsRemaining(timerConfig[timerConfig.mode]);
               }}
               size="icon"
             >
