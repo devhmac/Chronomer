@@ -12,7 +12,10 @@ const ToDoWrapper = () => {
 
   return (
     <div className="rounded-lg border p-3 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
-      <h2 className="mb-2 text-2xl font-bold tracking-tight">
+      <h2
+        className="mb-2 text-2xl font-medium
+     tracking-tight"
+      >
         {" "}
         <ListTodo className="mb-[3px] inline h-7 w-7" /> Tasks
       </h2>

@@ -39,7 +39,7 @@ export function TodoTable<TData, TValue>({
   return (
     <div className="rounded-md border bg-popover backdrop-blur-sm">
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-secondary">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -60,21 +60,20 @@ export function TodoTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <>
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} onClick={() => console.log(cell)}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </>
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell
+                    className="p-3"
+                    key={cell.id}
+                    onClick={() => console.log(cell)}
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
             ))
           ) : (
             <TableRow>
@@ -83,6 +82,7 @@ export function TodoTable<TData, TValue>({
               </TableCell>
             </TableRow>
           )}
+
           <TableRow>
             <TableCell colSpan={columns.length} className="hover:bg-accent">
               <span className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
