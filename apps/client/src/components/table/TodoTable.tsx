@@ -37,7 +37,7 @@ export function TodoTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border bg-popover backdrop-blur-sm">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
