@@ -54,6 +54,8 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     setTasks((prev) => [...prev, task]);
   };
 
+  const editTaskValue = (updatedTask: Task) => {};
+
   // const [timeRemaining, setTimeRemaining] = useState(
   //   defaultTimerState.timerState.timerLength,
   // );
