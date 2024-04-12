@@ -10,6 +10,7 @@ import {
 import { data } from "@/components/table/sample_data";
 
 type Task = {
+  id: string;
   task: string;
   descripton: string;
   status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
