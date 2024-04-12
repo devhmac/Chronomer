@@ -17,7 +17,7 @@ const ToDoWrapper = () => {
         <ListTodo className="mb-[3px] inline h-7 w-7" /> Tasks
       </h2>
 
-      <TodoTable columns={columns} data={todos} setData={setTodos} />
+      <TodoTable columns={columns} data={tasks} setData={setTodos} />
     </div>
   );
 };

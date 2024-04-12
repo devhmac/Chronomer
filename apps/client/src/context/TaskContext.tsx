@@ -7,6 +7,7 @@ import {
   useState,
   Dispatch,
 } from "react";
+import { data } from "@/components/table/sample_data";
 
 type Task = {
   task: string;
@@ -40,7 +41,7 @@ type TaskContext = {
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
-  tasks: [],
+  tasks: data,
   addTask: () => {},
 };
 export const taskContext = createContext<TaskContext>(defaultTasksState);
