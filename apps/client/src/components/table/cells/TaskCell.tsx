@@ -1,7 +1,7 @@
 import React from "react";
 
-const TaskCell = () => {
-  return <div>TaskCell</div>;
+const TaskCell = ({ task }) => {
+  return <div>{task.task}</div>;
 };
 
 export default TaskCell;
