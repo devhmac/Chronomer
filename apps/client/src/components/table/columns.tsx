@@ -12,6 +12,7 @@ import {
 
 import { Divide, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
+import StatusSelect from "./cells/StatusSelect";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -40,18 +41,11 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const status = row.original;
 
-      return (
-        <Select>
-          <SelectTrigger className="mr-1 border-none">
-            <SelectValue placeholder={status.status} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">In Progress</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
-          </SelectContent>
-        </Select>
-      );
+      return <StatusSelect task={status} />;
     },
+  },
+  {
+    accessorKey: "actions",
+    header: "",
   },
 ];
