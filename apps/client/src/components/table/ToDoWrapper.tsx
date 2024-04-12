@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { TodoTable } from "./TodoTable";
+import { TodoTable } from "./DataTable";
 import { Payment, columns } from "@/components/table/columns";
 import { data } from "@/components/table/sample_data";
 import { taskContext } from "@/context/TaskContext";

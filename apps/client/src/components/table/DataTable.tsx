@@ -65,11 +65,7 @@ export function TodoTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    className="p-3"
-                    key={cell.id}
-                    onClick={() => console.log(cell)}
-                  >
+                  <TableCell key={cell.id} onClick={() => console.log(cell)}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

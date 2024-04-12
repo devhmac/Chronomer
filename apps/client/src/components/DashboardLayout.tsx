@@ -1,5 +1,5 @@
 import React from "react";
-import { TodoTable } from "./table/TodoTable";
+import { TodoTable } from "./table/DataTable";
 import { Timer } from "./Timer";
 import Chat from "./chat/Chat";
 import { Payment, columns } from "@/components/table/columns";
