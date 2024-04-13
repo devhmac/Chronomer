@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
@@ -10,6 +10,8 @@ dayjs.extend(timezone);
 import { timerContext } from "@/context/TimerContext";
 
 export const useTimer = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const { timerState, setTimerState, isRunning, setIsRunning } =
     useContext(timerContext);
   const pomOrder = [];
@@ -44,6 +46,8 @@ export const useTimer = () => {
     setSecondsRemaining(timerConfig[timerConfig.mode]);
   }, [timerConfig.mode, timerConfig.timer, timerConfig.rest]);
 
+  const completeTimer = () => {};
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (timerRunning) {
@@ -67,6 +71,7 @@ export const useTimer = () => {
             ...prev,
             mode: prev.mode === "timer" ? "rest" : "timer",
           }));
+          audioRef.current?.play();
 
           return;
         }
@@ -88,5 +93,6 @@ export const useTimer = () => {
     setStartTS,
     endTS,
     setEndTS,
+    audioRef,
   };
 };

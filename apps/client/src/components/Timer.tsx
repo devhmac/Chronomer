@@ -50,6 +50,7 @@ export const Timer = () => {
     setStartTS,
     endTS,
     setEndTS,
+    audioRef,
   } = useTimer();
 
   const seconds = 10;
@@ -145,6 +146,7 @@ export const Timer = () => {
           </div>
         </div>
       </div>
+      <audio ref={audioRef} src={"/audio.mp3"} />
     </>
   );
 };
