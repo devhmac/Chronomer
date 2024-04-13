@@ -6,7 +6,9 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+
 import { Dispatch, SetStateAction } from "react";
+
 
 import {
   Table,
@@ -16,19 +18,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import { useState } from "react";
 import TaskInput from "./TaskInput";
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   setData: Dispatch<SetStateAction<TData[]>>;
+
 }
 
 export function TodoTable<TData, TValue>({
   columns,
   data,
   setData,
+
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -40,6 +46,7 @@ export function TodoTable<TData, TValue>({
     <div className="rounded-md border bg-popover backdrop-blur-sm">
       <Table>
         <TableHeader className="bg-secondary">
+
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -65,7 +72,8 @@ export function TodoTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} onClick={() => console.log(cell)}>
+
+                  <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -87,6 +95,7 @@ export function TodoTable<TData, TValue>({
               <TaskInput />
             </TableCell>
           </TableRow>
+
         </TableBody>
       </Table>
     </div>

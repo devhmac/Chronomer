@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useContext } from "react";
+
 import { Button } from "./ui/button";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
@@ -12,8 +13,16 @@ dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
 import { timerContext } from "@/context/TimerContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { RotateCcw, Settings } from "lucide-react";
+import {
+  Hourglass,
+  MoonStar,
+  RotateCcw,
+  Settings,
+  TimerReset,
+  Clock,
+} from "lucide-react";
 import TimerSettings from "./TimerSettings";
+import { cn } from "@/lib/utils";
 
 // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
 
@@ -65,57 +74,53 @@ export const Timer = () => {
     <>
       {/* this was the bg and border before border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.2)] */}
       {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
-      <div className="bg-muted/1  w-1/3  min-w-[460px]  rounded-lg border p-6 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
-        <div className=" rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-10 text-center text-white">
+      <div className="w-1/3 min-w-full rounded-lg border p-6  shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]">
+        <div
+          className={cn(
+            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center  text-white",
+          )}
+        >
           {/* <div className="flex items-center justify-between border border-red-400"> */}
           <div>
-            {/* <div>start timestamp: {startTS}</div>
-              <div>end timestamp: {endTS}</div>
-              <div>{secondsRemaining}</div> */}
-            <p className=" text-9xl ">{displayTimer}</p>
+            <p className=" overflow-clip text-7xl sm:text-9xl ">
+              {displayTimer}
+            </p>
           </div>
-          {/* <div className="w-1/4">
-              <p>num timers {timerState.timersComplete}</p>
-              {mode}
-            </div> */}
-          {/* </div> */}
+          <div className="absolute bottom-2 left-0 right-0  mx-2 flex flex-row items-center justify-between align-middle">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mb-0"
+              onClick={() => {
+                setTimerConfig((prev) => {
+                  return prev.mode === "timer"
+                    ? { ...timerConfig, mode: "rest" }
+                    : { ...timerConfig, mode: "timer" };
+                });
+              }}
+            >
+              {timerConfig.mode === "rest" ? "Rest" : "Focus"}
+            </Button>
+            <span>
+              <span className="mx-1">
+                <Clock className="inline-block h-5 w-5 align-middle" />:{" "}
+                {timerState.timersComplete}
+              </span>
+              <span className="mx-1">
+                <MoonStar className="inline-block h-5 w-5 align-middle" />:{" "}
+                {timerState.restsComplete}
+              </span>
+            </span>
+          </div>
         </div>
-        <div className="my-2 flex flex-col items-center justify-center gap-2">
-          <div className=" flex flex-row gap-2">
-            Timer Settings:{" "}
-            {new Date(timerConfig.timer * 1000)
-              .toISOString()
-              .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
-            {/* {buttons.map((button) => {
-              return (
-                <Button
-                  // className="outline"
-                  variant="outline"
-                  key={button.text}
-                  onClick={() => {
-                    // console.log(dayjs().add(900, "second").format());
-                    // console.log(dayjs().format());
-                    setTimerRunning(false);
-                    setTimerSelected(button.val);
-                    setSecondsRemaining(button.val);
-                    const start = dayjs().utc();
-                    const end = start.add(button.val, "second");
-                    setStartTS(start.format());
-                    setEndTS(end.format());
-                  }}
-                >
-                  {button.text}
-                </Button>
-              );
-            })} */}
-          </div>
-          <div className="flex flex-row items-center gap-2">
+        <div className="mt-4 flex flex-col justify-between gap-2 ">
+          <div className="bottom-1 flex  flex-row items-center justify-center gap-2  ">
             <Button
               variant="ghost"
               className=""
               onClick={() => {
                 setTimerRunning(false);
-                setSecondsRemaining(timerConfig.timer);
+                setSecondsRemaining(timerConfig[timerConfig.mode]);
               }}
               size="icon"
             >
@@ -144,6 +149,26 @@ export const Timer = () => {
               setTimerRunning={setTimerRunning}
             />
           </div>
+          {/* removed timer settings thing, dont love it put it in a tooltip */}
+          {/* <div className=" flex w-1/4 flex-col items-end justify-end gap-2">
+            <div>
+              <p className="">
+                {timerConfig.isPomodoro ? "Pomodoro" : "Custom"}
+              </p>
+              <p>
+                Timer:{" "}
+                {new Date(timerConfig.timer * 1000)
+                  .toISOString()
+                  .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
+              </p>
+              <p>
+                Rest:{" "}
+                {new Date(timerConfig.rest * 1000)
+                  .toISOString()
+                  .substring(timerConfig.rest < 3600 ? 14 : 12, 19)}
+              </p>
+            </div>
+          </div> */}
         </div>
       </div>
       <audio ref={audioRef} src={"/audio.mp3"} />
