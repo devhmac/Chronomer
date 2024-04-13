@@ -1,6 +1,5 @@
 import { Timer } from "@/components/Timer";
 
-import { TodoTable } from "@/components/table/TodoTable";
 import Image from "next/image";
 import Header from "@/components/Header";
 import { Butterfly_Kids } from "next/font/google";
