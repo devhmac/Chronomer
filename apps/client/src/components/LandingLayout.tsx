@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import { TodoTable } from "./table/TodoTable";
+import { TodoTable } from "./table/DataTable";
 import { Button } from "./ui/button";
 import { Timer } from "./Timer";
 import { Payment, columns } from "@/components/table/columns";
