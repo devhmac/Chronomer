@@ -46,7 +46,15 @@ export const useTimer = () => {
     setSecondsRemaining(timerConfig[timerConfig.mode]);
   }, [timerConfig.mode, timerConfig.timer, timerConfig.rest]);
 
-  const completeTimer = () => {};
+  const completeTimer = () => {
+    setTimerRunning(false);
+    // send notifification
+    setTimerConfig((prev) => ({
+      ...prev,
+      mode: prev.mode === "timer" ? "rest" : "timer",
+    }));
+    audioRef.current?.play();
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,13 +73,7 @@ export const useTimer = () => {
           }
           console.log("timers complete", timerState.timersComplete);
           clearInterval(interval);
-          setTimerRunning(false);
-          // send notifification
-          setTimerConfig((prev) => ({
-            ...prev,
-            mode: prev.mode === "timer" ? "rest" : "timer",
-          }));
-          audioRef.current?.play();
+          completeTimer();
 
           return;
         }
