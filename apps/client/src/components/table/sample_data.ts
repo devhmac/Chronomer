@@ -5,18 +5,46 @@ type Payment = {
   email: string;
 };
 
-export const data: Payment[] = [
+export const data = [
   {
-    id: "728ed52f",
-    amount: 100,
-    status: "pending",
-    email: "m@example.com",
+    id: 1,
+    task: "Need to finish timer",
+    status: "INPROGRESS",
+    isActive: false,
+    subTasks: [],
+    timeToComplete: 8,
+    order: 0,
   },
   {
-    id: "489e1d42",
-    amount: 125,
-    status: "processing",
-    email: "example@gmail.com",
+    id: 2,
+    task: "Need to finish to do list",
+    status: "INPROGRESS",
+    isActive: false,
+    subTasks: [],
+    timeToComplete: 8,
+    order: 0,
+  },
+  {
+    id: 3,
+    task: "What is next on this task list?",
+    status: "INPROGRESS",
+    isActive: false,
+    subTasks: [],
+    timeToComplete: 8,
+    order: 0,
   },
   // ...
 ];
+
+type Task = {
+  task: string;
+  descripton: string;
+  status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
+  isActive: boolean;
+  subTasks: Task[];
+  timeToComplete: number;
+  order: number;
+  createdAt: Date;
+  completedAt: Date | null;
+  timersComplete: number;
+};
