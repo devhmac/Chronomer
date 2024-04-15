@@ -36,7 +36,11 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "timeToComplete",
     header: "Est. Hours",
     cell: ({ row }) => {
-      return <div className="text-right">{row.getValue("timeToComplete")}</div>;
+      return (
+        <div className="text-right">
+          {row.original.timersComplete}/{row.getValue("timeToComplete")}
+        </div>
+      );
     },
   },
   {
