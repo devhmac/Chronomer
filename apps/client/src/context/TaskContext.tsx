@@ -23,18 +23,6 @@ type Task = {
   timersComplete: number;
 };
 
-const statusMap = {
-  COMPLETE: "Complete",
-  INPROGRESS: "In Progress",
-  BACKLOG: "Backlog",
-  BLOCKED: "Blocked",
-} as {
-  COMPLETE: string;
-  INPROGRESS: string;
-  BACKLOG: string;
-  BLOCKED: string;
-};
-
 type TaskContext = {
   tasks: Task[];
   // setTasks: Dispatch<SetStateAction<Task[]>>;
@@ -45,6 +33,7 @@ const defaultTasksState = {
   tasks: data,
   addTask: () => {},
 };
+
 export const taskContext = createContext<TaskContext>(defaultTasksState);
 
 export const TaskContextProvider = ({ children }: { children: ReactNode }) => {

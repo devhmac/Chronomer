@@ -8,16 +8,29 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const statusMap = {
+  BACKLOG: "Backlog",
+  INPROGRESS: "In Progress",
+  COMPLETE: "Complete",
+  BLOCKED: "Blocked",
+} as {
+  COMPLETE: string;
+  INPROGRESS: string;
+  BACKLOG: string;
+  BLOCKED: string;
+};
+
 const StatusSelect = ({ task }) => {
+  const statusOptions = Object.keys(statusMap);
   return (
     <Select>
       <SelectTrigger className="mr-1 border-none">
-        <SelectValue placeholder={task.status} />
+        <SelectValue placeholder={statusMap[task.status]} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="light">In Progress</SelectItem>
-        <SelectItem value="dark">Dark</SelectItem>
-        <SelectItem value="system">System</SelectItem>
+        {statusOptions.map((status) => {
+          return <SelectItem value={status}>{statusMap[status]}</SelectItem>;
+        })}
       </SelectContent>
     </Select>
   );
