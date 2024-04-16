@@ -2,6 +2,7 @@
 import { taskContext } from "@/context/TaskContext";
 import React, { useContext, useState } from "react";
 import { Input } from "../ui/input";
+import { Task } from "@/lib/utils/constructors";
 
 const TaskInput = () => {
   const [input, setInput] = useState("");
@@ -22,7 +23,8 @@ const TaskInput = () => {
         // className=" h-full w-full"
         onSubmit={(e) => {
           e.preventDefault();
-          const createdTask = { task: input, createdAt: Date.now() };
+          // const createdTask = { task: input, createdAt: Date.now() };
+          const createdTask = new Task(input);
           addTask(createdTask);
           // update cell selected
         }}

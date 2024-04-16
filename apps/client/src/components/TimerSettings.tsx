@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { Settings } from "lucide-react";
 import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 type props = {
   timerConfig: {

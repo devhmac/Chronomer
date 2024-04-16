@@ -22,7 +22,7 @@ import {
   Clock,
 } from "lucide-react";
 import TimerSettings from "./TimerSettings";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
 
