@@ -25,7 +25,7 @@ const StatusSelect = ({ task }) => {
   return (
     <Select>
       <SelectTrigger className="mr-1 border-none">
-        <SelectValue placeholder={statusMap[task.status]} />
+        <SelectValue placeholder={task ? statusMap[task.status] : "Backlog"} />
       </SelectTrigger>
       <SelectContent>
         {statusOptions.map((status) => {
