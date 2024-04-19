@@ -1,4 +1,5 @@
 export class Subtask {
+  id: number;
   task: string;
   descripton: string;
   status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
@@ -10,6 +11,7 @@ export class Subtask {
   timersComplete: number;
 
   constructor(taskDesc: string) {
+    this.id = -1;
     this.task = taskDesc;
     this.descripton = "";
     this.status = "BACKLOG";

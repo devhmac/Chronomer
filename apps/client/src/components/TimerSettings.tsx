@@ -45,6 +45,7 @@ const TimerSettings = ({
     { text: "25 Min", val: 1500 },
     { text: "45 Min", val: 2700 },
     { text: "1 Hr", val: 3600 },
+    { text: "1 Hr 30 Min", val: 5400 },
   ];
   const customRests = [
     { text: "5 min", val: 300 },
