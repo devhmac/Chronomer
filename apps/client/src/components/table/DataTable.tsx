@@ -9,7 +9,6 @@ import {
 
 import { Dispatch, SetStateAction } from "react";
 
-
 import {
   Table,
   TableBody,
@@ -21,20 +20,18 @@ import {
 
 import { useState } from "react";
 import TaskInput from "./TaskInput";
-
+import StatusSelect from "./cells/StatusSelect";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   setData: Dispatch<SetStateAction<TData[]>>;
-
 }
 
 export function TodoTable<TData, TValue>({
   columns,
   data,
   setData,
-
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -46,7 +43,6 @@ export function TodoTable<TData, TValue>({
     <div className="rounded-md border bg-popover backdrop-blur-sm">
       <Table>
         <TableHeader className="bg-secondary">
-
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -72,7 +68,6 @@ export function TodoTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -87,15 +82,38 @@ export function TodoTable<TData, TValue>({
             </TableRow>
           )}
 
+          {/* Create task footer row */}
           <TableRow>
-            <TableCell colSpan={columns.length} className="hover:bg-accent">
+            {/* {table.getHeaderGroups()[0].headers.map((header) => {
+              return header.id === "timeToComplete" ? (
+                <TableCell>
+                  <p>12 timers</p>
+                </TableCell>
+              ) : null;
+            })} */}
+            {table
+              .getRowModel()
+              .rows[0].getVisibleCells()
+              .map((cell) => (
+                <TableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  {console.log(cell.column.columnDef)}
+                </TableCell>
+              ))}
+            {/* <TableCell colSpan={columns.length} className="hover:bg-accent"> */}
+            <TableCell className="hover:bg-accent">
               <span className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
                 Test add new row
               </span>
               <TaskInput />
             </TableCell>
-          </TableRow>
+            <TableCell key={"10_status"} className="hover:bg-accent">
+              {/* {console.log(table.getHeaderGroups()[0])}
+              {console.log(table.getRowModel().rows[0].getVisibleCells())} */}
 
+              <StatusSelect />
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </div>

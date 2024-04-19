@@ -20,7 +20,11 @@ const statusMap = {
   BLOCKED: string;
 };
 
-const StatusSelect = ({ task }) => {
+type props = {
+  task?: any; //make this the task type
+};
+
+const StatusSelect = ({ task }: props) => {
   const statusOptions = Object.keys(statusMap);
   return (
     <Select>

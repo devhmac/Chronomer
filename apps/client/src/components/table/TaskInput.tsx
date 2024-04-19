@@ -42,7 +42,7 @@ const TaskInput = () => {
           />
         )}
         <p>{input}</p>
-        <StatusSelect />
+        {/* <StatusSelect /> */}
       </form>
     </>
   );
