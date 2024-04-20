@@ -30,27 +30,32 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "task",
     header: "Task",
     cell: ({ row }) => {
-      return <TaskCell task={row.original} />;
-    },
-  },
-  {
-    accessorKey: "timeToComplete",
-    header: "Est. Hours",
-    cell: ({ row }) => {
-      return (
-        <div className="text-right">
-          {row.original.timersComplete}/{row.getValue("timeToComplete")}
-        </div>
-      );
+      console.log(row);
+      const existingTask = row ? row.original : "";
+
+      return <TaskCell task={existingTask} />;
     },
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.original;
+      const status = row ? row.original : undefined;
 
       return <StatusSelect task={status} />;
+    },
+  },
+  {
+    accessorKey: "timeToComplete",
+    header: "Est. Hours",
+    cell: ({ row }) => {
+      return row ? (
+        <div className="text-right">
+          {row.original.timersComplete}/{row.getValue("timeToComplete")}
+        </div>
+      ) : (
+        <div>No time defined</div>
+      );
     },
   },
   {

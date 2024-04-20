@@ -15,6 +15,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
+  TableFooter,
   TableRow,
 } from "@/components/ui/table";
 
@@ -27,6 +28,11 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   setData: Dispatch<SetStateAction<TData[]>>;
 }
+
+const footerColHelper = {
+  task: <TaskInput />,
+  status: <StatusSelect />,
+};
 
 export function TodoTable<TData, TValue>({
   columns,
@@ -84,6 +90,15 @@ export function TodoTable<TData, TValue>({
 
           {/* Create task footer row */}
           <TableRow>
+            <TableCell colSpan={columns.length} className="hover:bg-accent">
+              <div className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
+                Test add new row
+              </div>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+        <TableFooter>
+          <TableRow key="footer-input-row">
             {/* {table.getHeaderGroups()[0].headers.map((header) => {
               return header.id === "timeToComplete" ? (
                 <TableCell>
@@ -96,25 +111,14 @@ export function TodoTable<TData, TValue>({
               .rows[0].getVisibleCells()
               .map((cell) => (
                 <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  {console.log(cell.column.columnDef)}
+                  {flexRender(cell.column.columnDef.cell, {})}
+                  {/* {footerColHelper[cell.column.id]} */}
+                  {/* {console.log(cell)} */}
+                  {console.log("get context: ", cell.getContext())}
                 </TableCell>
               ))}
-            {/* <TableCell colSpan={columns.length} className="hover:bg-accent"> */}
-            <TableCell className="hover:bg-accent">
-              <span className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
-                Test add new row
-              </span>
-              <TaskInput />
-            </TableCell>
-            <TableCell key={"10_status"} className="hover:bg-accent">
-              {/* {console.log(table.getHeaderGroups()[0])}
-              {console.log(table.getRowModel().rows[0].getVisibleCells())} */}
-
-              <StatusSelect />
-            </TableCell>
           </TableRow>
-        </TableBody>
+        </TableFooter>
       </Table>
     </div>
   );

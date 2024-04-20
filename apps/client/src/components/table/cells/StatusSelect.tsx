@@ -33,7 +33,11 @@ const StatusSelect = ({ task }: props) => {
       </SelectTrigger>
       <SelectContent>
         {statusOptions.map((status) => {
-          return <SelectItem value={status}>{statusMap[status]}</SelectItem>;
+          return (
+            <SelectItem key={statusMap[status]} value={status}>
+              {statusMap[status]}
+            </SelectItem>
+          );
         })}
       </SelectContent>
     </Select>
