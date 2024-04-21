@@ -92,9 +92,7 @@ export function TodoTable<TData, TValue>({
           {/* Create task footer row */}
           <TableRow>
             <TableCell colSpan={columns.length} className="p-2 ">
-              <div className="h-full w-full border border-dashed border-input p-2 text-input">
-                <NewTask />
-              </div>
+              <NewTask />
             </TableCell>
           </TableRow>
         </TableBody>
