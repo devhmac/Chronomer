@@ -94,37 +94,37 @@ export function TodoTable<TData, TValue>({
           {/* Create task footer row */}
         </TableBody>
         <TableFooter>
-          <TableRow>
-            <TableCell colSpan={columns.length} className="hover:bg-accent">
-              <div className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
-                Test add new row
-              </div>
-            </TableCell>
-          </TableRow>
-          <TableRow key="footer-input-row">
-            {/* {table.getHeaderGroups()[0].headers.map((header) => {
-              return header.id === "timeToComplete" ? (
-                <TableCell>
-                  <p>12 timers</p>
-                </TableCell>
-              ) : null;
-            })} */}
-            {table
-              .getRowModel()
-              .rows[0].getVisibleCells()
-              .map((cell) => (
-                <TableCell key={cell.id}>
-                  {/* {footerColHelper[cell.column.columnDef.cell]} */}
-                  {/* {flexRender(cell.column.columnDef.cell, {
+          {addingTask ? (
+            <TableRow key="footer-input-row">
+              {table
+                .getRowModel()
+                .rows[0].getVisibleCells()
+                .map((cell) => (
+                  <TableCell key={cell.id}>
+                    {/* {footerColHelper[cell.column.columnDef.cell]} */}
+                    {/* {flexRender(cell.column.columnDef.cell, {
                     renderValue: () => {},
                   })} */}
-                  {footerColHelper[cell.column.id]}
-                  {/* {console.log(cell)} */}
-                  {/* {cell.column.columnDef.cell} */}
-                  {/* {console.log("get context: ", cell.getContext())} */}
-                </TableCell>
-              ))}
-          </TableRow>
+                    {footerColHelper[cell.column.id]}
+                    {/* {console.log(cell)} */}
+                    {/* {cell.column.columnDef.cell} */}
+                    {/* {console.log("get context: ", cell.getContext())} */}
+                  </TableCell>
+                ))}
+            </TableRow>
+          ) : (
+            <TableRow
+              onClick={() => {
+                setAddingTask(true);
+              }}
+            >
+              <TableCell colSpan={columns.length} className="hover:bg-accent">
+                <div className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
+                  Test add new row
+                </div>
+              </TableCell>
+            </TableRow>
+          )}
         </TableFooter>
       </Table>
     </div>
