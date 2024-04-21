@@ -1,9 +1,13 @@
 import { Input } from "@/components/ui/input";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
+type props = {
+  task?: any;
+};
+
 const TaskCell = ({ task }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [input, setInput] = useState(task.task);
+  const [input, setInput] = useState(task ? task.task : "");
 
   const inputRef = useRef<HTMLInputElement>();
 
@@ -25,7 +29,6 @@ const TaskCell = ({ task }) => {
         // if (inputRef.current) {
         //   inputRef.current.focus();
         // }
-        return;
       }}
     >
       {isEdit || input === "" ? (

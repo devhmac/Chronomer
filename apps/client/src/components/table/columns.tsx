@@ -30,8 +30,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "task",
     header: "Task",
     cell: ({ row }) => {
-      console.log(row);
-      const existingTask = row ? row.original : "";
+      const existingTask = row ? row.original : null;
 
       return <TaskCell task={existingTask} />;
     },

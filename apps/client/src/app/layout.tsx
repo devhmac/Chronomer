@@ -5,9 +5,9 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { TimerContextProvider } from "@/context/TimerContext";
+import { TimerContextProvider } from "@/providers/TimerContext";
 import Nav from "@/components/ui/Nav";
-import { TaskContextProvider } from "@/context/TaskContext";
+import { TaskContextProvider } from "@/providers/TaskContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

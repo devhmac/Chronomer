@@ -11,7 +11,7 @@ import { useTimer } from "@/lib/hooks/useTimer";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
-import { timerContext } from "@/context/TimerContext";
+import { timerContext } from "@/providers/TimerContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import {
   Hourglass,

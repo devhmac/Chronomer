@@ -26,15 +26,18 @@ type props = {
 
 const StatusSelect = ({ task }: props) => {
   const statusOptions = Object.keys(statusMap);
+  const initialStatus =
+    task && task.status ? statusMap[task.status] : "Set Status";
+
   return (
     <Select>
       <SelectTrigger className="mr-1 border-none">
-        <SelectValue placeholder={task ? statusMap[task.status] : "Backlog"} />
+        <SelectValue placeholder={initialStatus} />
       </SelectTrigger>
       <SelectContent>
         {statusOptions.map((status) => {
           return (
-            <SelectItem key={statusMap[status]} value={status}>
+            <SelectItem key={status} value={status}>
               {statusMap[status]}
             </SelectItem>
           );

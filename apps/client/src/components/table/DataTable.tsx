@@ -22,6 +22,7 @@ import {
 import { useState } from "react";
 import TaskInput from "./TaskInput";
 import StatusSelect from "./cells/StatusSelect";
+import TaskCell from "./cells/TaskCell";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -30,7 +31,7 @@ interface DataTableProps<TData, TValue> {
 }
 
 const footerColHelper = {
-  task: <TaskInput />,
+  task: <TaskCell />,
   status: <StatusSelect />,
 };
 
@@ -119,8 +120,8 @@ export function TodoTable<TData, TValue>({
                   })} */}
                   {footerColHelper[cell.column.id]}
                   {/* {console.log(cell)} */}
-                  {cell.column.columnDef.cell}
-                  {console.log("get context: ", cell.getContext())}
+                  {/* {cell.column.columnDef.cell} */}
+                  {/* {console.log("get context: ", cell.getContext())} */}
                 </TableCell>
               ))}
           </TableRow>

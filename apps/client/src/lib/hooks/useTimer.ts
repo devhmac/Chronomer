@@ -7,7 +7,7 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 // dayjs.extend(isSameOrAfter);
-import { timerContext } from "@/context/TimerContext";
+import { timerContext } from "@/providers/TimerContext";
 
 export const useTimer = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
