@@ -1,26 +1,51 @@
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const TaskCell = ({ task }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [input, setInput] = useState(task.task);
+
+  const inputRef = useRef<HTMLInputElement>();
+
+  const submitTaskChange = () => {
+    setIsEdit(false);
+    // rest of api request/save logic
+  };
+  useLayoutEffect(() => {
+    if (isEdit && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEdit]);
+
   return (
     <div
       className="hover:  w-full "
       onClick={(e) => {
-        return setIsEdit(true);
+        setIsEdit(true);
+        // if (inputRef.current) {
+        //   inputRef.current.focus();
+        // }
+        return;
       }}
     >
       {isEdit || input === "" ? (
         <Input
+          ref={inputRef}
+          type="text"
           value={input}
           onChange={(e) => {
             e.preventDefault();
             setInput(e.target.value);
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              submitTaskChange();
+            }
+          }}
+          onBlur={() => submitTaskChange()}
         />
       ) : (
-        <p className="border-primary hover:border">{task.task}</p>
+        <p className="border-primary hover:border">{input}</p>
       )}
     </div>
   );

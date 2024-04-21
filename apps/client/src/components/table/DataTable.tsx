@@ -45,6 +45,8 @@ export function TodoTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const [addingTask, setAddingTask] = useState(false);
+
   return (
     <div className="rounded-md border bg-popover backdrop-blur-sm">
       <Table>
@@ -89,6 +91,8 @@ export function TodoTable<TData, TValue>({
           )}
 
           {/* Create task footer row */}
+        </TableBody>
+        <TableFooter>
           <TableRow>
             <TableCell colSpan={columns.length} className="hover:bg-accent">
               <div className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
@@ -96,8 +100,6 @@ export function TodoTable<TData, TValue>({
               </div>
             </TableCell>
           </TableRow>
-        </TableBody>
-        <TableFooter>
           <TableRow key="footer-input-row">
             {/* {table.getHeaderGroups()[0].headers.map((header) => {
               return header.id === "timeToComplete" ? (
@@ -111,9 +113,13 @@ export function TodoTable<TData, TValue>({
               .rows[0].getVisibleCells()
               .map((cell) => (
                 <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, {})}
-                  {/* {footerColHelper[cell.column.id]} */}
+                  {/* {footerColHelper[cell.column.columnDef.cell]} */}
+                  {/* {flexRender(cell.column.columnDef.cell, {
+                    renderValue: () => {},
+                  })} */}
+                  {footerColHelper[cell.column.id]}
                   {/* {console.log(cell)} */}
+                  {cell.column.columnDef.cell}
                   {console.log("get context: ", cell.getContext())}
                 </TableCell>
               ))}
