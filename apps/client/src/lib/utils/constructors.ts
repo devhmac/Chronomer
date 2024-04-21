@@ -10,9 +10,9 @@ export class Subtask {
   completedAt: Date | null;
   timersComplete: number;
 
-  constructor(taskDesc: string) {
+  constructor(taskDesc?: string) {
     this.id = -1;
-    this.task = taskDesc;
+    this.task = taskDesc || "";
     this.descripton = "";
     this.status = "BACKLOG";
     this.isActive = false;
@@ -26,7 +26,7 @@ export class Subtask {
 
 export class Task extends Subtask {
   subtask: Subtask[];
-  constructor(task: string) {
+  constructor(task?: string) {
     super(task);
     this.subtask = [];
   }

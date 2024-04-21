@@ -6,7 +6,7 @@ type props = {
 };
 
 const TaskCell = ({ task }) => {
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(task && task.id === -1 ? true : false);
   const [input, setInput] = useState(task ? task.task : "");
 
   const inputRef = useRef<HTMLInputElement>();
@@ -16,7 +16,7 @@ const TaskCell = ({ task }) => {
     // rest of api request/save logic
   };
   useLayoutEffect(() => {
-    if (isEdit && inputRef.current) {
+    if (inputRef.current) {
       inputRef.current.focus();
     }
   }, [isEdit]);
@@ -39,6 +39,7 @@ const TaskCell = ({ task }) => {
           onChange={(e) => {
             e.preventDefault();
             setInput(e.target.value);
+            console.log(task);
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {

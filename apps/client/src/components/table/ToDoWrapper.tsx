@@ -6,7 +6,7 @@ import { data } from "@/components/table/sample_data";
 import { taskContext } from "@/providers/TaskContext";
 import { ListTodo } from "lucide-react";
 const ToDoWrapper = () => {
-  const [todos, setTodos] = useState(data);
+  // const [todos, setTodos] = useState(data);
 
   const { tasks, addTask } = useContext(taskContext);
 
@@ -20,7 +20,7 @@ const ToDoWrapper = () => {
         <ListTodo className="mb-[3px] inline h-7 w-7" /> Tasks
       </h2>
 
-      <TodoTable columns={columns} data={tasks} setData={setTodos} />
+      <TodoTable columns={columns} data={tasks} setData={addTask} />
     </div>
   );
 };

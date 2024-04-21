@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table";
 
 import { useState } from "react";
-import TaskInput from "./newTaskForm";
+import NewTask from "./NewTask";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
 
@@ -45,8 +45,6 @@ export function TodoTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
-  const [addingTask, setAddingTask] = useState(false);
 
   return (
     <div className="rounded-md border bg-popover backdrop-blur-sm">
@@ -92,40 +90,16 @@ export function TodoTable<TData, TValue>({
           )}
 
           {/* Create task footer row */}
+          <TableRow>
+            <TableCell colSpan={columns.length} className="p-2 ">
+              <div className="h-full w-full border border-dashed border-input p-2 text-input">
+                <NewTask />
+              </div>
+            </TableCell>
+          </TableRow>
         </TableBody>
-        <TableFooter>
-          {addingTask ? (
-            <TableRow key="footer-input-row">
-              {table
-                .getRowModel()
-                .rows[0].getVisibleCells()
-                .map((cell) => (
-                  <TableCell key={cell.id}>
-                    {/* {footerColHelper[cell.column.columnDef.cell]} */}
-                    {/* {flexRender(cell.column.columnDef.cell, {
-                    renderValue: () => {},
-                  })} */}
-                    {footerColHelper[cell.column.id]}
-                    {/* {console.log(cell)} */}
-                    {/* {cell.column.columnDef.cell} */}
-                    {/* {console.log("get context: ", cell.getContext())} */}
-                  </TableCell>
-                ))}
-            </TableRow>
-          ) : (
-            <TableRow
-              onClick={() => {
-                setAddingTask(true);
-              }}
-            >
-              <TableCell colSpan={columns.length} className="hover:bg-accent">
-                <div className="m-2 h-full w-full border border-dashed border-red-400 text-red-500">
-                  Test add new row
-                </div>
-              </TableCell>
-            </TableRow>
-          )}
-        </TableFooter>
+        {/* <TableFooter> */}
+        {/* </TableFooter> */}
       </Table>
     </div>
   );
