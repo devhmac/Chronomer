@@ -17,7 +17,7 @@ export const data = [
     order: 0,
     createdAt: 1713186277,
     completedAt: null,
-    timersComplete: 2,
+    timersComplete: 4,
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const data = [
     order: 0,
     createdAt: 1713186277,
     completedAt: null,
-    timersComplete: 2,
+    timersComplete: 6,
   },
   {
     id: 3,

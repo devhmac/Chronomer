@@ -1,11 +1,11 @@
 "use client";
 import { taskContext } from "@/providers/TaskContext";
-import React, { useContext, useState } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 import { Input } from "../ui/input";
 import { Task } from "@/lib/utils/constructors";
 import StatusSelect from "./cells/StatusSelect";
 
-const TaskInput = () => {
+const newtaskForm = ({ children }: { children: ReactNode }) => {
   const [input, setInput] = useState("");
   const [toggleInput, setToggleInput] = useState(false);
 
@@ -41,8 +41,7 @@ const TaskInput = () => {
             }}
           />
         )}
-        <p>{input}</p>
-        {/* <StatusSelect /> */}
+        {children}
       </form>
     </>
   );

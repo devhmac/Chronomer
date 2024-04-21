@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table";
 
 import { useState } from "react";
-import TaskInput from "./TaskInput";
+import TaskInput from "./newTaskForm";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
 
