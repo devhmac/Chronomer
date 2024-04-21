@@ -91,7 +91,7 @@ export function TodoTable<TData, TValue>({
 
           {/* Create task footer row */}
           <TableRow>
-            <TableCell colSpan={columns.length} className="p-2 ">
+            <TableCell colSpan={columns.length} className=" p-2">
               <NewTask />
             </TableCell>
           </TableRow>
