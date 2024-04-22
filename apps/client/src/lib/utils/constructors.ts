@@ -7,7 +7,7 @@ export class Subtask {
   timeToComplete: number;
   order: number;
   createdAt: number;
-  isComplete: boolean;
+  taskComplete: boolean;
   completedAt: Date | null;
   timersComplete: number;
 
@@ -20,7 +20,8 @@ export class Subtask {
     this.timeToComplete = 0;
     this.order = 0;
     this.createdAt = Date.now();
-    this.isComplete: false;
+    this.taskComplete = false;
+
     this.completedAt = null;
     this.timersComplete = 0;
   }
