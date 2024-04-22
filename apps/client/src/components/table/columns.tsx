@@ -14,10 +14,11 @@ import { Divide, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
+import CompleteTask from "./cells/CompleteTask";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
+export type MiniTask = {
   id: string;
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
@@ -25,7 +26,18 @@ export type Payment = {
   email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<MiniTask>[] = [
+  {
+    accessorKey: "actions",
+    header: "",
+    cell: () => {
+      return (
+        <div className="">
+          <CompleteTask />
+        </div>
+      );
+    },
+  },
   {
     accessorKey: "task",
     header: "Task",
@@ -44,19 +56,19 @@ export const columns: ColumnDef<Payment>[] = [
       return <StatusSelect task={status} />;
     },
   },
-  {
-    accessorKey: "timeToComplete",
-    header: "Est. Hours",
-    cell: ({ row }) => {
-      return row ? (
-        <div className="text-right">
-          {row.original.timersComplete}/{row.getValue("timeToComplete")}
-        </div>
-      ) : (
-        <div>No time defined</div>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "timeToComplete",
+  //   header: "Est. Hours",
+  //   cell: ({ row }) => {
+  //     return row ? (
+  //       <div className="text-right">
+  //         {row.original.timersComplete}/{row.getValue("timeToComplete")}
+  //       </div>
+  //     ) : (
+  //       <div>No time defined</div>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "actions",
     header: "",
