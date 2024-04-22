@@ -7,7 +7,7 @@ import {
   useState,
   Dispatch,
 } from "react";
-import { data } from "@/components/table/sample_data";
+// import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
 // import Task from "shared-types";
 
@@ -19,7 +19,7 @@ type TaskContext = {
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
-  tasks: data,
+  tasks: [],
   addTask: () => {},
   setTasks: () => {},
 };
