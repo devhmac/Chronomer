@@ -15,6 +15,7 @@ import { Button } from "../ui/button";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
 import CompleteTask from "./cells/CompleteTask";
+import CancelTask from "./cells/CancelTask";
 import { Task } from "@/lib/types/types";
 
 // This type is used to define the shape of our data.
@@ -24,10 +25,10 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "actions",
     header: "",
-    cell: () => {
+    cell: ({ row }) => {
       return (
         <div className="">
-          <CompleteTask />
+          {row?.original?.id === "-1" ? <CancelTask /> : <CompleteTask />}
         </div>
       );
     },
