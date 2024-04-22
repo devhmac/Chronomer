@@ -28,7 +28,11 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       return (
         <div className="">
-          {row?.original?.id === "-1" ? <CancelTask /> : <CompleteTask />}
+          {row?.original?.id === "-1" ? (
+            <CancelTask task={row.original} />
+          ) : (
+            <CompleteTask />
+          )}
         </div>
       );
     },

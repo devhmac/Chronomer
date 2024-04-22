@@ -82,7 +82,7 @@ export function TodoTable<TData, TValue>({
               </TableRow>
             ))
           ) : (
-            <TableRow>
+            <TableRow key="no-results-row">
               <TableCell colSpan={columns.length} className="h-24 text-center">
                 No results.
               </TableCell>

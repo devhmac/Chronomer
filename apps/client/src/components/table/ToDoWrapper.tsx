@@ -10,7 +10,7 @@ const ToDoWrapper = () => {
   // const [todos, setTodos] = useState(data);
 
   const { tasks, addTask, setTasks } = useContext(taskContext);
-  setTasks(data);
+  // setTasks(data);
 
   return (
     <div className="rounded-lg border p-3 shadow backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none">
