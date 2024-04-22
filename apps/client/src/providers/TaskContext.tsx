@@ -15,11 +15,13 @@ type TaskContext = {
   tasks: Task[];
   // setTasks: Dispatch<SetStateAction<Task[]>>;
   addTask: (task: Task) => void;
+  setTasks: (tasks: Task[]) => void;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
   tasks: data,
   addTask: () => {},
+  setTasks: () => {},
 };
 
 export const taskContext = createContext<TaskContext>(defaultTasksState);
@@ -42,6 +44,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       value={{
         tasks,
         addTask,
+        setTasks,
       }}
     >
       {children}

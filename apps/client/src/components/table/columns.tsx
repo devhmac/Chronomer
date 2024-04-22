@@ -15,18 +15,12 @@ import { Button } from "../ui/button";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
 import CompleteTask from "./cells/CompleteTask";
+import { Task } from "@/lib/types/types";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type MiniTask = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  timersComplete: number;
-  email: string;
-};
 
-export const columns: ColumnDef<MiniTask>[] = [
+export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "actions",
     header: "",
