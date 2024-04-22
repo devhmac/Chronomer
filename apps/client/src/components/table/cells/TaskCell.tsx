@@ -23,7 +23,7 @@ const TaskCell = ({ task }) => {
 
   return (
     <div
-      className="hover:  w-full "
+      className=""
       onClick={(e) => {
         setIsEdit(true);
         // if (inputRef.current) {
@@ -49,7 +49,7 @@ const TaskCell = ({ task }) => {
           onBlur={() => submitTaskChange()}
         />
       ) : (
-        <p className="border-primary hover:border">{input}</p>
+        <p className="rounded-md border-input p-2 hover:border ">{input}</p>
       )}
     </div>
   );
