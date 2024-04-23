@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils/utils";
 import { CircleCheckBig } from "lucide-react";
 import React from "react";
+import { Task } from "@/lib/types/types";
 
-const CompleteTask = ({ task }) => {
+const CompleteTask = ({ task }: { task: Task }) => {
   const isComplete = false;
   return (
     <div className=" hover:cursor-pointer">

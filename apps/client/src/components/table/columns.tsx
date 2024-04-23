@@ -31,7 +31,7 @@ export const columns: ColumnDef<Task>[] = [
           {row?.original?.id === "-1" ? (
             <CancelTask task={row.original} />
           ) : (
-            <CompleteTask />
+            <CompleteTask task={row.original} />
           )}
         </div>
       );
@@ -41,18 +41,19 @@ export const columns: ColumnDef<Task>[] = [
     accessorKey: "task",
     header: "Task",
     cell: ({ row }) => {
-      const existingTask = row ? row.original : null;
+      // New create task method makes this no longer needed
+      // const existingTask = row ? row.original : null;
 
-      return <TaskCell task={existingTask} />;
+      return <TaskCell task={row.original} />;
     },
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row ? row.original : undefined;
+      // const status = row ? row.original : undefined;
 
-      return <StatusSelect task={status} />;
+      return <StatusSelect task={row.original} />;
     },
   },
   // {
