@@ -6,8 +6,9 @@ import {
   useContext,
   useState,
   Dispatch,
+  useEffect,
 } from "react";
-// import { data } from "@/components/table/sample_data";
+import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
 // import Task from "shared-types";
 
@@ -27,17 +28,20 @@ const defaultTasksState = {
 export const taskContext = createContext<TaskContext>(defaultTasksState);
 
 export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
-  const [tasks, setTasks] = useState<Task[] | []>(defaultTasksState.tasks);
+  const [tasks, setTasks] = useState<Task[] | []>([]);
+
+  useEffect(() => {
+    setTasks(data);
+  }, []);
+
+  console.log(tasks);
 
   const addTask = (task: Task) => {
     setTasks((prev) => [...prev, task]);
+    console.log("adding task");
   };
 
   const editTaskValue = (updatedTask: Task) => {};
-
-  // const [timeRemaining, setTimeRemaining] = useState(
-  //   defaultTimerState.timerState.timerLength,
-  // );
 
   return (
     <taskContext.Provider

@@ -23,7 +23,7 @@ import { Task } from "@/lib/types/types";
 
 export const columns: ColumnDef<Task>[] = [
   {
-    accessorKey: "actions",
+    accessorKey: "complete",
     header: "",
     cell: ({ row }) => {
       return (
