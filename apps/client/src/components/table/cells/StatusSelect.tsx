@@ -7,38 +7,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Task } from "@/lib/types/types";
 
+type StatusMap = {
+  BACKLOG: string;
+  INPROGRESS: string;
+  COMPLETE: string;
+  BLOCKED: string;
+};
 const statusMap = {
   BACKLOG: "Backlog",
   INPROGRESS: "In Progress",
   COMPLETE: "Complete",
   BLOCKED: "Blocked",
-} as {
-  COMPLETE: string;
-  INPROGRESS: string;
-  BACKLOG: string;
-  BLOCKED: string;
-};
+} as StatusMap;
 
 type props = {
-  task?: any; //make this the task type
+  task: Task; //make this the task type
 };
 
 const StatusSelect = ({ task }: props) => {
   const statusOptions = Object.keys(statusMap);
   const initialStatus =
-    task && task.status ? statusMap[task.status] : "Set Status";
+    task && task.status ? statusMap[task.status] : "Backlog";
 
   return (
-    <Select>
+    <Select value={task.status}>
       <SelectTrigger className="mr-1 border-none">
         <SelectValue placeholder={initialStatus} />
       </SelectTrigger>
       <SelectContent>
-        {statusOptions.map((status) => {
+        {statusOptions.map((status: string) => {
           return (
             <SelectItem key={status} value={status}>
-              {statusMap[status]}
+              {statusMap[status as keyof StatusMap]}
             </SelectItem>
           );
         })}
