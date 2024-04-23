@@ -19,21 +19,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { useState } from "react";
 import NewTask from "./NewTask";
-import StatusSelect from "./cells/StatusSelect";
-import TaskCell from "./cells/TaskCell";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   setData: Dispatch<SetStateAction<TData[]>>;
 }
-
-const footerColHelper = {
-  task: <TaskCell />,
-  status: <StatusSelect />,
-};
 
 export function TodoTable<TData, TValue>({
   columns,
@@ -89,15 +81,12 @@ export function TodoTable<TData, TValue>({
             </TableRow>
           )}
 
-          {/* Create task footer row */}
           <TableRow>
             <TableCell colSpan={columns.length} className=" p-2">
               <NewTask />
             </TableCell>
           </TableRow>
         </TableBody>
-        {/* <TableFooter> */}
-        {/* </TableFooter> */}
       </Table>
     </div>
   );

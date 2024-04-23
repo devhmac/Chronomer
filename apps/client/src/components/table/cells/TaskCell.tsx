@@ -1,15 +1,16 @@
 import { Input } from "@/components/ui/input";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Task } from "@/lib/types/types";
 
 type props = {
   task?: any;
 };
 
-const TaskCell = ({ task }) => {
-  const [isEdit, setIsEdit] = useState(task && task.id === -1 ? true : false);
+const TaskCell = ({ task }: { task: Task }) => {
+  const [isEdit, setIsEdit] = useState(task && task.id === "-1" ? true : false);
   const [input, setInput] = useState(task ? task.task : "");
 
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const submitTaskChange = () => {
     setIsEdit(false);

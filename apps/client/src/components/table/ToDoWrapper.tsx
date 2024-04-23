@@ -7,8 +7,6 @@ import { taskContext } from "@/providers/TaskContext";
 import { ListTodo } from "lucide-react";
 
 const ToDoWrapper = () => {
-  // const [todos, setTodos] = useState(data);
-
   const { tasks, addTask, setTasks } = useContext(taskContext);
 
   return (
