@@ -24,7 +24,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className=""
+      className="text-left"
       onClick={(e) => {
         setIsEdit(true);
         // if (inputRef.current) {
