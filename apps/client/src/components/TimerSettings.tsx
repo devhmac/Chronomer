@@ -35,9 +35,7 @@ const TimerSettings = ({
   setTimerConfig,
   setTimerRunning,
 }: props) => {
-  const openAccordion = timerConfig.isPomodoro ? "" : "item-1";
-
-  // const [open, setOpen] = useState<string>("");
+  const openAccordion = "item-1";
 
   const customTimes = [
     { text: "5 sec", val: 5 },
@@ -72,10 +70,7 @@ const TimerSettings = ({
       </PopoverTrigger>
       <PopoverContent>
         <div
-          className={cn(
-            " flex items-center justify-around  ",
-            !timerConfig.isPomodoro ? "mb-2 border-b pb-2" : "",
-          )}
+          className={cn(" mb-2 flex items-center justify-around border-b pb-2")}
         >
           <Button
             className={timerConfig.isPomodoro ? "bg-accent" : ""}
