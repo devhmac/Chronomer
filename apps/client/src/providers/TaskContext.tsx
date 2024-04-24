@@ -11,6 +11,7 @@ import {
 import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { v4 as uuidv4 } from "uuid";
 // import Task from "shared-types";
 
 type TaskContext = {
@@ -50,14 +51,13 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       console.log(localTasks);
       setTasks(localTasks);
     }
+    console.log(uuidv4());
   }, []);
 
   const addTask = (task: Task) => {
-
     if (task.id === "-1") {
-      if(task.task !== ''){
-        task.id = 
-
+      if (task.task !== "") {
+        task.id;
       }
       // Update state with new task block but dont save
       setTasks((prev) => [...prev, task]);
