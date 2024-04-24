@@ -18,6 +18,7 @@ type TaskContext = {
   tasks: Task[];
   // setTasks: Dispatch<SetStateAction<Task[]>>;
   addTask: (task: Task) => void;
+  updateTask: (task: Task) => void;
   setTasks: Dispatch<SetStateAction<Task[]>>;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
@@ -25,6 +26,7 @@ const defaultTasksState = {
   tasks: [],
   addTask: () => {},
   setTasks: () => {},
+  updateTask: () => {},
 };
 const user = false;
 
@@ -51,34 +53,38 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       console.log(localTasks);
       setTasks(localTasks);
     }
-    console.log(uuidv4());
   }, []);
 
   const addTask = (task: Task) => {
     if (task.id === "-1") {
-      if (task.task !== "") {
-        task.id;
+      if (task.task === "") {
+        //means brand new task row, update state with new task block but dont save
+        setTasks((prev) => [...prev, task]);
+        return;
       }
-      // Update state with new task block but dont save
-      setTasks((prev) => [...prev, task]);
-      return;
+      task.id = uuidv4();
     }
     try {
-      const updatedTasks = [...tasks, task];
       if (!user) {
+        const updatedTasks = [...tasks, task];
         addTasksLocal(updatedTasks);
-        setTasks(getLocalItem());
+        setTasks(updatedTasks);
       }
     } catch (error) {}
     console.log("adding task");
   };
 
-  const updateTasks = (tasks: Task[], incomingTask: Task) => {
-    return tasks.map((task) => {
-      if (task.id === incomingTask.id) {
-        return incomingTask;
-      }
-    });
+  const updateTask = (incomingTask: Task) => {
+    console.log("updating task");
+    if (!user) {
+      const localTasks = getLocalItem();
+      const updatedTasks = localTasks.map((task: Task) => {
+        if (task.id === incomingTask.id) {
+          return incomingTask;
+        }
+      });
+      addTasksLocal(updatedTasks);
+    }
   };
 
   const editTaskValue = (updatedTask: Task) => {};
@@ -89,6 +95,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         tasks,
         addTask,
         setTasks,
+        updateTask,
       }}
     >
       {children}
