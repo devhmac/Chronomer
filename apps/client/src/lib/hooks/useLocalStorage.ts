@@ -1,14 +1,31 @@
 export const useLocalStorage = (key: string) => {
-  const setItem = (value: unknown) => {
-    localStorage.setItem(key, JSON.stringify(value));
+  const supportsLocalStorage = () => {
+    try {
+      return "localStorage" in window && window["localStorage"] !== null;
+    } catch (error) {
+      return false;
+    }
   };
 
-  const getItem = () => {
-    const value = localStorage.getItem(key);
-    return value !== null ? JSON.parse(value) : null;
+  const setLocalItem = (value: unknown) => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  };
+
+  const getLocalItem = () => {
+    try {
+      const value = localStorage.getItem(key);
+      return value !== null ? JSON.parse(value) : null;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
   };
 
   const deleteItem = () => localStorage.removeItem(key);
 
-  return { setItem, getItem, deleteItem };
+  return { setLocalItem, getLocalItem, deleteItem, supportsLocalStorage };
 };

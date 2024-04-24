@@ -10,6 +10,7 @@ import {
 } from "react";
 import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 // import Task from "shared-types";
 
 type TaskContext = {
@@ -24,19 +25,60 @@ const defaultTasksState = {
   addTask: () => {},
   setTasks: () => {},
 };
+const user = false;
 
 export const taskContext = createContext<TaskContext>(defaultTasksState);
 
 export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[] | []>([]);
 
+  const { setLocalItem, getLocalItem, supportsLocalStorage } =
+    useLocalStorage("chronomer.tasks");
+
+  const addTasksLocal = (tasks: Task[]) => {
+    return setLocalItem(tasks);
+  };
+
   useEffect(() => {
-    setTasks(data);
+    // Will need check somewhere on if logged in to determine action here
+    if (!user) {
+      if (supportsLocalStorage() === false) {
+        false;
+      }
+
+      const localTasks = getLocalItem() || [];
+      console.log(localTasks);
+      setTasks(localTasks);
+    }
   }, []);
 
   const addTask = (task: Task) => {
-    setTasks((prev) => [...prev, task]);
+
+    if (task.id === "-1") {
+      if(task.task !== ''){
+        task.id = 
+
+      }
+      // Update state with new task block but dont save
+      setTasks((prev) => [...prev, task]);
+      return;
+    }
+    try {
+      const updatedTasks = [...tasks, task];
+      if (!user) {
+        addTasksLocal(updatedTasks);
+        setTasks(getLocalItem());
+      }
+    } catch (error) {}
     console.log("adding task");
+  };
+
+  const updateTasks = (tasks: Task[], incomingTask: Task) => {
+    return tasks.map((task) => {
+      if (task.id === incomingTask.id) {
+        return incomingTask;
+      }
+    });
   };
 
   const editTaskValue = (updatedTask: Task) => {};
