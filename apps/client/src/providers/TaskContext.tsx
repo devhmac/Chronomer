@@ -66,7 +66,12 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     }
     try {
       if (!user) {
-        const updatedTasks = [...tasks, task];
+        const currentlocalTasks = getLocalItem() || [];
+        const updatedTasks = [...currentlocalTasks, task];
+        // const updatedTasks = [
+        //   ...tasks.filter((task) => task.id !== "-1" && task.task !== ""),
+        //   task,
+        // ];
         addTasksLocal(updatedTasks);
         setTasks(updatedTasks);
       }
@@ -78,11 +83,15 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     console.log("updating task");
     if (!user) {
       const localTasks = getLocalItem();
+      console.log("in updating function");
+      console.log("local tasks", localTasks);
       const updatedTasks = localTasks.map((task: Task) => {
         if (task.id === incomingTask.id) {
           return incomingTask;
         }
+        return task;
       });
+      console.log("updated tasks", updatedTasks);
       addTasksLocal(updatedTasks);
     }
   };
