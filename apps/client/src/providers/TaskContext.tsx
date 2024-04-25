@@ -102,10 +102,20 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const deleteTask = (deletingTask: Task) => {
     if (!user) {
       const localTasks = getLocalItem();
-      const taskList: Task[] = removeObjFromArrOnID(localTasks, deletingTask);
+      const taskList = removeObjFromArrOnID(localTasks, deletingTask);
+      console.log(taskList);
       addTasksLocal(taskList);
       setTasks(taskList);
     }
+  };
+
+  const cancelUnsavedTask = (task: Task) => {
+    if (task.id !== "-1") return;
+    const updated = tasks.filter(
+      (item) => item.id !== "-1" && item.createdAt !== task.createdAt,
+    );
+
+    setTasks(updated);
   };
 
   const editTaskValue = (updatedTask: Task) => {};
