@@ -12,6 +12,7 @@ import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
+import { removeObjFromArrOnID } from "@/lib/utils/taskCrud";
 // import Task from "shared-types";
 
 type TaskContext = {
@@ -20,6 +21,7 @@ type TaskContext = {
   addTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   setTasks: Dispatch<SetStateAction<Task[]>>;
+  deleteTask: (task: Task) => void;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
@@ -27,6 +29,7 @@ const defaultTasksState = {
   addTask: () => {},
   setTasks: () => {},
   updateTask: () => {},
+  deleteTask: () => {},
 };
 const user = false;
 
@@ -86,16 +89,22 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     console.log("updating task");
     if (!user) {
       const localTasks = getLocalItem();
-      console.log("in updating function");
-      console.log("local tasks", localTasks);
+      // console.log("in updating function");
+      // console.log("local tasks", localTasks);
       const updatedTasks = localTasks.map((task: Task) => {
-        if (task.id === incomingTask.id) {
-          return incomingTask;
-        }
-        return task;
+        return task.id === incomingTask.id ? incomingTask : task;
       });
-      console.log("updated tasks", updatedTasks);
+      // console.log("updated tasks", updatedTasks);
       addTasksLocal(updatedTasks);
+    }
+  };
+
+  const deleteTask = (deletingTask: Task) => {
+    if (!user) {
+      const localTasks = getLocalItem();
+      const taskList: Task[] = removeObjFromArrOnID(localTasks, deletingTask);
+      addTasksLocal(taskList);
+      setTasks(taskList);
     }
   };
 
@@ -108,6 +117,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         addTask,
         setTasks,
         updateTask,
+        deleteTask,
       }}
     >
       {children}

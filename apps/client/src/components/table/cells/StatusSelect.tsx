@@ -32,9 +32,6 @@ const StatusSelect = ({ task }: props) => {
   const statusOptions = Object.keys(statusMap);
   const initialStatus =
     task && task.status ? statusMap[task.status] : "Backlog";
-  const [selectedStatus, setSelectedStatus] = useState(
-    task.status || "Backlog",
-  );
 
   return (
     <Select

@@ -4,6 +4,8 @@ import { Timer } from "./Timer";
 
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import ToDoWrapper from "./table/ToDoWrapper";
+import { Suspense } from "react";
+import TableSkeleton from "./table/skeleton/TableSkeleton";
 
 const LandingLayout = () => {
   return (
@@ -23,7 +25,9 @@ const LandingLayout = () => {
               {/* move this into the table component */}
               {/* <div className="border-shadow-2 m-2 rounded-xl p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"> */}
               <div>
-                <ToDoWrapper />
+                <Suspense fallback={<TableSkeleton />}>
+                  <ToDoWrapper />
+                </Suspense>
               </div>
             </div>
           </div>

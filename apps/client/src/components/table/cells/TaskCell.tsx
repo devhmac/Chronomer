@@ -26,9 +26,9 @@ const TaskCell = ({ task }: { task: Task }) => {
   const submitTaskChange = (input: string) => {
     // means input was not changed, do not submit an update request
     if (input === task.task) return setIsEdit(false);
-    const newTask = task;
+
+    const newTask = { ...task, task: input };
     console.log("task before submission", task);
-    newTask.task = input;
     console.log(task);
     setIsEdit(false);
     console.log(isExistingTask);
