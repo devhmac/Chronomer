@@ -10,7 +10,10 @@ const CompleteTask = ({ task }: { task: Task }) => {
   return (
     <div className=" hover:cursor-pointer">
       <CircleCheckBig
-        onClick={() => deleteTask(task)}
+        onClick={() => {
+          console.log("task being delete", task);
+          deleteTask(task);
+        }}
         className={cn(
           "h-4 w-4 text-zinc-400 ",
           isComplete ? "text-green-400" : "text-zinc-400 hover:text-zinc-200",

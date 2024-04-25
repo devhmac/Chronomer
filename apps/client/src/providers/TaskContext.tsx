@@ -102,7 +102,8 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const deleteTask = (deletingTask: Task) => {
     if (!user) {
       const localTasks = getLocalItem();
-      const taskList = removeObjFromArrOnID(localTasks, deletingTask);
+      // const taskList = removeObjFromArrOnID(localTasks, deletingTask);
+      const taskList = localTasks.filter((item) => item.id !== deletingTask.id);
       console.log(taskList);
       addTasksLocal(taskList);
       setTasks(taskList);
