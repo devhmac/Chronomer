@@ -19,21 +19,24 @@ const TaskCell = ({ task }: { task: Task }) => {
   const [isEdit, setIsEdit] = useState(task && task.id === "-1" ? true : false);
   const [input, setInput] = useState(task ? task.task : "");
 
+  const isExistingTask = task.id !== "-1";
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const submitTaskChange = (input: string) => {
+    // means input was not changed, do not submit an update request
     if (input === task.task) return setIsEdit(false);
     const newTask = task;
     console.log("task before submission", task);
     newTask.task = input;
     console.log(task);
     setIsEdit(false);
-    if (task.id === "-1" || task.id === undefined) {
-      addTask(newTask);
-    } else {
+    console.log(isExistingTask);
+    if (isExistingTask) {
       updateTask(newTask);
+    } else {
+      addTask(newTask);
     }
-    // rest of api request/save logic
   };
   useLayoutEffect(() => {
     if (inputRef.current) {
