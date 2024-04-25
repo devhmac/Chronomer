@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import {
   Select,
@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Task } from "@/lib/types/types";
+import { taskContext } from "@/providers/TaskContext";
 
 type StatusMap = {
   BACKLOG: string;
@@ -27,19 +28,38 @@ type props = {
 };
 
 const StatusSelect = ({ task }: props) => {
+  const { addTask, updateTask } = useContext(taskContext);
   const statusOptions = Object.keys(statusMap);
   const initialStatus =
     task && task.status ? statusMap[task.status] : "Backlog";
+  const [selectedStatus, setSelectedStatus] = useState(
+    task.status || "Backlog",
+  );
 
   return (
-    <Select value={task.status}>
+    <Select
+      onValueChange={(val) => {
+        console.log(val);
+        const updatedTask = { ...task, status: val };
+        updateTask(updatedTask);
+      }}
+      defaultValue={task.status}
+    >
       <SelectTrigger className="mr-1 border-none">
         <SelectValue placeholder={initialStatus} />
       </SelectTrigger>
       <SelectContent>
-        {statusOptions.map((status: string) => {
+        {statusOptions.map((status) => {
           return (
-            <SelectItem key={status} value={status}>
+            <SelectItem
+              key={status}
+              value={status}
+              onClick={(e) => {
+                console.log(status);
+                const updatedTask = { ...task, status: status };
+                updateTask(updatedTask);
+              }}
+            >
               {statusMap[status as keyof StatusMap]}
             </SelectItem>
           );

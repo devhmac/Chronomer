@@ -34,6 +34,9 @@ export const taskContext = createContext<TaskContext>(defaultTasksState);
 
 export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[] | []>([]);
+  // use these for a row level loading spinner on any updates, and a table level skeleton load
+  const [tableLoading, setTableLoading] = useState(false);
+  const [rowLoading, setRowLoading] = useState(false);
 
   const { setLocalItem, getLocalItem, supportsLocalStorage } =
     useLocalStorage("chronomer.tasks");
