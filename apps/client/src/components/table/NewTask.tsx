@@ -16,7 +16,7 @@ const NewTask = () => {
           addTask(createdTask);
           console.log(createdTask);
         }}
-        className="text-center  "
+        className="text-center"
       >
         Add New Task
       </p>

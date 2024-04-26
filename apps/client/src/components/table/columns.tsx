@@ -62,19 +62,19 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "timeToComplete",
-  //   header: "Est. Hours",
-  //   cell: ({ row }) => {
-  //     return row ? (
-  //       <div className="text-right">
-  //         {row.original.timersComplete}/{row.getValue("timeToComplete")}
-  //       </div>
-  //     ) : (
-  //       <div>No time defined</div>
-  //     );
-  //   },
-  // },
+  {
+    accessorKey: "timeToComplete",
+    header: "Est. Hours",
+    cell: ({ row }) => {
+      return row ? (
+        <div className="text-right">
+          {row.original.timersComplete}/{row.getValue("timeToComplete")}
+        </div>
+      ) : (
+        <div>No time defined</div>
+      );
+    },
+  },
   {
     accessorKey: "actions",
     header: "",

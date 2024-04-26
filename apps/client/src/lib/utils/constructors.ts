@@ -1,6 +1,6 @@
 import { Task as TaskType } from "../types/types";
 
-export class Subtask {
+export class SubTask {
   id: string;
   task: string;
   description: string;
@@ -8,7 +8,7 @@ export class Subtask {
   isActive: boolean;
   timeToComplete: number;
   order: number;
-  createdAt: number;
+  createdAt: Date;
   isComplete: boolean;
   completedAt: Date | null;
   timersComplete: number;
@@ -21,17 +21,17 @@ export class Subtask {
     this.isActive = false;
     this.timeToComplete = 0;
     this.order = 0;
-    this.createdAt = Date.now();
+    this.createdAt = new Date();
     this.isComplete = false;
     this.completedAt = null;
     this.timersComplete = 0;
   }
 }
 
-export class Task<TaskType> extends Subtask {
-  subtasks: Subtask[];
+export class Task extends SubTask {
+  subTasks: SubTask[];
   constructor(task?: string) {
     super(task);
-    this.subtasks = [];
+    this.subTasks = [];
   }
 }
