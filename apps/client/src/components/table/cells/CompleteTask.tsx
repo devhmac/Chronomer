@@ -1,24 +1,33 @@
 import { cn } from "@/lib/utils/utils";
 import { CircleCheckBig } from "lucide-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
 
 const CompleteTask = ({ task }: { task: Task }) => {
-  const { deleteTask } = useContext(taskContext);
-  const isComplete = false;
+  const { updateTask } = useContext(taskContext);
+  const [taskComplete, setTaskComplete] = useState(task.isComplete);
+  const isComplete = task.isComplete;
   return (
     <div className=" hover:cursor-pointer">
       <CircleCheckBig
         onClick={() => {
-          console.log("task being delete", task);
-          deleteTask(task);
+          isComplete;
+          // console.log("task being delete", task);
+          const updatedTask = {
+            ...task,
+            isComplete: !isComplete,
+          };
+          !isComplete ? (updatedTask.completedAt = new Date()) : null;
+          updateTask(updatedTask);
+          setTaskComplete((prev) => !prev);
         }}
         className={cn(
           "h-4 w-4 text-zinc-400 ",
-          isComplete ? "text-green-400" : "text-zinc-400 hover:text-zinc-200",
+          taskComplete ? "text-green-400" : "text-zinc-400 hover:text-zinc-200",
         )}
       />
+      {`${task.completedAt}`}
     </div>
   );
 };

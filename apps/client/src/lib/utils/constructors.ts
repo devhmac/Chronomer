@@ -9,7 +9,7 @@ export class Subtask {
   timeToComplete: number;
   order: number;
   createdAt: number;
-  taskComplete: boolean;
+  isComplete: boolean;
   completedAt: Date | null;
   timersComplete: number;
 
@@ -22,13 +22,13 @@ export class Subtask {
     this.timeToComplete = 0;
     this.order = 0;
     this.createdAt = Date.now();
-    this.taskComplete = false;
+    this.isComplete = false;
     this.completedAt = null;
     this.timersComplete = 0;
   }
 }
 
-export class Task extends Subtask {
+export class Task<TaskType> extends Subtask {
   subtasks: Subtask[];
   constructor(task?: string) {
     super(task);

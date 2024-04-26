@@ -21,7 +21,7 @@ const statusMap = {
   INPROGRESS: "In Progress",
   COMPLETE: "Complete",
   BLOCKED: "Blocked",
-} as StatusMap;
+};
 
 type props = {
   task: Task; //make this the task type
@@ -31,7 +31,7 @@ const StatusSelect = ({ task }: props) => {
   const { addTask, updateTask } = useContext(taskContext);
   const statusOptions = Object.keys(statusMap);
   const initialStatus =
-    task && task.status ? statusMap[task.status] : "Backlog";
+    task && task.status ? statusMap[task.status as keyof StatusMap] : "Backlog";
 
   return (
     <Select

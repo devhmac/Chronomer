@@ -46,7 +46,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className="text-left"
+      className="w-full text-left"
       onClick={(e) => {
         setIsEdit(true);
       }}
@@ -54,6 +54,7 @@ const TaskCell = ({ task }: { task: Task }) => {
       {isEdit || input === "" ? (
         <Input
           ref={inputRef}
+          className=""
           type="text"
           value={input}
           onChange={(e) => {
@@ -69,7 +70,7 @@ const TaskCell = ({ task }: { task: Task }) => {
           onBlur={() => submitTaskChange(input)}
         />
       ) : (
-        <p className="rounded-md border-input p-2 hover:border ">{input}</p>
+        <p className=" rounded-md border-input p-2 hover:border ">{input}</p>
       )}
     </div>
   );

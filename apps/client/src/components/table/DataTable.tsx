@@ -46,7 +46,10 @@ export function TodoTable<TData, TValue>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                    // className={`w-[${header.getSize()}px]`}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
