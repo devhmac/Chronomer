@@ -18,7 +18,8 @@ const CompleteTask = ({ task }: { task: Task }) => {
             ...task,
             isComplete: !isComplete,
           };
-          !isComplete ? (updatedTask.completedAt = new Date()) : null;
+          updatedTask.completedAt = !isComplete ? new Date() : null;
+
           updateTask(updatedTask);
           setTaskComplete((prev) => !prev);
         }}
@@ -27,7 +28,6 @@ const CompleteTask = ({ task }: { task: Task }) => {
           taskComplete ? "text-green-400" : "text-zinc-400 hover:text-zinc-200",
         )}
       />
-      {`${task.completedAt}`}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { Timer } from "./Timer";
 
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import ToDoWrapper from "./table/ToDoWrapper";
-import { Suspense } from "react";
+
 import TableSkeleton from "./table/skeleton/TableSkeleton";
 
 const LandingLayout = () => {

@@ -68,6 +68,11 @@ export function TodoTable<TData, TValue>({
               <TableRow
                 key={row.original.id}
                 data-state={row.getIsSelected() && "selected"}
+                className={
+                  row.original.isComplete
+                    ? "bg-background-muted text-secondary"
+                    : ""
+                }
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

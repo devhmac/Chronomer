@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { Divide, MoreHorizontal } from "lucide-react";
+import { Divide, Ellipsis, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
@@ -79,5 +79,8 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "actions",
     header: "",
+    cell: ({ row }) => {
+      return <Ellipsis />;
+    },
   },
 ];
