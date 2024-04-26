@@ -10,13 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { Divide, Ellipsis, MoreHorizontal } from "lucide-react";
-import { Button } from "../ui/button";
 import StatusSelect from "./cells/StatusSelect";
 import TaskCell from "./cells/TaskCell";
 import CompleteTask from "./cells/CompleteTask";
 import CancelTask from "./cells/CancelTask";
 import { Task } from "@/lib/types/types";
+import Options from "./cells/Options";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -80,7 +79,7 @@ export const columns: ColumnDef<Task>[] = [
     accessorKey: "actions",
     header: "",
     cell: ({ row }) => {
-      return <Ellipsis />;
+      return <Options task={row.original} />;
     },
   },
 ];
