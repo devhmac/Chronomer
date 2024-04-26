@@ -33,14 +33,19 @@ const StatusSelect = ({ task }: props) => {
   const initialStatus =
     task && task.status ? statusMap[task.status as keyof StatusMap] : "Backlog";
 
+  const [status, setStatus] = useState(task.status);
+
+  // could use useeffect to listen to isComplete
+
   return (
     <Select
       onValueChange={(val) => {
         console.log(val);
         const updatedTask = { ...task, status: val };
         updateTask(updatedTask);
+        setStatus(val);
       }}
-      defaultValue={task.status}
+      defaultValue={status}
     >
       <SelectTrigger className="mr-1 border-none">
         <SelectValue placeholder={initialStatus} />

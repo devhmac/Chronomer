@@ -19,8 +19,8 @@ const CompleteTask = ({ task }: { task: Task }) => {
             isComplete: !isComplete,
           };
           updatedTask.completedAt = !isComplete ? new Date() : null;
-
           updateTask(updatedTask);
+          // optimistic update
           setTaskComplete((prev) => !prev);
         }}
         className={cn(

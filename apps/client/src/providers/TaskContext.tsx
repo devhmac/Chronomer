@@ -96,6 +96,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       });
       console.log("updated tasks", updatedTasks);
       addTasksLocal(updatedTasks);
+      setTasks(updatedTasks);
     }
   };
 
