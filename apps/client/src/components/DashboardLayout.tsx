@@ -3,7 +3,6 @@ import React from "react";
 import { Timer } from "./Timer";
 import Chat from "./chat/Chat";
 import { columns } from "@/components/table/columns";
-import { data } from "@/components/table/sample_data";
 import ToDoWrapper from "./table/ToDoWrapper";
 
 const DashboardLayout = () => {
