@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils/utils";
-import { CircleCheckBig } from "lucide-react";
+import { CircleCheckBig, Circle } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
@@ -25,7 +25,9 @@ const CompleteTask = ({ task }: { task: Task }) => {
         }}
         className={cn(
           "h-4 w-4 text-zinc-400 ",
-          taskComplete ? "text-green-400" : "text-zinc-400 hover:text-zinc-200",
+          taskComplete
+            ? "text-green-400"
+            : "text-zinc-400 hover:text-accent-foreground",
         )}
       />
     </div>
