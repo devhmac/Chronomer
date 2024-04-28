@@ -109,7 +109,7 @@ export const Timer = () => {
                 </span>
               </span>
               <span className="mx-1">
-                <MoonStar className="inline h-5 w-5 text-start " />:{" "}
+                <MoonStar className="inline h-5 w-5 " />:{" "}
                 <span className="h-5 w-5 align-middle">
                   {timerState.restsComplete}
                 </span>

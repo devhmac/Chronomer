@@ -9,13 +9,19 @@ import ToDoWrapper from "./table/ToDoWrapper";
 const DashboardLayout = () => {
   return (
     <>
-      <div className="pt-[61px] text-center">
-        <Timer />
-        <div className="flex h-screen flex-row flex-wrap-reverse items-center justify-between">
-          <div className="min-w-[300px]">
-            {/* <TodoTable columns={columns} data={data} /> */}
-            <ToDoWrapper />
-          </div>
+      {/* flexbox version */}
+      <div className="flex h-screen flex-row flex-wrap-reverse items-center justify-center gap-2 pt-[61px] text-center">
+        {/* grid version */}
+        {/* <div className="grid grid-cols-3 gap-2 pt-[61px] text-center"> */}
+        {/* <div className=""> */}
+        {/* <div className="min-w-[300px]"> */}
+        {/* <TodoTable columns={columns} data={data} /> */}
+        <ToDoWrapper />
+
+        <div>
+          <Timer />
+        </div>
+        <div className="min-w-[300px] bg-red-200">
           <Chat />
         </div>
       </div>
