@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import {
   Select,
@@ -28,14 +28,17 @@ type props = {
 };
 
 const StatusSelect = ({ task }: props) => {
-  const { addTask, updateTask } = useContext(taskContext);
+  console.log("task inside satus", task);
+  const { updateTask } = useContext(taskContext);
+
   const statusOptions = Object.keys(statusMap);
-  const initialStatus =
-    task && task.status ? statusMap[task.status as keyof StatusMap] : "Backlog";
+
+  let initialStatus = task && task.status ? task.status : "BACKLOG";
+
+  // let initialStatus;
 
   const [status, setStatus] = useState(task.status);
-
-  // could use useeffect to listen to isComplete
+  // const [complete, setComplete] = useState(task.isComplete);
 
   return (
     <Select
@@ -45,7 +48,7 @@ const StatusSelect = ({ task }: props) => {
         updateTask(updatedTask);
         setStatus(val);
       }}
-      defaultValue={status}
+      value={status}
     >
       <SelectTrigger className="mr-1 border-none">
         <SelectValue placeholder={initialStatus} />
@@ -57,7 +60,6 @@ const StatusSelect = ({ task }: props) => {
               key={status}
               value={status}
               onClick={(e) => {
-                console.log(status);
                 const updatedTask = { ...task, status: status };
                 updateTask(updatedTask);
               }}

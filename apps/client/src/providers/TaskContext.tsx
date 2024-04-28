@@ -94,7 +94,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       const updatedTasks = localTasks.map((task: Task) => {
         return task.id === incomingTask.id ? incomingTask : task;
       });
-      console.log("updated tasks", updatedTasks);
+      // console.log("updated tasks", updatedTasks);
       addTasksLocal(updatedTasks);
       setTasks(updatedTasks);
     }
@@ -103,7 +103,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const deleteTask = (deletingTask: Task) => {
     if (!user) {
       const localTasks = getLocalItem();
-      const taskList = removeObjFromArrOnID(localTasks, deletingTask);
+      const taskList: Task[] = removeObjFromArrOnID(localTasks, deletingTask);
       // const taskList = localTasks.filter((item) => item.id !== deletingTask.id);
       console.log(taskList);
       addTasksLocal(taskList);
