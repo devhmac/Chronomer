@@ -24,6 +24,7 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "complete",
     header: "",
+    size: 1,
     cell: ({ row }) => {
       return (
         <div className="">
@@ -51,7 +52,7 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    // maxSize: 10,
+    maxSize: 50,
     cell: ({ row }) => {
       // const status = row ? row.original : undefined;
 
@@ -62,24 +63,29 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
-  {
-    accessorKey: "timeToComplete",
-    header: "Est. Hours",
-    cell: ({ row }) => {
-      return row ? (
-        <div className="text-right">
-          {row.original.timersComplete}/{row.getValue("timeToComplete")}
-        </div>
-      ) : (
-        <div>No time defined</div>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "timeToComplete",
+  //   header: "Est. Hours",
+  //   cell: ({ row }) => {
+  //     return row ? (
+  //       <div className="text-right">
+  //         {row.original.timersComplete}/{row.getValue("timeToComplete")}
+  //       </div>
+  //     ) : (
+  //       <div>No time defined</div>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "actions",
     header: "",
+    size: 5,
     cell: ({ row }) => {
-      return <Options task={row.original} />;
+      return (
+        <div className="max-w-5">
+          <Options task={row.original} />
+        </div>
+      );
     },
   },
 ];

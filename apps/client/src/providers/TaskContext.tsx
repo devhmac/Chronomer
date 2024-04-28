@@ -73,10 +73,6 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       if (!user) {
         const currentlocalTasks = getLocalItem() || [];
         const updatedTasks = [...currentlocalTasks, task];
-        // const updatedTasks = [
-        //   ...tasks.filter((task) => task.id !== "-1" && task.task !== ""),
-        //   task,
-        // ];
         addTasksLocal(updatedTasks);
         setTasks(updatedTasks);
       }
@@ -88,12 +84,9 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     console.log("updating task");
     if (!user) {
       const localTasks = getLocalItem();
-      // console.log("in updating function");
-      // console.log("local tasks", localTasks);
       const updatedTasks = localTasks.map((task: Task) => {
         return task.id === incomingTask.id ? incomingTask : task;
       });
-      // console.log("updated tasks", updatedTasks);
       addTasksLocal(updatedTasks);
       setTasks(updatedTasks);
     }
@@ -106,11 +99,12 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         (item: Task) => deletingTask.id !== item.id,
       );
 
-      removeObjFromArrOnID(localTasks, deletingTask);
-      // const taskList = localTasks.filter((item) => item.id !== deletingTask.id);
-      console.log(taskList);
-      addTasksLocal(taskList);
-      setTasks(taskList);
+      // removeObjFromArrOnID(localTasks, deletingTask);
+      const updatedTasks = localTasks.filter(
+        (item: Task) => item.id !== deletingTask.id,
+      );
+      addTasksLocal(updatedTasks);
+      setTasks(updatedTasks);
     }
   };
 
