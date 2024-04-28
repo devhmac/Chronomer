@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { TodoTable } from "./DataTable";
+import { DataTable } from "./DataTable";
 import { columns } from "@/components/table/columns";
 import { data } from "@/components/table/sample_data";
 import { taskContext } from "@/providers/TaskContext";
@@ -18,7 +18,7 @@ const ToDoWrapper = () => {
         <ListTodo className="mb-[3px] inline h-7 w-7" /> Tasks
       </h2>
 
-      <TodoTable columns={columns} data={tasks} setData={setTasks} />
+      <DataTable columns={columns} data={tasks} setData={setTasks} />
     </div>
   );
 };

@@ -28,7 +28,6 @@ type props = {
 };
 
 const StatusSelect = ({ task }: props) => {
-  console.log("task inside satus", task);
   const { updateTask } = useContext(taskContext);
 
   const statusOptions = Object.keys(statusMap);
@@ -43,7 +42,6 @@ const StatusSelect = ({ task }: props) => {
   return (
     <Select
       onValueChange={(val) => {
-        console.log(val);
         const updatedTask = { ...task, status: val };
         updateTask(updatedTask);
         setStatus(val);

@@ -28,7 +28,7 @@ interface DataTableProps<TData, TValue> {
   setData: Dispatch<SetStateAction<TData[]>>;
 }
 
-export function TodoTable<TData, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
   setData,
@@ -71,7 +71,7 @@ export function TodoTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
                 className={
                   row.original.isComplete
-                    ? "bg-background-muted text-secondary"
+                    ? "bg-background-muted text-str text-zinc-500 line-through	"
                     : ""
                 }
               >
