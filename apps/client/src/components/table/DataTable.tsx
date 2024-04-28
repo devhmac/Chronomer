@@ -20,10 +20,11 @@ import {
 } from "@/components/ui/table";
 
 import NewTask from "./NewTask";
+import { Task } from "@/lib/types/types";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: ColumnDef<Task, TValue>[];
+  data: Task[];
   setData: Dispatch<SetStateAction<TData[]>>;
 }
 
@@ -66,7 +67,7 @@ export function TodoTable<TData, TValue>({
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
-                key={row.original.id}
+                key={`${row.id} ${row.original.id}`}
                 data-state={row.getIsSelected() && "selected"}
                 className={
                   row.original.isComplete
