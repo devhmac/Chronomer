@@ -2,7 +2,6 @@
 import React, { useContext, useState } from "react";
 import { DataTable } from "./DataTable";
 import { columns } from "@/components/table/columns";
-import { data } from "@/components/table/sample_data";
 import { taskContext } from "@/providers/TaskContext";
 import { ListTodo } from "lucide-react";
 

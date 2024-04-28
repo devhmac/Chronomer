@@ -8,7 +8,7 @@ const NewTask = () => {
   const { addTask } = useContext(taskContext);
 
   return (
-    <div className="h-full w-full rounded-sm border border-dashed border-input p-2 text-muted-foreground hover:cursor-pointer hover:text-zinc-200 ">
+    <div className="h-full w-full rounded-sm border border-dashed border-input p-2 text-muted-foreground hover:cursor-pointer hover:text-accent-foreground ">
       <p
         onClick={() => {
           const createdTask: Task = new Task();

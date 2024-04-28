@@ -8,7 +8,6 @@ import {
   Dispatch,
   useEffect,
 } from "react";
-import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
