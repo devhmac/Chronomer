@@ -12,7 +12,6 @@ import { data } from "@/components/table/sample_data";
 import { Task } from "@/lib/types/types";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
-import { removeObjFromArrOnID } from "@/lib/utils/taskCrud";
 // import Task from "shared-types";
 
 type TaskContext = {
@@ -103,7 +102,11 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const deleteTask = (deletingTask: Task) => {
     if (!user) {
       const localTasks = getLocalItem();
-      const taskList: Task[] = removeObjFromArrOnID(localTasks, deletingTask);
+      const taskList = localTasks.filter(
+        (item: Task) => deletingTask.id !== item.id,
+      );
+
+      removeObjFromArrOnID(localTasks, deletingTask);
       // const taskList = localTasks.filter((item) => item.id !== deletingTask.id);
       console.log(taskList);
       addTasksLocal(taskList);
