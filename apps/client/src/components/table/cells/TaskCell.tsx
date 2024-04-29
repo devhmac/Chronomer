@@ -70,7 +70,9 @@ const TaskCell = ({ task }: { task: Task }) => {
           onBlur={() => submitTaskChange(input)}
         />
       ) : (
-        <p className=" rounded-md border-input p-2 hover:border ">{input}</p>
+        <p className="flex-shrink  rounded-md border-input p-2 hover:border ">
+          {input}
+        </p>
       )}
     </div>
   );
