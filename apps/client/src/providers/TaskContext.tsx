@@ -20,6 +20,7 @@ type TaskContext = {
   updateTask: (task: Task) => void;
   setTasks: Dispatch<SetStateAction<Task[]>>;
   deleteTask: (task: Task) => void;
+  tableLoading: boolean;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
@@ -28,6 +29,7 @@ const defaultTasksState = {
   setTasks: () => {},
   updateTask: () => {},
   deleteTask: () => {},
+  tableLoading: true,
 };
 const user = false;
 
@@ -36,7 +38,7 @@ export const taskContext = createContext<TaskContext>(defaultTasksState);
 export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[] | []>([]);
   // use these for a row level loading spinner on any updates, and a table level skeleton load
-  const [tableLoading, setTableLoading] = useState(false);
+  const [tableLoading, setTableLoading] = useState(true);
   const [rowLoading, setRowLoading] = useState(false);
 
   const { setLocalItem, getLocalItem, supportsLocalStorage } =
@@ -49,6 +51,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Will need check somewhere on if logged in to determine action here
     if (!user) {
+      console.log("table loading", tableLoading);
       if (supportsLocalStorage() === false) {
         false;
       }
@@ -56,6 +59,8 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       const localTasks = getLocalItem() || [];
       console.log(localTasks);
       setTasks(localTasks);
+      setTableLoading(false);
+      console.log("table loading", tableLoading);
     }
   }, []);
 
@@ -126,6 +131,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         setTasks,
         updateTask,
         deleteTask,
+        tableLoading,
       }}
     >
       {children}

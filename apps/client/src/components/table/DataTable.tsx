@@ -21,17 +21,20 @@ import {
 
 import NewTask from "./NewTask";
 import { Task } from "@/lib/types/types";
+import TableSkeleton from "./skeleton/TableSkeleton";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<Task, TValue>[];
   data: Task[];
   setData: Dispatch<SetStateAction<TData[]>>;
+  tableLoading: Boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   setData,
+  tableLoading,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -63,39 +66,49 @@ export function DataTable<TData, TValue>({
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={`${row.id} ${row.original.id}`}
-                data-state={row.getIsSelected() && "selected"}
-                className={
-                  row.original.isComplete
-                    ? "bg-background-muted text-str text-zinc-500 line-through	"
-                    : ""
-                }
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+        {tableLoading ? (
+          <TableSkeleton />
+        ) : (
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={`${row.id} ${row.original.id}`}
+                  data-state={row.getIsSelected() && "selected"}
+                  className={
+                    row.original.isComplete
+                      ? "bg-background-muted text-str text-zinc-500 line-through	"
+                      : ""
+                  }
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow key="no-results-row">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
               </TableRow>
-            ))
-          ) : (
-            <TableRow key="no-results-row">
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+            )}
+
+            <TableRow>
+              <TableCell colSpan={columns.length} className=" p-2">
+                <NewTask />
               </TableCell>
             </TableRow>
-          )}
-
-          <TableRow>
-            <TableCell colSpan={columns.length} className=" p-2">
-              <NewTask />
-            </TableCell>
-          </TableRow>
-        </TableBody>
+          </TableBody>
+        )}
       </Table>
     </div>
   );
