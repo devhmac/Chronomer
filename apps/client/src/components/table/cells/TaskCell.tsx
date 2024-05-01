@@ -48,7 +48,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className="w-full text-left "
+      className=" text-left "
       onClick={(e) => {
         setIsEdit(true);
       }}
@@ -72,7 +72,7 @@ const TaskCell = ({ task }: { task: Task }) => {
         />
       ) : (
         <div className="rounded-md border-input p-2 hover:border">
-          <p className={cn("line-clamp-2 max-w-[350px]")}>{input}</p>
+          <p className={cn("line-clamp-2 max-w-[300px]")}>{input}</p>
         </div>
       )}
     </div>

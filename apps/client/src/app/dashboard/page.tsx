@@ -5,7 +5,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="max-h-screen px-8  ">
+    <main className="max-h-screen">
       <DashboardLayout />
     </main>
   );
