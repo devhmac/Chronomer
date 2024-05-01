@@ -19,6 +19,7 @@ const LandingLayout = () => {
       <Timer />
 
       <ToDoWrapper />
+
       <div>
         <div>
           <div className="max-w-8xl mx-auto px-6 lg:px-8">

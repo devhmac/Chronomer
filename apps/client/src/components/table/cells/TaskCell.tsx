@@ -8,6 +8,8 @@ import React, {
 } from "react";
 import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils/utils";
 
 type props = {
   task?: any;
@@ -21,7 +23,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   const isExistingTask = task.id !== "-1";
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const submitTaskChange = (input: string) => {
     // means input was not changed, do not submit an update request
@@ -46,16 +48,15 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className="w-full text-left"
+      className="w-full text-left "
       onClick={(e) => {
         setIsEdit(true);
       }}
     >
       {isEdit || input === "" ? (
-        <Input
+        <Textarea
           ref={inputRef}
-          className=""
-          type="text"
+          className="relative flex min-h-full w-full resize-none "
           value={input}
           onChange={(e) => {
             e.preventDefault();
@@ -70,7 +71,12 @@ const TaskCell = ({ task }: { task: Task }) => {
           onBlur={() => submitTaskChange(input)}
         />
       ) : (
-        <p className="flex-shrink  rounded-md border-input p-2 hover:border ">
+        <p
+          className={cn(
+            "line-clamp-2 max-w-[350px] rounded-md border-input hover:border",
+            !isEdit ? "rounded-md border-input p-2 hover:border" : "",
+          )}
+        >
           {input}
         </p>
       )}
