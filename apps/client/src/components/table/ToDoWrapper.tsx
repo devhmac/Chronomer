@@ -19,18 +19,13 @@ const ToDoWrapper = () => {
         <ListTodo className="mb-[3px] inline h-7 w-7" />
         Tasks
       </h2>
-      <TableSkeleton />
 
-      {false ? (
-        <TableSkeleton />
-      ) : (
-        <DataTable
-          columns={columns}
-          data={tasks}
-          setData={setTasks}
-          tableLoading={tableLoading}
-        />
-      )}
+      <DataTable
+        columns={columns}
+        data={tasks}
+        setData={setTasks}
+        tableLoading={tableLoading}
+      />
     </div>
   );
 };
