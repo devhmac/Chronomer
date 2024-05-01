@@ -18,15 +18,13 @@ const LandingLayout = () => {
       </MaxWidthWrapper>
       <Timer />
 
+      <ToDoWrapper />
       <div>
         <div>
           <div className="max-w-8xl mx-auto px-6 lg:px-8">
             <div className="mt-16 flow-root sm:mt-24">
               {/* move this into the table component */}
               {/* <div className="border-shadow-2 m-2 rounded-xl p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"> */}
-              <div>
-                <ToDoWrapper />
-              </div>
             </div>
           </div>
         </div>

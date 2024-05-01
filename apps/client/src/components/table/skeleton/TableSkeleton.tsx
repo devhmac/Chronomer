@@ -7,31 +7,31 @@ const TableSkeleton = () => (
   <tbody className="border-0 ">
     {Array.from({ length: 4 }).map((item, index) => (
       <tr key={index} className="border-b transition-colors">
-        <td className=" px-3 py-1 align-middle">
+        <td className=" px-2 py-1 align-middle">
           <div>
             <div>
               <SVGSkeleton className="h-[24px] w-[24px]" />
             </div>
           </div>
         </td>
-        <td className="px-3 py-1 align-middle">
+        <td className=" w-full px-3 py-1 align-middle">
           <div className="text-left">
-            <div className="border-input p-2 hover:border">
+            <div className="p-2 ">
               <Skeleton className="w-full max-w-full" />
             </div>
           </div>
         </td>
         <td className="px-3 py-1 align-middle">
           <div className="text-left">
-            <div className="border-input p-2 hover:border">
-              <Skeleton className="w-1/ max-w-full" />
+            <div className="p-2 ">
+              <Skeleton className="w-full max-w-full" />
             </div>
           </div>
         </td>
         <td className="px-3 py-1 align-middle">
           <div className="text-left">
-            <div className="border-input p-2 hover:border">
-              <Skeleton className="w-1/4 max-w-full" />
+            <div className=" p-2 ">
+              <Skeleton className="w-full " />
             </div>
           </div>
         </td>
