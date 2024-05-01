@@ -17,7 +17,7 @@ const DashboardLayout = () => {
           {/* <div className="min-w-[300px]"> */}
           {/* <TodoTable columns={columns} data={data} /> */}
           <div className="h-full pt-[61px]">
-            <ToDoWrapper className="scrollbar-thumb-green scrollbar-thumb-rounded scrollbar-track-green-lighter scrollbar-w-2 scrolling-touch overflow-auto border-l-0" />
+            <ToDoWrapper className=" border-l-0" />
           </div>
 
           <div className="mx-auto">
