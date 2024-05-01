@@ -71,14 +71,9 @@ const TaskCell = ({ task }: { task: Task }) => {
           onBlur={() => submitTaskChange(input)}
         />
       ) : (
-        <p
-          className={cn(
-            "line-clamp-2 max-w-[350px] rounded-md border-input hover:border",
-            !isEdit ? "rounded-md border-input p-2 hover:border" : "",
-          )}
-        >
-          {input}
-        </p>
+        <div className="rounded-md border-input p-2 hover:border">
+          <p className={cn("line-clamp-2 max-w-[350px]")}>{input}</p>
+        </div>
       )}
     </div>
   );
