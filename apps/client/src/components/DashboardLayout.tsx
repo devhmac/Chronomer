@@ -10,17 +10,16 @@ const DashboardLayout = () => {
     <>
       <div className="h-screen ">
         {/* flexbox version */}
-        <div className="relative flex h-full flex-row flex-wrap-reverse items-center gap-2 ">
+        <div className="relative flex  h-full flex-col-reverse flex-wrap-reverse items-center justify-center gap-2 xl:flex-row  ">
           {/* grid version */}
           {/* <div className="grid grid-cols-3 gap-2 pt-[61px] text-center"> */}
           {/* <div className=""> */}
           {/* <div className="min-w-[300px]"> */}
           {/* <TodoTable columns={columns} data={data} /> */}
-          <div className="h-full pt-[61px]">
+          <div className="pt-[61px] xl:h-full">
             <ToDoWrapper className=" border-l-0" />
           </div>
-
-          <div className="mx-auto">
+          <div className="mx-auto w-full sm:w-fit">
             <Timer />
           </div>
         </div>

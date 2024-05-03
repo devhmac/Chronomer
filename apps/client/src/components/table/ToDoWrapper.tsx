@@ -18,11 +18,8 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      <h2
-        className="mb-2 text-2xl font-medium
-     tracking-tight"
-      >
-        <ListTodo className="mb-[3px] inline h-7 w-7" />
+      <h2 className="mb-2 text-2xl">
+        <ListTodo className="mb-[3px] mr-1 inline h-7 w-7" />
         Tasks
       </h2>
 
