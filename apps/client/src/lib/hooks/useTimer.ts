@@ -20,6 +20,9 @@ export const useTimer = () => {
   const [secondsRemaining, setSecondsRemaining] = useState(
     timerState.timerLength,
   );
+
+  // const [alarmEnabled, setAlarmEnabled] = useState(true);
+
   const [timerRunning, setTimerRunning] = useState(false);
   const [startTS, setStartTS] = useState<undefined | string>(undefined);
   const [endTS, setEndTS] = useState<undefined | string>(undefined);
@@ -53,6 +56,7 @@ export const useTimer = () => {
       ...prev,
       mode: prev.mode === "timer" ? "rest" : "timer",
     }));
+
     audioRef.current?.play();
   };
 

@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
+import StatusSelect from "./StatusSelect";
 
 const Options = ({ task }: { task: Task }) => {
   const { deleteTask } = useContext(taskContext);
@@ -54,7 +55,11 @@ const Options = ({ task }: { task: Task }) => {
             <Trash2 className="mr-2 h-4 w-4 text-rose-500" />
             Delete Task
           </DropdownMenuItem>
+          <DropdownMenuItem>
+            <StatusSelect task={task} />
+          </DropdownMenuItem>
         </DropdownMenuGroup>
+
         {/* <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <UserPlus className="mr-2 h-4 w-4" />

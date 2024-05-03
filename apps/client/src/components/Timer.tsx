@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import TimerSettings from "./TimerSettings";
 import { cn } from "@/lib/utils/utils";
+import MuteUnmute from "./MuteUnmute";
 
 // new Date(SECONDS * 1000).toISOString().substring(14, 19) //just min & sec
 
@@ -62,7 +63,9 @@ export const Timer = () => {
     audioRef,
   } = useTimer();
 
-  const seconds = 10;
+  const [isMuted, setIsMuted] = useState(false);
+
+  // const seconds = 10;
 
   const buttons = [
     { text: "5 sec", val: 5 },
@@ -87,20 +90,23 @@ export const Timer = () => {
             </p>
           </div>
           <div className="absolute bottom-2 left-0 right-0  mx-2 flex flex-row items-center justify-between align-middle">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="mb-0"
-              onClick={() => {
-                setTimerConfig((prev) => {
-                  return prev.mode === "timer"
-                    ? { ...timerConfig, mode: "rest" }
-                    : { ...timerConfig, mode: "timer" };
-                });
-              }}
-            >
-              {timerConfig.mode === "rest" ? "Rest" : "Focus"}
-            </Button>
+            <div className="align-middle">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="mb-0"
+                onClick={() => {
+                  setTimerConfig((prev) => {
+                    return prev.mode === "timer"
+                      ? { ...timerConfig, mode: "rest" }
+                      : { ...timerConfig, mode: "timer" };
+                  });
+                }}
+              >
+                {timerConfig.mode === "rest" ? "Rest" : "Focus"}
+              </Button>
+              <MuteUnmute isMuted={isMuted} setIsMuted={setIsMuted} />
+            </div>
             <span className="">
               <span className="mx-1 ">
                 <Clock className="inline h-5 w-5 " />:{" "}
@@ -175,7 +181,7 @@ export const Timer = () => {
           </div> */}
         </div>
       </div>
-      <audio ref={audioRef} src={"/audio.mp3"} />
+      <audio ref={audioRef} src={"/audio.mp3"} muted={isMuted} />
     </>
   );
 };
