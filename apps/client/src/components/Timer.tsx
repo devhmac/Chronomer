@@ -90,7 +90,9 @@ export const Timer = () => {
             </p>
           </div>
           <div className="absolute bottom-2 left-0 right-0  mx-2 flex flex-row items-center justify-between align-middle">
-            <div className="align-middle">
+            <div className="space between flex">
+              <MuteUnmute isMuted={isMuted} setIsMuted={setIsMuted} />
+
               <Button
                 variant="ghost"
                 size="sm"
@@ -105,7 +107,6 @@ export const Timer = () => {
               >
                 {timerConfig.mode === "rest" ? "Rest" : "Focus"}
               </Button>
-              <MuteUnmute isMuted={isMuted} setIsMuted={setIsMuted} />
             </div>
             <span className="">
               <span className="mx-1 ">

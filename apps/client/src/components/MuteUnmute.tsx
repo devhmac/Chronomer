@@ -15,9 +15,9 @@ const MuteUnmute = ({
 
   return (
     <Button
-      className="mb-0"
+      className="mb-0 align-bottom"
       variant="ghost"
-      size="icon"
+      size="sm"
       onClick={() => setIsMuted((prev) => !prev)}
     >
       {isMuted ? (
