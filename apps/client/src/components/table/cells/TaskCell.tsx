@@ -1,11 +1,5 @@
 import { Input } from "@/components/ui/input";
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useLayoutEffect, useRef, useState } from "react";
 import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
 import { Textarea } from "@/components/ui/textarea";
@@ -48,7 +42,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className=" text-left "
+      className=" min-w-full text-left xl:w-[300px]"
       onClick={(e) => {
         setIsEdit(true);
       }}
@@ -56,7 +50,7 @@ const TaskCell = ({ task }: { task: Task }) => {
       {isEdit || input === "" ? (
         <Textarea
           ref={inputRef}
-          className="relative flex min-h-full w-full resize-none "
+          className=" flex min-w-full resize-none"
           value={input}
           onChange={(e) => {
             e.preventDefault();
@@ -71,8 +65,8 @@ const TaskCell = ({ task }: { task: Task }) => {
           onBlur={() => submitTaskChange(input)}
         />
       ) : (
-        <div className="rounded-md border-input p-2 hover:border">
-          <p className={cn("line-clamp-2 max-w-[300px]")}>{input}</p>
+        <div className=" rounded-md border-input p-2 hover:border">
+          <p className={cn("line-clamp-2 w-full ")}>{input}</p>
         </div>
       )}
     </div>
