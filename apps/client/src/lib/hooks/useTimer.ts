@@ -21,6 +21,7 @@ export const useTimer = () => {
     timerState.timerLength,
   );
 
+  // timer actions object
   const timer = {
     toggleFocusRest: () => {
       setTimerConfig((prev) => {
@@ -28,6 +29,11 @@ export const useTimer = () => {
           ? { ...timerConfig, mode: "rest" }
           : { ...timerConfig, mode: "timer" };
       });
+      return;
+    },
+    resetTimer: () => {
+      setTimerRunning(false);
+      setSecondsRemaining(timerConfig[timerConfig.mode]);
     },
   };
 

@@ -112,10 +112,7 @@ export const Timer = () => {
             <Button
               variant="ghost"
               className=""
-              onClick={() => {
-                setTimerRunning(false);
-                setSecondsRemaining(timerConfig[timerConfig.mode]);
-              }}
+              onClick={timer.resetTimer}
               size="icon"
             >
               <RotateCcw className="h-6 w-6" />
