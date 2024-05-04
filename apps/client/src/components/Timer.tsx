@@ -54,7 +54,7 @@ export const Timer = () => {
     endTS,
     setEndTS,
     audioRef,
-    timer,
+    timerActions,
   } = useTimer();
 
   const [isMuted, setIsMuted] = useState(false);
@@ -83,7 +83,7 @@ export const Timer = () => {
                 variant="ghost"
                 size="sm"
                 className="mb-0"
-                onClick={timer.toggleFocusRest}
+                onClick={timerActions.toggleFocusRest}
               >
                 {timerConfig.mode === "rest" ? "Rest" : "Focus"}
               </Button>
@@ -112,7 +112,7 @@ export const Timer = () => {
             <Button
               variant="ghost"
               className=""
-              onClick={timer.resetTimer}
+              onClick={timerActions.resetTimer}
               size="icon"
             >
               <RotateCcw className="h-6 w-6" />
@@ -140,6 +140,7 @@ export const Timer = () => {
               timerConfig={timerConfig}
               setTimerConfig={setTimerConfig}
               setTimerRunning={setTimerRunning}
+              setFocusRest={timerActions.setFocusRest}
             />
           </div>
         </div>

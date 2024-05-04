@@ -22,7 +22,7 @@ export const useTimer = () => {
   );
 
   // timer actions object
-  const timer = {
+  const timerActions = {
     toggleFocusRest: () => {
       setTimerConfig((prev) => {
         return prev.mode === "timer"
@@ -31,6 +31,12 @@ export const useTimer = () => {
       });
       return;
     },
+    setFocusRest: (state: "timer" | "rest") => {
+      setTimerConfig((prev) => {
+        return { ...prev, mode: state };
+      });
+    },
+
     resetTimer: () => {
       setTimerRunning(false);
       setSecondsRemaining(timerConfig[timerConfig.mode]);
@@ -116,6 +122,6 @@ export const useTimer = () => {
     endTS,
     setEndTS,
     audioRef,
-    timer,
+    timerActions,
   };
 };
