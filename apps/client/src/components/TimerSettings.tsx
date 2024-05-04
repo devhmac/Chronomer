@@ -28,12 +28,14 @@ type props = {
     }>
   >;
   setTimerRunning: Dispatch<SetStateAction<boolean>>;
+  setFocusRest: (mode: "timer" | "rest") => void;
 };
 
 const TimerSettings = ({
   timerConfig,
   setTimerConfig,
   setTimerRunning,
+  setFocusRest,
 }: props) => {
   const openAccordion = "item-1";
 
@@ -76,6 +78,7 @@ const TimerSettings = ({
             className={timerConfig.isPomodoro ? "bg-accent" : ""}
             variant="outline"
             onClick={() => {
+              // sets config to pomodoro mode
               // setOpen("");
               setTimerConfig((prev) => ({
                 ...prev,
@@ -115,6 +118,7 @@ const TimerSettings = ({
             {/* <AccordionTrigger className=" "></AccordionTrigger> */}
             <AccordionContent className="ml-3 flex flex-wrap gap-1 ">
               <div className="border-b">
+                {/* setting focus timer settings */}
                 <p className="font-medium ">Timer Length:</p>
                 {customTimes.map((button) => {
                   return (
@@ -122,6 +126,7 @@ const TimerSettings = ({
                       key={button.text}
                       onClick={() => {
                         setTimerVars(button, "timer");
+                        setFocusRest("timer");
                       }}
                       className={`w-13 m-1 gap-1  ${
                         button.val === timerConfig.timer
@@ -137,6 +142,7 @@ const TimerSettings = ({
                 })}
               </div>
               <div>
+                {/* setting rest mode settings */}
                 <p>Rest Length:</p>
                 {customRests.map((button) => {
                   return (

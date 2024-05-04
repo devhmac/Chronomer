@@ -31,9 +31,9 @@ export const useTimer = () => {
       });
       return;
     },
-    setFocusRest: (state: "timer" | "rest") => {
+    setFocusRest: (mode: "timer" | "rest") => {
       setTimerConfig((prev) => {
-        return { ...prev, mode: state };
+        return { ...prev, mode: mode };
       });
     },
 
