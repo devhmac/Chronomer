@@ -7,6 +7,7 @@ import { ListTodo } from "lucide-react";
 import TableSkeleton from "./skeleton/TableSkeleton";
 import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 import { cn } from "@/lib/utils/utils";
+import TestTable from "../newTable/TestTable";
 
 const ToDoWrapper = ({ className }: { className?: string }) => {
   const { tasks, setTasks, tableLoading } = useContext(taskContext);
@@ -23,12 +24,13 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
         Tasks
       </h2>
 
-      <DataTable
+      <TestTable data={tasks} />
+      {/* <DataTable
         columns={columns}
         data={tasks}
         setData={setTasks}
         tableLoading={tableLoading}
-      />
+      /> */}
     </div>
   );
 };
