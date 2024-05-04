@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
-import { useTimer } from "@/lib/hooks/useTimer";
 import { Button } from "./ui/button";
 
 const MuteUnmute = ({
