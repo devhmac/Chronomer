@@ -14,8 +14,8 @@ export const useTimer = () => {
 
   const { timerState, setTimerState, isRunning, setIsRunning } =
     useContext(timerContext);
-  const pomOrder = [];
-  const timeMap = { shortBreak: 300, longBreak: 1200 };
+  // const pomOrder = [];
+  // const timeMap = { shortBreak: 300, longBreak: 1200 };
 
   const [secondsRemaining, setSecondsRemaining] = useState(
     timerState.timerLength,

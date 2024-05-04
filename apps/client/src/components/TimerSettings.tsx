@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Switch } from "@/components/ui/switch";
 
