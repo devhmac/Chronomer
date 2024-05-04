@@ -13,14 +13,7 @@ dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
 import { timerContext } from "@/providers/TimerContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import {
-  Hourglass,
-  MoonStar,
-  RotateCcw,
-  Settings,
-  TimerReset,
-  Clock,
-} from "lucide-react";
+import { MoonStar, RotateCcw, Settings, TimerReset, Clock } from "lucide-react";
 import TimerSettings from "./TimerSettings";
 import { cn } from "@/lib/utils/utils";
 import MuteUnmute from "./MuteUnmute";
@@ -61,17 +54,10 @@ export const Timer = () => {
     endTS,
     setEndTS,
     audioRef,
+    timer,
   } = useTimer();
 
   const [isMuted, setIsMuted] = useState(false);
-
-  // const seconds = 10;
-
-  const buttons = [
-    { text: "5 sec", val: 5 },
-    { text: "15 Min", val: 900 },
-    { text: "25 Min", val: 1500 },
-  ];
 
   return (
     <>
@@ -97,13 +83,7 @@ export const Timer = () => {
                 variant="ghost"
                 size="sm"
                 className="mb-0"
-                onClick={() => {
-                  setTimerConfig((prev) => {
-                    return prev.mode === "timer"
-                      ? { ...timerConfig, mode: "rest" }
-                      : { ...timerConfig, mode: "timer" };
-                  });
-                }}
+                onClick={timer.toggleFocusRest}
               >
                 {timerConfig.mode === "rest" ? "Rest" : "Focus"}
               </Button>
@@ -125,6 +105,9 @@ export const Timer = () => {
           </div>
         </div>
         <div className="mt-4 flex flex-col justify-between gap-2 ">
+          {/* break this into separate components */}
+
+          {/* timer reset */}
           <div className="bottom-1 flex  flex-row items-center justify-center gap-2  ">
             <Button
               variant="ghost"
@@ -137,6 +120,8 @@ export const Timer = () => {
             >
               <RotateCcw className="h-6 w-6" />
             </Button>
+
+            {/* timer start */}
             <Button
               className="w-20"
               variant={timerRunning ? "outline" : "default"}
@@ -160,26 +145,6 @@ export const Timer = () => {
               setTimerRunning={setTimerRunning}
             />
           </div>
-          {/* removed timer settings thing, dont love it put it in a tooltip */}
-          {/* <div className=" flex w-1/4 flex-col items-end justify-end gap-2">
-            <div>
-              <p className="">
-                {timerConfig.isPomodoro ? "Pomodoro" : "Custom"}
-              </p>
-              <p>
-                Timer:{" "}
-                {new Date(timerConfig.timer * 1000)
-                  .toISOString()
-                  .substring(timerConfig.timer < 3600 ? 14 : 12, 19)}
-              </p>
-              <p>
-                Rest:{" "}
-                {new Date(timerConfig.rest * 1000)
-                  .toISOString()
-                  .substring(timerConfig.rest < 3600 ? 14 : 12, 19)}
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
       <audio ref={audioRef} src={"/audio.mp3"} muted={isMuted} />

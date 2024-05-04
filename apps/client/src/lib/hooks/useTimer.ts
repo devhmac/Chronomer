@@ -21,6 +21,16 @@ export const useTimer = () => {
     timerState.timerLength,
   );
 
+  const timer = {
+    toggleFocusRest: () => {
+      setTimerConfig((prev) => {
+        return prev.mode === "timer"
+          ? { ...timerConfig, mode: "rest" }
+          : { ...timerConfig, mode: "timer" };
+      });
+    },
+  };
+
   // const [alarmEnabled, setAlarmEnabled] = useState(true);
 
   const [timerRunning, setTimerRunning] = useState(false);
@@ -100,5 +110,6 @@ export const useTimer = () => {
     endTS,
     setEndTS,
     audioRef,
+    timer,
   };
 };
