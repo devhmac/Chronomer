@@ -52,12 +52,13 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "status",
     header: "Status",
+
     // maxSize: 50,
     cell: ({ row }) => {
       // const status = row ? row.original : undefined;
 
       return (
-        <div className="max-w-[120px]">
+        <div className=" max-w-[120px]">
           <StatusSelect task={row.original} />
         </div>
       );

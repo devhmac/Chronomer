@@ -42,7 +42,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className=" min-w-full text-left xl:w-[300px]"
+      className=" w-full  flex-grow text-left"
       onClick={(e) => {
         setIsEdit(true);
       }}

@@ -43,14 +43,15 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border bg-popover backdrop-blur-sm">
-      <Table>
+    <div className="@container rounded-md border bg-popover backdrop-blur-sm">
+      <Table className="">
         <TableHeader className="bg-secondary">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead
+                    className="@[20px]:bg-red-200"
                     key={header.id}
                     // className={`w-[${header.getSize()}px]`}
                   >

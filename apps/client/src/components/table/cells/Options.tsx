@@ -55,7 +55,7 @@ const Options = ({ task }: { task: Task }) => {
             <Trash2 className="mr-2 h-4 w-4 text-rose-500" />
             Delete Task
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="@[20px]:hidden">
             <StatusSelect task={task} />
           </DropdownMenuItem>
         </DropdownMenuGroup>
