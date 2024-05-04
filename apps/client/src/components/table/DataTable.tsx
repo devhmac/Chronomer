@@ -51,7 +51,7 @@ export function DataTable<TData, TValue>({
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead
-                    className="@[20px]:bg-red-200"
+                    className="@[500px]:bg-red-200"
                     key={header.id}
                     // className={`w-[${header.getSize()}px]`}
                   >
