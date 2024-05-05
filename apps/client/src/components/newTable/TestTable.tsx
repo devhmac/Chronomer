@@ -35,15 +35,15 @@ import Options from "../table/cells/Options";
 
 export default function TestTable({ data }: { data: Task[] }) {
   return (
-    <Table>
+    <Table className="@container rounded-md border bg-popover backdrop-blur-sm">
       <TableHeader>
         <TableRow>
           <TableHead className="hidden w-[100px] sm:table-cell">
             <span className="sr-only">Image</span>
           </TableHead>
           <TableHead>Name</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead className="hidden md:table-cell">Price</TableHead>
+          <TableHead>testv </TableHead>
+          <TableHead className="hidden md:table-cell">Status</TableHead>
           <TableHead className="hidden md:table-cell">Total Sales</TableHead>
           <TableHead>
             <span className="sr-only">Actions</span>
