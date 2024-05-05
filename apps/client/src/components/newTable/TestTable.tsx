@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { MoreHorizontal } from "lucide-react";
 
@@ -32,32 +34,30 @@ import CompleteTask from "../table/cells/CompleteTask";
 import TaskCell from "../table/cells/TaskCell";
 import StatusSelect from "../table/cells/StatusSelect";
 import Options from "../table/cells/Options";
+import NewTask from "../table/NewTask";
 
 export default function TestTable({ data }: { data: Task[] }) {
   return (
-    <Table className="@container rounded-md border bg-popover backdrop-blur-sm">
+    <Table className="@container ounded-md border bg-popover backdrop-blur-sm">
       <TableHeader>
         <TableRow>
-          <TableHead className="hidden w-[100px] sm:table-cell">
-            <span className="sr-only">Image</span>
+          <TableHead className="hidden w-[50px] sm:table-cell">
+            <span className="sr-only">Complete Task</span>
           </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>testv </TableHead>
+          <TableHead>Task</TableHead>
+          {/* <TableHead>tag</TableHead> */}
           <TableHead className="hidden md:table-cell">Status</TableHead>
-          <TableHead className="hidden md:table-cell">Total Sales</TableHead>
+          <TableHead className="hidden md:table-cell">Time</TableHead>
           <TableHead>
             <span className="sr-only">Actions</span>
           </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((task) => {
+        {data.map((task, index) => {
           return (
-            // <TableRow>
-
-            //   <div>{task.task}</div>
-            // </TableRow>
             <TableRow
+              key={`${task.id}${index}`}
               className={
                 task.isComplete
                   ? "bg-background-muted text-str text-zinc-500 line-through	"
@@ -76,9 +76,9 @@ export default function TestTable({ data }: { data: Task[] }) {
               <TableCell className="">
                 <TaskCell task={task} />
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 <Badge variant="outline">Draft</Badge>
-              </TableCell>
+              </TableCell> */}
               <TableCell className="hidden md:table-cell">
                 <StatusSelect task={task} />
               </TableCell>
@@ -92,6 +92,11 @@ export default function TestTable({ data }: { data: Task[] }) {
             </TableRow>
           );
         })}
+        <TableRow>
+          <TableCell colSpan={5}>
+            <NewTask />
+          </TableCell>
+        </TableRow>
       </TableBody>
     </Table>
   );
