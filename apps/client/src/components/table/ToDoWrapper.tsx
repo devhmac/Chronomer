@@ -21,8 +21,9 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
         <ListTodo className="mb-[3px] mr-1 inline h-7 w-7" />
         Tasks
       </h2>
-
-      <TaskTable data={tasks} tableLoading={tableLoading} />
+      <div className="w-full">
+        <TaskTable data={tasks} tableLoading={tableLoading} />
+      </div>
     </div>
   );
 };

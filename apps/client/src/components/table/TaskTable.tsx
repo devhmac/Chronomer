@@ -45,7 +45,8 @@ export default function TaskTable({
   tableLoading: boolean;
 }) {
   return (
-    <Table className="ounded-md border bg-popover backdrop-blur-sm @container">
+    // <div className="@container">
+    <Table className="rounded-md border bg-popover backdrop-blur-sm">
       <TableHeader>
         <TableRow>
           <TableHead className="hidden w-[50px] sm:table-cell">
@@ -83,7 +84,7 @@ export default function TaskTable({
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="">
+                <TableCell className="w-[315px]  @[560px]:bg-red-400">
                   <TaskCell task={task} />
                 </TableCell>
                 {/* <TableCell>
@@ -110,5 +111,6 @@ export default function TaskTable({
         </TableRow>
       </TableBody>
     </Table>
+    // </div>
   );
 }
