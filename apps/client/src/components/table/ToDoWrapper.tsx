@@ -24,7 +24,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
         Tasks
       </h2>
 
-      <TestTable data={tasks} />
+      <TestTable data={tasks} tableLoading={tableLoading} />
       {/* <DataTable
         columns={columns}
         data={tasks}

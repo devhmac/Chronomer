@@ -35,10 +35,17 @@ import TaskCell from "../table/cells/TaskCell";
 import StatusSelect from "../table/cells/StatusSelect";
 import Options from "../table/cells/Options";
 import NewTask from "../table/NewTask";
+import TableSkeleton from "../table/skeleton/TableSkeleton";
 
-export default function TestTable({ data }: { data: Task[] }) {
+export default function TestTable({
+  data,
+  tableLoading,
+}: {
+  data: Task[];
+  tableLoading: boolean;
+}) {
   return (
-    <Table className="@container ounded-md border bg-popover backdrop-blur-sm">
+    <Table className="ounded-md border bg-popover backdrop-blur-sm @container">
       <TableHeader>
         <TableRow>
           <TableHead className="hidden w-[50px] sm:table-cell">
@@ -54,46 +61,50 @@ export default function TestTable({ data }: { data: Task[] }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((task, index) => {
-          return (
-            <TableRow
-              key={`${task.id}${index}`}
-              className={
-                task.isComplete
-                  ? "bg-background-muted text-str text-zinc-500 line-through	"
-                  : ""
-              }
-            >
-              <TableCell className="hidden sm:table-cell">
-                <div className="">
-                  {task.id === "-1" ? (
-                    <CancelTask task={task} />
-                  ) : (
-                    <CompleteTask task={task} />
-                  )}
-                </div>
-              </TableCell>
-              <TableCell className="">
-                <TaskCell task={task} />
-              </TableCell>
-              {/* <TableCell>
+        {tableLoading ? (
+          <TableSkeleton />
+        ) : (
+          data.map((task, index) => {
+            return (
+              <TableRow
+                key={`${task.id}${index}`}
+                className={
+                  task.isComplete
+                    ? "bg-background-muted text-str text-zinc-500 line-through	"
+                    : ""
+                }
+              >
+                <TableCell className="hidden sm:table-cell">
+                  <div className="">
+                    {task.id === "-1" ? (
+                      <CancelTask task={task} />
+                    ) : (
+                      <CompleteTask task={task} />
+                    )}
+                  </div>
+                </TableCell>
+                <TableCell className="">
+                  <TaskCell task={task} />
+                </TableCell>
+                {/* <TableCell>
                 <Badge variant="outline">Draft</Badge>
               </TableCell> */}
-              <TableCell className="hidden md:table-cell">
-                <StatusSelect task={task} />
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {task.timersComplete}/{task.timeToComplete}
-              </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  <StatusSelect task={task} />
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {task.timersComplete}/{task.timeToComplete}
+                </TableCell>
 
-              <TableCell>
-                <Options task={task} />
-              </TableCell>
-            </TableRow>
-          );
-        })}
+                <TableCell>
+                  <Options task={task} />
+                </TableCell>
+              </TableRow>
+            );
+          })
+        )}
         <TableRow>
-          <TableCell colSpan={5}>
+          <TableCell className="px-1 " colSpan={5}>
             <NewTask />
           </TableCell>
         </TableRow>
