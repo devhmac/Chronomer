@@ -6,7 +6,7 @@ const TableSkeleton = () => (
   //   <div className="relative w-full overflow-auto">
   // <tbody className="border-0 ">
   <>
-    {Array.from({ length: 4 }).map((item, index) => (
+    {Array.from({ length: 3 }).map((item, index) => (
       <tr key={index} className="border-b transition-colors">
         <td className=" px-2 py-1 align-middle">
           <div>

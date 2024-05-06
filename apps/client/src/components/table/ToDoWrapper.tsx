@@ -1,13 +1,11 @@
 "use client";
 import React, { useContext } from "react";
-import { DataTable } from "./DataTable";
-import { columns } from "@/components/table/columns";
+
 import { taskContext } from "@/providers/TaskContext";
 import { ListTodo } from "lucide-react";
-import TableSkeleton from "./skeleton/TableSkeleton";
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+
 import { cn } from "@/lib/utils/utils";
-import TestTable from "../newTable/TestTable";
+import TaskTable from "./TaskTable";
 
 const ToDoWrapper = ({ className }: { className?: string }) => {
   const { tasks, setTasks, tableLoading } = useContext(taskContext);
@@ -24,13 +22,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
         Tasks
       </h2>
 
-      <TestTable data={tasks} tableLoading={tableLoading} />
-      {/* <DataTable
-        columns={columns}
-        data={tasks}
-        setData={setTasks}
-        tableLoading={tableLoading}
-      /> */}
+      <TaskTable data={tasks} tableLoading={tableLoading} />
     </div>
   );
 };

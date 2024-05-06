@@ -29,15 +29,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Task } from "@/lib/types/types";
-import CancelTask from "../table/cells/CancelTask";
-import CompleteTask from "../table/cells/CompleteTask";
-import TaskCell from "../table/cells/TaskCell";
-import StatusSelect from "../table/cells/StatusSelect";
-import Options from "../table/cells/Options";
-import NewTask from "../table/NewTask";
-import TableSkeleton from "../table/skeleton/TableSkeleton";
+import CancelTask from "./cells/CancelTask";
+import CompleteTask from "./cells/CompleteTask";
+import TaskCell from "./cells/TaskCell";
+import StatusSelect from "./cells/StatusSelect";
+import Options from "./cells/Options";
+import NewTask from "./NewTask";
+import TableSkeleton from "./skeleton/TableSkeleton";
 
-export default function TestTable({
+export default function TaskTable({
   data,
   tableLoading,
 }: {

@@ -17,7 +17,7 @@ const DashboardLayout = () => {
           {/* <div className="min-w-[300px]"> */}
           {/* <TodoTable columns={columns} data={data} /> */}
           <div className="w-full pt-[61px] sm:w-auto xl:h-full">
-            <ToDoWrapper className=" border-l-0" />
+            <ToDoWrapper className=" xl:border-l-0" />
           </div>
           <div className="mx-auto w-full sm:w-fit">
             <Timer />
