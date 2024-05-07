@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <>
+    <div>
       {/* <section className="mb-6 flex flex-col justify-center text-center"> */}
       <h1 className=" mb-9 mt-4  max-w-[850px] text-4xl font-semibold tracking-[-1.2px] sm:text-7xl sm:leading-[72px]">
         <span className=" bg-gradient-to-tr from-sky-400 to-purple-500 bg-clip-text text-transparent dark:from-sky-300 dark:to-purple-300">
@@ -16,7 +16,7 @@ const Header = () => {
         or colaboratively.
       </p>
       {/* </section> */}
-    </>
+    </div>
   );
 };
 

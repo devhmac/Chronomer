@@ -4,8 +4,9 @@ import { Skeleton, SVGSkeleton } from "./Skeleton";
 const TableSkeleton = () => (
   // <div className="border backdrop-blur-sm">
   //   <div className="relative w-full overflow-auto">
-  <tbody className="border-0 ">
-    {Array.from({ length: 4 }).map((item, index) => (
+  // <tbody className="border-0 ">
+  <>
+    {Array.from({ length: 3 }).map((item, index) => (
       <tr key={index} className="border-b transition-colors">
         <td className=" px-2 py-1 align-middle">
           <div>
@@ -37,7 +38,8 @@ const TableSkeleton = () => (
         </td>
       </tr>
     ))}
-  </tbody>
+  </>
+  // </tbody>
   //   </div>
   // </div>
 );
