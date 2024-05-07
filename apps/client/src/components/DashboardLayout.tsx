@@ -22,6 +22,9 @@ const DashboardLayout = () => {
           <div className="mx-auto w-full sm:w-fit">
             <Timer />
           </div>
+          <div className="- h-full w-[600px] border border-red-200">
+            <p>this is chat</p>
+          </div>
         </div>
       </div>
     </>

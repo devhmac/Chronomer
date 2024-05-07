@@ -84,7 +84,7 @@ export default function TaskTable({
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="min-w-[315px]  @[560px]:bg-red-400">
+                <TableCell className="@[560px]:bg-red-400 min-w-[315px]  md:max-w-[315px]">
                   <TaskCell task={task} />
                 </TableCell>
                 {/* <TableCell>
