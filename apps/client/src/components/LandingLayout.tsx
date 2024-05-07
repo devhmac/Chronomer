@@ -14,11 +14,14 @@ const LandingLayout = () => {
         <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 bg-popover/25 px-6 py-2 shadow-md backdrop-blur-sm transition-all hover:bg-accent/50">
           <p className="text-sm font-semibold text-primary">v0.5 Now Live!</p>
         </div>
+
         <Header />
       </MaxWidthWrapper>
       <Timer />
 
-      <ToDoWrapper />
+      <div className="w-full sm:w-auto">
+        <ToDoWrapper />
+      </div>
 
       <div>
         <div>
@@ -37,9 +40,9 @@ const LandingLayout = () => {
       </div>
 
       <div className=""></div>
-      <Button className="hover:accent/50 bg-gradient" variant="outline">
+      {/* <Button className="hover:accent/50 bg-gradient" variant="outline">
         Start Live Space
-      </Button>
+      </Button> */}
     </div>
   );
 };

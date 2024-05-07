@@ -25,7 +25,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className="h-full items-center xl:flex">
+    <div className="sm:w-none h-full items-center xl:flex">
       {
         <motion.div
           className={cn(

@@ -16,15 +16,15 @@ const DashboardLayout = () => {
           {/* <div className=""> */}
           {/* <div className="min-w-[300px]"> */}
           {/* <TodoTable columns={columns} data={data} /> */}
-          <div className="w-full pt-[61px] sm:w-auto xl:h-full">
+          <div className="w-full sm:w-auto xl:h-full xl:pt-[61px]">
             <ToDoWrapper className=" xl:border-l-0" />
           </div>
-          <div className="mx-auto w-full sm:w-fit">
+          <div className="mx-auto w-full pt-[61px] sm:w-fit xl:pt-0">
             <Timer />
           </div>
-          <div className="- h-full w-[600px] border border-red-200">
+          {/* <div className="- h-full w-[600px] border border-red-200">
             <p>this is chat</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
