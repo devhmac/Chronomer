@@ -85,7 +85,17 @@ export const Timer = () => {
                 className="mb-0"
                 onClick={timerActions.toggleFocusRest}
               >
-                {timerConfig.mode === "rest" ? "Rest" : "Focus"}
+                {timerConfig.mode === "rest" ? (
+                  <>
+                    <MoonStar className="h-5 w-5 pr-1" />
+                    Rest
+                  </>
+                ) : (
+                  <>
+                    <Clock className="h-5 w-5 pr-1 " />
+                    Focus
+                  </>
+                )}
               </Button>
             </div>
             <span className="">
