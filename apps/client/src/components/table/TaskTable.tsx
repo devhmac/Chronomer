@@ -40,9 +40,11 @@ import TableSkeleton from "./skeleton/TableSkeleton";
 export default function TaskTable({
   data,
   tableLoading,
+  setTaskActive,
 }: {
   data: Task[];
   tableLoading: boolean;
+  setTaskActive: (taskId: Task["id"]) => void;
 }) {
   return (
     // <div className="@container">
@@ -74,6 +76,7 @@ export default function TaskTable({
                     ? "bg-background-muted text-str text-zinc-500 line-through	"
                     : ""
                 }
+                onClick={() => setTaskActive(task.id)}
               >
                 <TableCell className="hidden sm:table-cell">
                   <div className="">
@@ -84,7 +87,7 @@ export default function TaskTable({
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="@[560px]:bg-red-400 min-w-[315px]  md:max-w-[315px]">
+                <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
                   <TaskCell task={task} />
                 </TableCell>
                 {/* <TableCell>

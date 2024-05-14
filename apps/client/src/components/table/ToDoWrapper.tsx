@@ -10,7 +10,8 @@ import TaskTable from "./TaskTable";
 import { Button } from "../ui/button";
 
 const ToDoWrapper = ({ className }: { className?: string }) => {
-  const { tasks, setTasks, tableLoading } = useContext(taskContext);
+  const { tasks, setTasks, tableLoading, setTaskActive } =
+    useContext(taskContext);
   const [isOpen, setIsOpen] = useState(true);
   const variants = {
     open: { opacity: 1, x: 0, display: "block" },
@@ -44,7 +45,11 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
             Tasks
           </h2>
           <div className=" md:w-[650px] ">
-            <TaskTable data={tasks} tableLoading={tableLoading} />
+            <TaskTable
+              data={tasks}
+              tableLoading={tableLoading}
+              setTaskActive={setTaskActive}
+            />
           </div>
         </motion.div>
       }
