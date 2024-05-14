@@ -87,13 +87,12 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       if (!taskId) return;
       setActiveTaskLocal(taskId);
       const filteredActiveTask = getLocalItem().filter((task: Task) => {
-        task.id === taskId;
-      });
+        return task.id === taskId;
+      })[0];
       setActiveTask(filteredActiveTask);
-      console.log(filteredActiveTask);
     }
   };
-  console.log(activeTask);
+
   const addTask = (task: Task) => {
     if (task.id === "-1") {
       if (task.task === "") {
