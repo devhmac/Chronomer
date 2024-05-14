@@ -20,6 +20,8 @@ type TaskContext = {
   updateTask: (task: Task) => void;
   setTasks: Dispatch<SetStateAction<Task[]>>;
   deleteTask: (task: Task) => void;
+  setTaskActive: (taskId: Task["id"]) => void;
+  activeTask: Task | null;
   tableLoading: boolean;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
@@ -29,6 +31,8 @@ const defaultTasksState = {
   setTasks: () => {},
   updateTask: () => {},
   deleteTask: () => {},
+  setTaskActive: () => {},
+  activeTask: null,
   tableLoading: true,
 };
 const user = false;
@@ -40,9 +44,13 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   // use these for a row level loading spinner on any updates, and a table level skeleton load
   const [tableLoading, setTableLoading] = useState(true);
   const [rowLoading, setRowLoading] = useState(false);
+  const [activeTask, setActiveTask] = useState<Task | null>(null);
 
   const { setLocalItem, getLocalItem, supportsLocalStorage } =
-    useLocalStorage("chronomer.tasks");
+    useLocalStorage("tasks");
+
+  const { setLocalItem: setActiveTaskLocal, getLocalItem: getActiveTaskLocal } =
+    useLocalStorage("active-task");
 
   const addTasksLocal = (tasks: Task[]) => {
     return setLocalItem(tasks);
@@ -60,10 +68,32 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       console.log(localTasks);
       setTasks(localTasks);
       setTableLoading(false);
-      console.log("table loading", tableLoading);
+
+      const activeTaskID = getActiveTaskLocal();
+      if (activeTaskID) {
+        // console.log("active Task id", activeTaskID);
+        const filteredActiveTask = localTasks.filter((task: Task) => {
+          console.log(task);
+          return task.id === activeTaskID;
+        })[0];
+        // console.log("activeTask:", filteredActiveTask);
+        setActiveTask(filteredActiveTask);
+      }
     }
   }, []);
 
+  const setTaskActive = (taskId: Task["id"]) => {
+    if (!user) {
+      if (!taskId) return;
+      setActiveTaskLocal(taskId);
+      const filteredActiveTask = getLocalItem().filter((task: Task) => {
+        task.id === taskId;
+      });
+      setActiveTask(filteredActiveTask);
+      console.log(filteredActiveTask);
+    }
+  };
+  console.log(activeTask);
   const addTask = (task: Task) => {
     if (task.id === "-1") {
       if (task.task === "") {
@@ -117,9 +147,10 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     const updated = tasks.filter(
       (item) => item.id !== "-1" && item.createdAt !== task.createdAt,
     );
-
     setTasks(updated);
   };
+
+  const incrementActiveTaskTime = (TaskId: Task["id"], minutes: number) => {};
 
   const editTaskValue = (updatedTask: Task) => {};
 
@@ -131,6 +162,8 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         setTasks,
         updateTask,
         deleteTask,
+        activeTask,
+        setTaskActive,
         tableLoading,
       }}
     >
