@@ -4,6 +4,7 @@ import { Timer } from "./Timer";
 import Chat from "./chat/Chat";
 import { columns } from "@/components/table/columns";
 import ToDoWrapper from "./table/ToDoWrapper";
+import ActiveTask from "./ActiveTask";
 
 const DashboardLayout = () => {
   return (
@@ -20,6 +21,7 @@ const DashboardLayout = () => {
             <ToDoWrapper className=" xl:border-l-0" />
           </div>
           <div className="mx-auto w-full pt-[61px] sm:w-fit xl:pt-0">
+            <ActiveTask />
             <Timer />
           </div>
           {/* <div className="- h-full w-[600px] border border-red-200">

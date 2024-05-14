@@ -149,6 +149,8 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     setTasks(updated);
   };
 
+  console.log(activeTask);
+
   const incrementActiveTaskTime = (TaskId: Task["id"], minutes: number) => {};
 
   const editTaskValue = (updatedTask: Task) => {};
