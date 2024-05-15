@@ -23,7 +23,7 @@ type TaskContext = {
   setTaskActive: (taskId: Task["id"]) => void;
   activeTask: Task | undefined;
   tableLoading: boolean;
-  incrementActiveTask: (minutes: number) => void;
+  incrementActiveTaskTime: (minutes: number) => void;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
@@ -35,7 +35,7 @@ const defaultTasksState = {
   setTaskActive: () => {},
   activeTask: undefined,
   tableLoading: true,
-  incrementActiveTask: () => {},
+  incrementActiveTaskTime: () => {},
 };
 const user = false;
 
@@ -82,7 +82,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         setActiveTask(getActiveTaskByID(activeTaskID));
       }
 
-      incrementActiveTask(10);
+      incrementActiveTaskTime(10);
     }
   }, []);
 
@@ -164,7 +164,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     updateTask(activeTask);
     setActiveTask(activeTask);
   }
-  const incrementActiveTask = (minutes: number) => {
+  const incrementActiveTaskTime = (minutes: number) => {
     incrementTaskTimeByID(getActiveTaskLocal(), minutes);
   };
 
@@ -181,7 +181,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         activeTask,
         setTaskActive,
         tableLoading,
-        incrementActiveTask,
+        incrementActiveTaskTime,
       }}
     >
       {children}

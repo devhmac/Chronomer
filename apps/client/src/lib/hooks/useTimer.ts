@@ -8,12 +8,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 // dayjs.extend(isSameOrAfter);
 import { timerContext } from "@/providers/TimerContext";
+import { taskContext } from "@/providers/TaskContext";
 
 export const useTimer = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { timerState, setTimerState, isRunning, setIsRunning } =
     useContext(timerContext);
+
+  const { incrementActiveTaskTime } = useContext(taskContext);
   // const pomOrder = [];
   // const timeMap = { shortBreak: 300, longBreak: 1200 };
 
