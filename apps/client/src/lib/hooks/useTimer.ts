@@ -106,6 +106,13 @@ export const useTimer = () => {
 
           return;
         }
+        if (
+          secondsRemaining % 60 === 0 &&
+          secondsRemaining !== timerConfig.timer
+        ) {
+          incrementActiveTaskTime(1);
+        }
+
         setSecondsRemaining((prev) => prev - 1);
       }
     }, 1000);
