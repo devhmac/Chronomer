@@ -31,6 +31,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
         <motion.div
           className={cn(
             "scrollbar-thumb-green scrollbar-thumb-rounded scrollbar-track-green-lighter scrollbar-w-2 scrolling-touch h-grow h-full overflow-auto rounded-lg border p-3 shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]",
+            className,
 
             isOpen ? "" : "",
           )}
