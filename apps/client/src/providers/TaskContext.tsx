@@ -21,8 +21,9 @@ type TaskContext = {
   setTasks: Dispatch<SetStateAction<Task[]>>;
   deleteTask: (task: Task) => void;
   setTaskActive: (taskId: Task["id"]) => void;
-  activeTask: Task | null;
+  activeTask: Task | undefined;
   tableLoading: boolean;
+  incrementActiveTask: (minutes: number) => void;
 };
 // INSTEAD OF ALL THIS YOU MIGHT JUST GET SERVER SIDE AND PASS TO COMPONENTS AS NEEDED
 const defaultTasksState = {
@@ -32,8 +33,9 @@ const defaultTasksState = {
   updateTask: () => {},
   deleteTask: () => {},
   setTaskActive: () => {},
-  activeTask: null,
+  activeTask: undefined,
   tableLoading: true,
+  incrementActiveTask: () => {},
 };
 const user = false;
 
@@ -44,8 +46,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   // use these for a row level loading spinner on any updates, and a table level skeleton load
   const [tableLoading, setTableLoading] = useState(true);
   const [rowLoading, setRowLoading] = useState(false);
-  const [activeTask, setActiveTask] = useState<Task | null>(null);
-
+  const [activeTask, setActiveTask] = useState<Task | undefined>(undefined);
   const { setLocalItem, getLocalItem, supportsLocalStorage } =
     useLocalStorage("tasks");
 
@@ -54,6 +55,13 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
 
   const addTasksLocal = (tasks: Task[]) => {
     return setLocalItem(tasks);
+  };
+  const getActiveTaskByID = (taskId: string) => {
+    if (!user) {
+      return getLocalItem().filter((task: Task) => {
+        return task.id === taskId;
+      })[0];
+    }
   };
 
   useEffect(() => {
@@ -71,14 +79,10 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
 
       const activeTaskID = getActiveTaskLocal();
       if (activeTaskID) {
-        // console.log("active Task id", activeTaskID);
-        const filteredActiveTask = localTasks.filter((task: Task) => {
-          console.log(task);
-          return task.id === activeTaskID;
-        })[0];
-        // console.log("activeTask:", filteredActiveTask);
-        setActiveTask(filteredActiveTask);
+        setActiveTask(getActiveTaskByID(activeTaskID));
       }
+
+      incrementActiveTask(10);
     }
   }, []);
 
@@ -122,6 +126,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       });
       addTasksLocal(updatedTasks);
       setTasks(updatedTasks);
+      console.log("iupdated tasks", updatedTasks);
     }
   };
 
@@ -149,9 +154,19 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     setTasks(updated);
   };
 
-  console.log(activeTask);
+  // console.log(activeTask);
 
-  const incrementActiveTaskTime = (TaskId: Task["id"], minutes: number) => {};
+  function incrementTaskTimeByID(TaskId: Task["id"], minutes: number) {
+    const activeTask = getActiveTaskByID(TaskId);
+    console.log("active task in increment", activeTask);
+    activeTask.timeToComplete += minutes;
+    console.log("active task after increment", activeTask);
+    updateTask(activeTask);
+    setActiveTask(activeTask);
+  }
+  const incrementActiveTask = (minutes: number) => {
+    incrementTaskTimeByID(getActiveTaskLocal(), minutes);
+  };
 
   const editTaskValue = (updatedTask: Task) => {};
 
@@ -166,6 +181,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
         activeTask,
         setTaskActive,
         tableLoading,
+        incrementActiveTask,
       }}
     >
       {children}
