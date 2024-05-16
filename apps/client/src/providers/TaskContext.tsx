@@ -54,8 +54,11 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   const { setLocalItem, getLocalItem, supportsLocalStorage } =
     useLocalStorage("tasks");
 
-  const { setLocalItem: setActiveTaskLocal, getLocalItem: getActiveTaskLocal } =
-    useLocalStorage("active-task");
+  const {
+    setLocalItem: setActiveTaskLocal,
+    getLocalItem: getActiveTaskLocal,
+    deleteItem: deleteActiveTask,
+  } = useLocalStorage("active-task");
 
   const addTasksLocal = (tasks: Task[]) => {
     return setLocalItem(tasks);
@@ -103,8 +106,8 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
 
   const clearActiveTask = () => {
     if (!user) {
+      deleteActiveTask();
       setActiveTask(undefined);
-      setActiveTaskLocal(undefined);
     }
   };
 
