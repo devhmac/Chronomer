@@ -7,12 +7,12 @@ type props = {
 };
 
 const TimeSpent = ({ timersComplete, timeToComplete, taskId }: props) => {
-  function padTwoDigits(num) {
+  function padTwoDigits(num: number) {
     return num.toString().padStart(2, "0");
   }
-  const minutesToTime = (time) => {
-    const hours = Math.floor(timeToComplete / 60);
-    const min = timeToComplete % 60;
+  const minutesToTime = (time: number) => {
+    const hours = Math.floor(time / 60);
+    const min = time % 60;
     return `${padTwoDigits(hours)}:${padTwoDigits(min)}`;
   };
   const time = minutesToTime(timeToComplete);

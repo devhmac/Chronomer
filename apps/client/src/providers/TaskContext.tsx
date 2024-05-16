@@ -140,6 +140,9 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       });
       addTasksLocal(updatedTasks);
       setTasks(updatedTasks);
+      if (incomingTask.id === activeTask?.id) {
+        setActiveTask(incomingTask);
+      }
       console.log("iupdated tasks", updatedTasks);
     }
   };

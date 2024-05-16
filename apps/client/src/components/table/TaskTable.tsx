@@ -79,6 +79,9 @@ export default function TaskTable({
                   task.isComplete
                     ? "bg-background-muted text-str text-zinc-500 line-through	"
                     : "",
+                  activeTaskId === task.id
+                    ? " border-r-4 border-r-[#7dd3fc]"
+                    : "",
                 )}
                 onClick={() => setTaskActive(task.id)}
               >
