@@ -106,9 +106,11 @@ export const useTimer = () => {
 
           return;
         }
+        // increment when - every 60 sec, not at start of timer, when active task exists, timer mode is timer
         if (
           secondsRemaining % 60 === 0 &&
           secondsRemaining !== timerConfig.timer &&
+          timerConfig.mode === "timer" &&
           activeTask
         ) {
           incrementActiveTaskTime(1);

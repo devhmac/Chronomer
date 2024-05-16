@@ -10,7 +10,7 @@ import TaskTable from "./TaskTable";
 import { Button } from "../ui/button";
 
 const ToDoWrapper = ({ className }: { className?: string }) => {
-  const { tasks, setTasks, tableLoading, setTaskActive } =
+  const { tasks, setTasks, tableLoading, setTaskActive, activeTask } =
     useContext(taskContext);
   const [isOpen, setIsOpen] = useState(true);
   const variants = {
@@ -50,6 +50,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
               data={tasks}
               tableLoading={tableLoading}
               setTaskActive={setTaskActive}
+              activeTaskId={activeTask?.id ? activeTask.id : undefined}
             />
           </div>
         </motion.div>

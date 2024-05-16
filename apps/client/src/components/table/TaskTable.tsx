@@ -36,15 +36,18 @@ import StatusSelect from "./cells/StatusSelect";
 import Options from "./cells/Options";
 import NewTask from "./NewTask";
 import TableSkeleton from "./skeleton/TableSkeleton";
+import TimeSpent from "./cells/TimeSpent";
 
 export default function TaskTable({
   data,
   tableLoading,
   setTaskActive,
+  activeTaskId,
 }: {
   data: Task[];
   tableLoading: boolean;
   setTaskActive: (taskId: Task["id"]) => void;
+  activeTaskId: string | undefined;
 }) {
   return (
     // <div className="@container">
@@ -97,7 +100,11 @@ export default function TaskTable({
                   <StatusSelect task={task} />
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                  {task.timersComplete}/{task.timeToComplete}
+                  <TimeSpent
+                    timeToComplete={task.timeToComplete}
+                    timersComplete={task.timersComplete}
+                    taskId={task.id}
+                  />
                 </TableCell>
 
                 <TableCell>
