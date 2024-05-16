@@ -76,11 +76,9 @@ export default function TaskTable({
               <TableRow
                 key={`${task.id}${index}`}
                 className={cn(
+                  "relative",
                   task.isComplete
                     ? "bg-background-muted text-str text-zinc-500 line-through	"
-                    : "",
-                  activeTaskId === task.id
-                    ? " border-r-4 border-r-[#7dd3fc]"
                     : "",
                 )}
                 onClick={() => setTaskActive(task.id)}
@@ -114,6 +112,9 @@ export default function TaskTable({
                 <TableCell>
                   <Options task={task} />
                 </TableCell>
+                {activeTaskId === task.id ? (
+                  <div className="absolute right-0 h-full w-1 bg-[#7dd3fc] "></div>
+                ) : null}
               </TableRow>
             );
           })
