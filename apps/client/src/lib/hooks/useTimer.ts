@@ -16,7 +16,7 @@ export const useTimer = () => {
   const { timerState, setTimerState, isRunning, setIsRunning } =
     useContext(timerContext);
 
-  const { incrementActiveTaskTime } = useContext(taskContext);
+  const { activeTask, incrementActiveTaskTime } = useContext(taskContext);
   // const pomOrder = [];
   // const timeMap = { shortBreak: 300, longBreak: 1200 };
 
@@ -108,7 +108,8 @@ export const useTimer = () => {
         }
         if (
           secondsRemaining % 60 === 0 &&
-          secondsRemaining !== timerConfig.timer
+          secondsRemaining !== timerConfig.timer &&
+          activeTask
         ) {
           incrementActiveTaskTime(1);
         }

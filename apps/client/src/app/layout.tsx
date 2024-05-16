@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ThemeToggle } from "@/components/ThemeToggle";
+
 import { TimerContextProvider } from "@/providers/TimerContext";
 import Nav from "@/components/ui/Nav";
 import { TaskContextProvider } from "@/providers/TaskContext";
@@ -24,8 +24,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
-        {/* <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div> */}
-
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

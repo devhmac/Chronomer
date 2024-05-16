@@ -9,59 +9,68 @@ import CompleteTask from "./table/cells/CompleteTask";
 import { useContext, useState } from "react";
 import { taskContext } from "@/providers/TaskContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
+import { Eraser } from "lucide-react";
 
 const ActiveTask = () => {
-  const { activeTask } = useContext(taskContext);
+  const { activeTask, clearActiveTask } = useContext(taskContext);
   console.log("active Task in component", activeTask);
 
-  return !activeTask ? (
-    <div>no active task selected</div>
-  ) : (
-    <div className="glass-bg mb-2 flex flex-row items-center gap-4 rounded-md p-3">
-      <CompleteTask task={activeTask} />
-      <p>{activeTask.task}</p>
-      {/* <p>{activeTask.status}</p> */}
-      {/* <StatusSelect task={activeTask} /> */}
+  return (
+    <div className="glass-bg mb-2  gap-4 rounded-md p-3">
+      {activeTask ? (
+        <div className="flex w-full flex-row items-center justify-between gap-4">
+          <CompleteTask task={activeTask} />
+          <p>{activeTask.task}</p>
+          <Eraser
+            className="cursor:pointer h-4 w-4 text-end text-zinc-400 hover:cursor-pointer  hover:text-accent-foreground"
+            onClick={() => {
+              clearActiveTask();
+            }}
+          />
+        </div>
+      ) : (
+        <p className="w-full text-center">No Active Task Selected...</p>
+      )}
     </div>
-    // <Table className="glass-bg mb-2 max-w-full rounded-sm">
-    //   <TableBody>
-    //     <TableRow
-    //       key={activeTask.id}
-    //       className={
-    //         activeTask.isComplete
-    //           ? "bg-background-muted text-str rounded-lg border-red-400 text-zinc-500 line-through	"
-    //           : ""
-    //       }
-    //     >
-    //       <TableCell className="hidden sm:table-cell">
-    //         <div className="">
-    //           {activeTask.id === "-1" ? (
-    //             <CancelTask task={activeTask} />
-    //           ) : (
-    //             <CompleteTask task={activeTask} />
-    //           )}
-    //         </div>
-    //       </TableCell>
-    //       <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
-    //         <TaskCell task={activeTask} />
-    //       </TableCell>
-    //       {/* <TableCell>
-    //             <Badge variant="outline">Draft</Badge>
-    //           </TableCell> */}
-    //       <TableCell className="hidden md:table-cell">
-    //         <StatusSelect task={activeTask} />
-    //       </TableCell>
-    //       <TableCell className="hidden md:table-cell">
-    //         {activeTask.timersComplete}/{activeTask.timeToComplete}
-    //       </TableCell>
-
-    //       <TableCell>
-    //         <Options task={activeTask} />
-    //       </TableCell>
-    //     </TableRow>
-    //   </TableBody>
-    // </Table>
   );
+  // <Table className="glass-bg mb-2 max-w-full rounded-sm">
+  //   <TableBody>
+  //     <TableRow
+  //       key={activeTask.id}
+  //       className={
+  //         activeTask.isComplete
+  //           ? "bg-background-muted text-str rounded-lg border-red-400 text-zinc-500 line-through	"
+  //           : ""
+  //       }
+  //     >
+  //       <TableCell className="hidden sm:table-cell">
+  //         <div className="">
+  //           {activeTask.id === "-1" ? (
+  //             <CancelTask task={activeTask} />
+  //           ) : (
+  //             <CompleteTask task={activeTask} />
+  //           )}
+  //         </div>
+  //       </TableCell>
+  //       <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
+  //         <TaskCell task={activeTask} />
+  //       </TableCell>
+  //       {/* <TableCell>
+  //             <Badge variant="outline">Draft</Badge>
+  //           </TableCell> */}
+  //       <TableCell className="hidden md:table-cell">
+  //         <StatusSelect task={activeTask} />
+  //       </TableCell>
+  //       <TableCell className="hidden md:table-cell">
+  //         {activeTask.timersComplete}/{activeTask.timeToComplete}
+  //       </TableCell>
+
+  //       <TableCell>
+  //         <Options task={activeTask} />
+  //       </TableCell>
+  //     </TableRow>
+  //   </TableBody>
+  // </Table>
 };
 
 export default ActiveTask;
