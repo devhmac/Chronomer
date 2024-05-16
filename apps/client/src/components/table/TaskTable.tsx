@@ -37,6 +37,7 @@ import Options from "./cells/Options";
 import NewTask from "./NewTask";
 import TableSkeleton from "./skeleton/TableSkeleton";
 import TimeSpent from "./cells/TimeSpent";
+import { cn } from "@/lib/utils/utils";
 
 export default function TaskTable({
   data,
@@ -74,11 +75,11 @@ export default function TaskTable({
             return (
               <TableRow
                 key={`${task.id}${index}`}
-                className={
+                className={cn(
                   task.isComplete
                     ? "bg-background-muted text-str text-zinc-500 line-through	"
-                    : ""
-                }
+                    : "",
+                )}
                 onClick={() => setTaskActive(task.id)}
               >
                 <TableCell className="hidden sm:table-cell">

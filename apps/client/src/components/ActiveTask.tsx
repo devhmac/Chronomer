@@ -10,6 +10,7 @@ import { useContext, useState } from "react";
 import { taskContext } from "@/providers/TaskContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 import { Eraser } from "lucide-react";
+import { cn } from "@/lib/utils/utils";
 
 const ActiveTask = () => {
   const { activeTask, clearActiveTask } = useContext(taskContext);
@@ -18,7 +19,14 @@ const ActiveTask = () => {
   return (
     <div className="glass-bg mb-2  gap-4 rounded-md p-3">
       {activeTask ? (
-        <div className="flex w-full flex-row items-center justify-between gap-4">
+        <div
+          className={cn(
+            "flex w-full flex-row items-center justify-between gap-4",
+            activeTask.isComplete
+              ? "bg-background-muted text-str text-zinc-500 line-through	"
+              : "",
+          )}
+        >
           <CompleteTask task={activeTask} />
           <p>{activeTask.task}</p>
           <Eraser
