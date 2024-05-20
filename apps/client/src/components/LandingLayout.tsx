@@ -6,6 +6,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import ToDoWrapper from "./table/ToDoWrapper";
 
 import TableSkeleton from "./table/skeleton/TableSkeleton";
+import Link from "next/link";
 
 const LandingLayout = () => {
   return (
@@ -15,6 +16,13 @@ const LandingLayout = () => {
           <p className="text-sm font-semibold text-primary">v0.5 Now Live!</p>
         </div>
         <Header />
+        <div className="mt-5 rounded-lg bg-gradient">
+          <Link href="/dashboard">
+            <Button className="m-0.5 bg-background text-primary hover:bg-secondary">
+              Get Started
+            </Button>
+          </Link>
+        </div>
       </MaxWidthWrapper>
 
       <Timer className={" shadow-xl shadow-indigo-300/40"} />
