@@ -18,12 +18,9 @@ const LandingLayout = () => {
       </MaxWidthWrapper>
       <Timer />
 
-      <MaxWidthWrapper className="my-9 text-center">
-        <h2 className="sub-header-text mb-7">Track your Velocity</h2>
-        <p
-          className=" @apply text-md sm:text-xl; text-slate-600
-          dark:text-slate-300 "
-        >
+      <MaxWidthWrapper className="mb-12 mt-20 text-center">
+        <h2 className="sub-header-text mb-6">Track your Velocity</h2>
+        <p className="landing-sub-text">
           Time based tasks management to organize your workflow and keep you on
           track.
         </p>
