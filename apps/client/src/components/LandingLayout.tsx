@@ -16,17 +16,19 @@ const LandingLayout = () => {
         </div>
         <Header />
       </MaxWidthWrapper>
-      <Timer />
+      <div>
+        <Timer className={"shadow-xl shadow-indigo-300/40"} />
+      </div>
 
-      <MaxWidthWrapper className="mb-12 mt-20 text-center">
-        <h2 className="sub-header-text mb-6">Track your Velocity</h2>
+      <MaxWidthWrapper className="mb-12 mt-20 text-center ">
+        <h2 className="sub-header-text mb-6 ">Track your Velocity</h2>
         <p className="landing-sub-text">
           Time based tasks management to organize your workflow and keep you on
           track.
         </p>
       </MaxWidthWrapper>
       <div className="w-full sm:w-auto">
-        <ToDoWrapper />
+        <ToDoWrapper className={"shadow-xl shadow-indigo-300/40"} />
       </div>
 
       <div>
@@ -34,7 +36,7 @@ const LandingLayout = () => {
           <div className="max-w-8xl mx-auto px-6 lg:px-8">
             <div className="mt-16 flow-root sm:mt-24">
               {/* move this into the table component */}
-              {/* <div className="border-shadow-2 m-2 rounded-xl p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"> */}
+              <div className="border-shadow-2 m-2 rounded-xl p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"></div>
             </div>
           </div>
         </div>
