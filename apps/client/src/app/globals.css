@@ -125,3 +125,11 @@
 .glass-bg {
   @apply border shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none;
 }
+
+.main-header-text {
+  @apply text-5xl font-semibold tracking-[-1.2px] sm:text-7xl sm:leading-[72px];
+}
+
+.sub-header-text {
+  @apply text-3xl font-semibold tracking-[0.2px] sm:text-5xl sm:leading-[45px];
+}
