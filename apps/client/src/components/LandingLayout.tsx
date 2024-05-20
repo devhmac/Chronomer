@@ -16,9 +16,8 @@ const LandingLayout = () => {
         </div>
         <Header />
       </MaxWidthWrapper>
-      <div>
-        <Timer className={"shadow-xl shadow-indigo-300/40"} />
-      </div>
+
+      <Timer className={" shadow-xl shadow-indigo-300/40"} />
 
       <MaxWidthWrapper className="mb-12 mt-20 text-center ">
         <h2 className="sub-header-text mb-6 ">Track your Velocity</h2>
