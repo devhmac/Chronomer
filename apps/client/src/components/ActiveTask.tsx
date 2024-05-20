@@ -35,6 +35,7 @@ const ActiveTask = () => {
               clearActiveTask();
             }}
           />
+          <div className="absolute right-0 h-full w-1 bg-[#7dd3fc] "></div>
         </div>
       ) : (
         <p className="w-full text-center">No Active Task Selected...</p>
