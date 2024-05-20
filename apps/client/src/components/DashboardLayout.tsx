@@ -19,7 +19,7 @@ const DashboardLayout = () => {
         <div className="w-full sm:w-auto xl:h-full xl:pt-[61px]">
           <ToDoWrapper className="xl:border-l-0" />
         </div>
-        <div className="mx-auto w-full pt-[61px] sm:w-fit xl:pt-0">
+        <div className="mx-auto w-full max-w-[560px] pt-[61px] sm:w-fit xl:pt-0">
           <ActiveTask />
           <Timer />
         </div>

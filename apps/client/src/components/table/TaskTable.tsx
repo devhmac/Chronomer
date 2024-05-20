@@ -101,7 +101,7 @@ export default function TaskTable({
                 <TableCell className="hidden md:table-cell">
                   <StatusSelect task={task} />
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
+                <TableCell className="hidden text-center md:table-cell">
                   <TimeSpent
                     timeToComplete={task.timeToComplete}
                     timersComplete={task.timersComplete}

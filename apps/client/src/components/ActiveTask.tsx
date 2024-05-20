@@ -17,25 +17,29 @@ const ActiveTask = () => {
   console.log("active Task in component", activeTask);
 
   return (
-    <div className="glass-bg mb-2  gap-4 rounded-md p-3">
+    <div className="glass-bg mb-2  gap-4 overflow-hidden rounded-md p-3">
       {activeTask ? (
         <div
           className={cn(
-            "flex w-full flex-row items-center justify-between gap-4",
+            "flex w-full flex-row items-center justify-between gap-4 align-middle",
             activeTask.isComplete
               ? "bg-background-muted text-str text-zinc-500 line-through	"
               : "",
           )}
         >
-          <CompleteTask task={activeTask} />
-          <p>{activeTask.task}</p>
+          <div className="flex flex-row items-center gap-6 align-middle">
+            <CompleteTask task={activeTask} />
+            <p className="line-clamp-2  text-wrap text-sm">{activeTask.task}</p>
+          </div>
+
           <Eraser
-            className="cursor:pointer h-4 w-4 text-end text-zinc-400 hover:cursor-pointer  hover:text-accent-foreground"
+            className="cursor:pointer mr-1 h-4 min-w-4 text-end text-zinc-400  hover:cursor-pointer hover:text-accent-foreground"
             onClick={() => {
               clearActiveTask();
             }}
           />
-          <div className="absolute right-0 h-full w-1 bg-[#7dd3fc] "></div>
+
+          <div className="absolute right-0 h-full w-1  bg-[#7dd3fc] "></div>
         </div>
       ) : (
         <p className="w-full text-center">No Active Task Selected...</p>

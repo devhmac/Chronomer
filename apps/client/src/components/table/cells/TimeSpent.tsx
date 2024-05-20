@@ -15,6 +15,7 @@ const TimeSpent = ({ timersComplete, timeToComplete, taskId }: props) => {
     const min = time % 60;
     return `${padTwoDigits(hours)}:${padTwoDigits(min)}`;
   };
+
   const time = minutesToTime(timeToComplete);
   return <div>{time}</div>;
 };
