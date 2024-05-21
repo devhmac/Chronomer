@@ -16,11 +16,14 @@ const TaskCell = ({ task }: { task: Task }) => {
   const [isEdit, setIsEdit] = useState(task && task.id === "-1" ? true : false);
   const [input, setInput] = useState(task ? task.task : "");
 
+  const test = task.task;
+
   const isExistingTask = task.id !== "-1";
 
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLParagraphElement>(null);
 
   const submitTaskChange = (input: string) => {
+    console.log("submit change");
     // means input was not changed, do not submit an update request
     if (input === task.task) return setIsEdit(false);
 
@@ -57,7 +60,7 @@ const TaskCell = ({ task }: { task: Task }) => {
     >
       {isEdit || input === "" ? (
         <div onBlur={() => submitTaskChange(input)}>
-          <Textarea
+          {/* <Textarea
             ref={inputRef}
             className=" flex min-w-full resize-none"
             value={input}
@@ -73,7 +76,32 @@ const TaskCell = ({ task }: { task: Task }) => {
                 cancelChange();
               }
             }}
-          />
+          /> */}
+          <p
+            ref={inputRef}
+            className="rounded-md border-input bg-muted/30 p-2 focus:outline-input"
+            contentEditable
+            role="textbox"
+            tabIndex={0}
+            suppressContentEditableWarning={true}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                submitTaskChange(input);
+              } else if (e.key === "Escape") {
+                console.log("cancel state", input);
+
+                cancelChange();
+              }
+            }}
+            onInput={(e) => {
+              e.preventDefault();
+              // console.log("target", e.target);
+              setInput(e.target.textContent!);
+              console.log("state", input);
+            }}
+          >
+            {task.task}
+          </p>
           {/* <Button onClick={() => cancelChange()}>test</Button> */}
         </div>
       ) : (
