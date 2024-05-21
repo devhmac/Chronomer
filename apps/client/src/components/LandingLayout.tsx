@@ -25,7 +25,8 @@ const LandingLayout = () => {
         </div>
       </MaxWidthWrapper>
 
-      <Timer className={" shadow-xl shadow-indigo-300/40"} />
+      <Timer className={" shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px]"} />
+      {/* <Timer className={" shadow-xl shadow-indigo-300/40"} /> */}
 
       <MaxWidthWrapper className="mb-12 mt-20 text-center ">
         <h2 className="sub-header-text mb-6 ">Track your Velocity</h2>
@@ -35,7 +36,16 @@ const LandingLayout = () => {
         </p>
       </MaxWidthWrapper>
       <div className="w-full sm:w-auto">
-        <ToDoWrapper className={"shadow-xl shadow-indigo-300/40"} />
+        <ToDoWrapper
+          className={"shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px]"}
+        />
+        {/* <ToDoWrapper className={"shadow-xl  shadow-indigo-300/40"} /> */}
+        {/* really cool echo background */}
+        {/* <ToDoWrapper
+          className={
+            "shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]"
+          } 
+        /> */}
       </div>
 
       <div>
