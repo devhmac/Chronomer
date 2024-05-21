@@ -49,10 +49,6 @@ const TaskCell = ({ task }: { task: Task }) => {
     inputRef.current.focus();
     let selection = window.getSelection();
     console.log("selection", window.getSelection()?.getRangeAt(0));
-    setSelectionRange(
-        e.currentTarget.textContent?.length,
-        e.currentTarget.textContent?.length,
-      // )
   }, [isEdit]);
 
   return (
@@ -70,11 +66,11 @@ const TaskCell = ({ task }: { task: Task }) => {
             }
             return submitTaskChange(input);
           }}
-          className=" flex  flex-row items-center"
+          className=" flex  flex-row items-center  rounded-md border border-input bg-muted/30 p-2 focus:border-input"
         >
           <div
             ref={inputRef}
-            className="flex-grow rounded-md border-input bg-muted/30 p-2 focus:outline-input"
+            className="flex-grow  focus:outline-none"
             contentEditable
             role="textbox"
             tabIndex={0}
@@ -102,7 +98,7 @@ const TaskCell = ({ task }: { task: Task }) => {
           </div>
           <button
             id="cancel-button"
-            className=" hover:cursor-pointer"
+            className=" ml-2 hover:cursor-pointer"
             aria-label="Cancel Task Creation"
           >
             <CircleOff
