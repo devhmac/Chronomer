@@ -4,6 +4,7 @@ import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils/utils";
+import { Button } from "@/components/ui/button";
 
 type props = {
   task?: any;
@@ -34,6 +35,13 @@ const TaskCell = ({ task }: { task: Task }) => {
       addTask(newTask);
     }
   };
+
+  const cancelChange = () => {
+    console.log("cancel");
+    setInput(task.task);
+    setIsEdit(false);
+  };
+
   useLayoutEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -43,29 +51,38 @@ const TaskCell = ({ task }: { task: Task }) => {
   return (
     <div
       className=" w-full  flex-grow text-left"
-      onClick={(e) => {
-        setIsEdit(true);
-      }}
+      // onClick={(e) => {
+      //   setIsEdit(true);
+      // }}
     >
       {isEdit || input === "" ? (
-        <Textarea
-          ref={inputRef}
-          className=" flex min-w-full resize-none"
-          value={input}
-          onChange={(e) => {
-            e.preventDefault();
-            setInput(e.target.value);
-            // console.log(task);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              submitTaskChange(input);
-            }
-          }}
-          onBlur={() => submitTaskChange(input)}
-        />
+        <div onBlur={() => submitTaskChange(input)}>
+          <Textarea
+            ref={inputRef}
+            className=" flex min-w-full resize-none"
+            value={input}
+            onChange={(e) => {
+              e.preventDefault();
+              setInput(e.target.value);
+              // console.log(task);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                submitTaskChange(input);
+              } else if (e.key === "Escape") {
+                cancelChange();
+              }
+            }}
+          />
+          {/* <Button onClick={() => cancelChange()}>test</Button> */}
+        </div>
       ) : (
-        <div className=" rounded-md border-input p-2 hover:border">
+        <div
+          onClick={(e) => {
+            setIsEdit(true);
+          }}
+          className=" rounded-md border-input p-2 hover:border"
+        >
           <p className={cn("line-clamp-2 w-full ")}>{input}</p>
         </div>
       )}
