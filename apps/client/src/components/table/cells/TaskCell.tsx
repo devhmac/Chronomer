@@ -5,6 +5,7 @@ import { taskContext } from "@/providers/TaskContext";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils/utils";
 import { Button } from "@/components/ui/button";
+import { CircleOff } from "lucide-react";
 
 type props = {
   task?: any;
@@ -62,27 +63,18 @@ const TaskCell = ({ task }: { task: Task }) => {
       // }}
     >
       {isEdit || input === "" ? (
-        <div onBlur={() => submitTaskChange(input)}>
-          {/* <Textarea
-            ref={inputRef}
-            className=" flex min-w-full resize-none"
-            value={input}
-            onChange={(e) => {
-              e.preventDefault();
-              setInput(e.target.value);
-              // console.log(task);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                submitTaskChange(input);
-              } else if (e.key === "Escape") {
-                cancelChange();
-              }
-            }}
-          /> */}
+        <div
+          onBlur={(e) => {
+            if (e.relatedTarget?.id === "cancel-button") {
+              return;
+            }
+            return submitTaskChange(input);
+          }}
+          className="space-between flex flex-row items-center"
+        >
           <div
             ref={inputRef}
-            className="rounded-md border-input bg-muted/30 p-2 focus:outline-input"
+            className="flex-grow rounded-md border-input bg-muted/30 p-2 focus:outline-input"
             contentEditable
             role="textbox"
             tabIndex={0}
@@ -98,14 +90,23 @@ const TaskCell = ({ task }: { task: Task }) => {
             }}
             onInput={(e: any) => {
               e.preventDefault();
-              // console.log("target", e.target);
               setInput(e.target.textContent);
-              console.log("state", input);
             }}
           >
             {task.task}
           </div>
-          {/* <Button onClick={() => cancelChange()}>test</Button> */}
+          <div
+            id="cancel-button"
+            className=" hover:cursor-pointer"
+            aria-label="Cancel Task Creation"
+          >
+            <CircleOff
+              onClick={() => {
+                cancelChange();
+              }}
+              className={cn("h-4 w-4 text-rose-400 hover:text-rose-600")}
+            />
+          </div>
         </div>
       ) : (
         <div
