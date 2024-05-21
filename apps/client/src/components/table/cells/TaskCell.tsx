@@ -18,7 +18,6 @@ const TaskCell = ({ task }: { task: Task }) => {
   const [input, setInput] = useState(task ? task.task : "");
 
   const test = task.task;
-  console.log("global input:", input);
 
   const isExistingTask = task.id !== "-1";
 
@@ -30,8 +29,6 @@ const TaskCell = ({ task }: { task: Task }) => {
     if (input === task.task) return setIsEdit(false);
 
     const newTask = { ...task, task: input };
-    console.log("task before submission", task);
-    console.log(task);
     console.log(isExistingTask);
     setIsEdit(false);
     if (isExistingTask) {
@@ -43,16 +40,19 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   const cancelChange = () => {
     console.log("cancel");
-    console.log("task at time of cancel", task.task);
-    console.log("state at time of cancel", input);
     setInput((prev) => task.task);
     setIsEdit(false);
   };
 
   useLayoutEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (!inputRef.current) return;
+    inputRef.current.focus();
+    let selection = window.getSelection();
+    console.log("selection", window.getSelection()?.getRangeAt(0));
+    setSelectionRange(
+        e.currentTarget.textContent?.length,
+        e.currentTarget.textContent?.length,
+      // )
   }, [isEdit]);
 
   return (
@@ -70,7 +70,7 @@ const TaskCell = ({ task }: { task: Task }) => {
             }
             return submitTaskChange(input);
           }}
-          className="space-between flex flex-row items-center"
+          className=" flex  flex-row items-center"
         >
           <div
             ref={inputRef}
@@ -79,12 +79,17 @@ const TaskCell = ({ task }: { task: Task }) => {
             role="textbox"
             tabIndex={0}
             suppressContentEditableWarning={true}
+            onFocus={(e) =>
+              // e.currentTarget.setSelectionRange(
+              //   e.currentTarget.textContent?.length,
+              //   e.currentTarget.textContent?.length,
+              // )
+              console.log("input focused", e)
+            }
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 submitTaskChange(input);
               } else if (e.key === "Escape") {
-                console.log("cancel state", input);
-                setInput("test");
                 cancelChange();
               }
             }}
@@ -95,7 +100,7 @@ const TaskCell = ({ task }: { task: Task }) => {
           >
             {task.task}
           </div>
-          <div
+          <button
             id="cancel-button"
             className=" hover:cursor-pointer"
             aria-label="Cancel Task Creation"
@@ -106,14 +111,14 @@ const TaskCell = ({ task }: { task: Task }) => {
               }}
               className={cn("h-4 w-4 text-rose-400 hover:text-rose-600")}
             />
-          </div>
+          </button>
         </div>
       ) : (
         <div
           onClick={(e) => {
             setIsEdit(true);
           }}
-          className=" rounded-md border-input p-2 hover:border"
+          className="cursor-text rounded-md border-input p-2 hover:border"
         >
           <p className={cn("line-clamp-2 w-full ")}>{input}</p>
         </div>
