@@ -30,8 +30,8 @@ const TaskCell = ({ task }: { task: Task }) => {
     const newTask = { ...task, task: input };
     console.log("task before submission", task);
     console.log(task);
-    setIsEdit(false);
     console.log(isExistingTask);
+    setIsEdit(false);
     if (isExistingTask) {
       updateTask(newTask);
     } else {
@@ -41,7 +41,9 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   const cancelChange = () => {
     console.log("cancel");
-    setInput(task.task);
+    console.log("task at time of cancel", task.task);
+    console.log("state at time of cancel", input);
+    setInput((prev) => task.task);
     setIsEdit(false);
   };
 
@@ -93,10 +95,10 @@ const TaskCell = ({ task }: { task: Task }) => {
                 cancelChange();
               }
             }}
-            onInput={(e) => {
+            onInput={(e: any) => {
               e.preventDefault();
               // console.log("target", e.target);
-              setInput(e.target.textContent!);
+              setInput(e.target.textContent);
               console.log("state", input);
             }}
           >
