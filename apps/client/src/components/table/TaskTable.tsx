@@ -111,10 +111,10 @@ export default function TaskTable({
 
                 <TableCell>
                   <Options task={task} />
+                  {activeTaskId === task.id ? (
+                    <span className=" absolute inset-y-0 right-0 z-10 my-auto h-full w-1 bg-[#7dd3fc] "></span>
+                  ) : null}
                 </TableCell>
-                {activeTaskId === task.id ? (
-                  <div className="absolute right-0 h-full w-1 bg-[#7dd3fc] "></div>
-                ) : null}
               </TableRow>
             );
           })
