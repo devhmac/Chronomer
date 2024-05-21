@@ -17,10 +17,11 @@ const TaskCell = ({ task }: { task: Task }) => {
   const [input, setInput] = useState(task ? task.task : "");
 
   const test = task.task;
+  console.log("global input:", input);
 
   const isExistingTask = task.id !== "-1";
 
-  const inputRef = useRef<HTMLParagraphElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
 
   const submitTaskChange = (input: string) => {
     console.log("submit change");
@@ -79,7 +80,7 @@ const TaskCell = ({ task }: { task: Task }) => {
               }
             }}
           /> */}
-          <p
+          <div
             ref={inputRef}
             className="rounded-md border-input bg-muted/30 p-2 focus:outline-input"
             contentEditable
@@ -91,7 +92,7 @@ const TaskCell = ({ task }: { task: Task }) => {
                 submitTaskChange(input);
               } else if (e.key === "Escape") {
                 console.log("cancel state", input);
-
+                setInput("test");
                 cancelChange();
               }
             }}
@@ -103,7 +104,7 @@ const TaskCell = ({ task }: { task: Task }) => {
             }}
           >
             {task.task}
-          </p>
+          </div>
           {/* <Button onClick={() => cancelChange()}>test</Button> */}
         </div>
       ) : (
