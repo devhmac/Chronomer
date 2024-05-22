@@ -50,82 +50,145 @@ export default function TaskTable({
   setTaskActive: (taskId: Task["id"]) => void;
   activeTaskId: string | undefined;
 }) {
-  return (
-    // <div className="@container">
-    <Table className="rounded-md border bg-popover backdrop-blur-sm">
-      <TableHeader>
-        <TableRow>
-          <TableHead className="hidden w-[50px] sm:table-cell">
-            <span className="sr-only">Complete Task</span>
-          </TableHead>
-          <TableHead>Task</TableHead>
-          {/* <TableHead>tag</TableHead> */}
-          <TableHead className="hidden md:table-cell">Status</TableHead>
-          <TableHead className="hidden md:table-cell">Time</TableHead>
-          <TableHead>
-            <span className="sr-only">Actions</span>
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {tableLoading ? (
-          <TableSkeleton />
-        ) : (
-          data.map((task, index) => {
-            return (
-              <TableRow
-                key={`${task.id}${index}`}
-                className={cn(
-                  "relative",
-                  task.isComplete
-                    ? "bg-background-muted text-str text-zinc-500 line-through	"
-                    : "",
-                )}
-                onClick={() => setTaskActive(task.id)}
-              >
-                <TableCell className="hidden sm:table-cell">
-                  <div className="">
-                    {task.id === "-1" ? (
-                      <CancelTask task={task} />
-                    ) : (
-                      <CompleteTask task={task} />
-                    )}
-                  </div>
-                </TableCell>
-                <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
-                  <TaskCell task={task} />
-                </TableCell>
-                {/* <TableCell>
-                <Badge variant="outline">Draft</Badge>
-              </TableCell> */}
-                <TableCell className="hidden md:table-cell">
-                  <StatusSelect task={task} />
-                </TableCell>
-                <TableCell className="hidden text-center md:table-cell">
-                  <TimeSpent
-                    timeToComplete={task.timeToComplete}
-                    timersComplete={task.timersComplete}
-                    taskId={task.id}
-                  />
-                </TableCell>
+  const rows = data
+    .filter((data) => !data.isComplete)
+    .map((task, index) => {
+      return (
+        <TableRow
+          key={`${task.id}${index}`}
+          className={cn(
+            "relative",
+            task.isComplete
+              ? "bg-background-muted text-str text-zinc-500 line-through	"
+              : "",
+          )}
+          onClick={() => setTaskActive(task.id)}
+        >
+          <TableCell className="hidden sm:table-cell">
+            <div className="">
+              {task.id === "-1" ? (
+                <CancelTask task={task} />
+              ) : (
+                <CompleteTask task={task} />
+              )}
+            </div>
+          </TableCell>
+          <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
+            <TaskCell task={task} />
+          </TableCell>
+          {/* <TableCell>
+      <Badge variant="outline">Draft</Badge>
+    </TableCell> */}
+          <TableCell className="hidden md:table-cell">
+            <StatusSelect task={task} />
+          </TableCell>
+          <TableCell className="hidden text-center md:table-cell">
+            <TimeSpent
+              timeToComplete={task.timeToComplete}
+              timersComplete={task.timersComplete}
+              taskId={task.id}
+            />
+          </TableCell>
 
-                <TableCell>
-                  <Options task={task} />
-                  {activeTaskId === task.id ? (
-                    <span className=" absolute inset-y-0 right-0 z-10 my-auto h-full w-1 bg-[#7dd3fc] "></span>
-                  ) : null}
-                </TableCell>
-              </TableRow>
-            );
-          })
-        )}
-        <TableRow>
-          <TableCell className="px-1 " colSpan={5}>
-            <NewTask />
+          <TableCell>
+            <Options task={task} />
+            {activeTaskId === task.id ? (
+              <span className=" absolute inset-y-0 right-0 z-10 my-auto h-full w-1 bg-[#7dd3fc] "></span>
+            ) : null}
           </TableCell>
         </TableRow>
-      </TableBody>
-    </Table>
+      );
+    });
+
+  const completed = data
+    .filter((data) => data.isComplete)
+    .map((task, index) => {
+      return (
+        <TableRow
+          key={`${task.id}${index}`}
+          className={cn(
+            "relative",
+            task.isComplete
+              ? "bg-background-muted text-str text-zinc-500 line-through	"
+              : "",
+          )}
+          onClick={() => setTaskActive(task.id)}
+        >
+          <TableCell className="hidden sm:table-cell">
+            <div className="">
+              {task.id === "-1" ? (
+                <CancelTask task={task} />
+              ) : (
+                <CompleteTask task={task} />
+              )}
+            </div>
+          </TableCell>
+          <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
+            <TaskCell task={task} />
+          </TableCell>
+          {/* <TableCell>
+      <Badge variant="outline">Draft</Badge>
+    </TableCell> */}
+          <TableCell className="hidden md:table-cell">
+            <StatusSelect task={task} />
+          </TableCell>
+          <TableCell className="hidden text-center md:table-cell">
+            <TimeSpent
+              timeToComplete={task.timeToComplete}
+              timersComplete={task.timersComplete}
+              taskId={task.id}
+            />
+          </TableCell>
+
+          <TableCell>
+            <Options task={task} />
+            {activeTaskId === task.id ? (
+              <span className=" absolute inset-y-0 right-0 z-10 my-auto h-full w-1 bg-[#7dd3fc] "></span>
+            ) : null}
+          </TableCell>
+        </TableRow>
+      );
+    });
+
+  return (
+    // <div className="@container">
+    <>
+      <Table className="rounded-md border bg-popover backdrop-blur-sm">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="hidden w-[50px] sm:table-cell">
+              <span className="sr-only">Complete Task</span>
+            </TableHead>
+            <TableHead>Task</TableHead>
+            {/* <TableHead>tag</TableHead> */}
+            <TableHead className="hidden md:table-cell">Status</TableHead>
+            <TableHead className="hidden md:table-cell">Time</TableHead>
+            <TableHead>
+              <span className="sr-only">Actions</span>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {tableLoading ? <TableSkeleton /> : rows}
+          <TableRow>
+            <TableCell className="px-1 " colSpan={5}>
+              <NewTask />
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+
+      {completed.length > 0 && (
+        <>
+          <h3 className="mb-2 ml-2 mt-4">Complete</h3>
+          <Table className="rounded-md border bg-popover backdrop-blur-sm">
+            <TableBody>
+              {tableLoading ? <TableSkeleton /> : completed}
+            </TableBody>
+          </Table>
+        </>
+      )}
+    </>
     // </div>
   );
 }
