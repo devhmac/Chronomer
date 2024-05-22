@@ -129,7 +129,7 @@ const TaskCell = ({ task }: { task: Task }) => {
           }}
           className="cursor-text rounded-md border-input p-2 hover:border"
         >
-          <p className={cn("line-clamp-2 w-full ")}>{input}</p>
+          <p className={cn("line-clamp-1 w-full ")}>{input}</p>
         </div>
       )}
     </div>
