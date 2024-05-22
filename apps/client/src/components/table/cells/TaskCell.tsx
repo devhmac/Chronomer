@@ -47,8 +47,6 @@ const TaskCell = ({ task }: { task: Task }) => {
   useLayoutEffect(() => {
     if (!inputRef.current) return;
     inputRef.current.focus();
-    let selection = window.getSelection();
-    console.log("selection", window.getSelection()?.getRangeAt(0));
   }, [isEdit]);
 
   return (
@@ -75,12 +73,25 @@ const TaskCell = ({ task }: { task: Task }) => {
             role="textbox"
             tabIndex={0}
             suppressContentEditableWarning={true}
-            onFocus={(e) =>
+            onFocus={
+              (e) => {
+                if (inputRef.current) {
+                  const range = document.createRange();
+                  const selection = window.getSelection();
+                  range.selectNodeContents(inputRef.current);
+                  range.collapse(false); // Collapse the range to the end
+                  selection?.removeAllRanges();
+                  selection?.addRange(range);
+                }
+                // let length = inputRef.current?.textContent.length;
+                // inputRef.current?.setSelectionRange(length, length);
+                console.log("input focused", length);
+                console.log("current", inputRef.current);
+              }
               // e.currentTarget.setSelectionRange(
               //   e.currentTarget.textContent?.length,
               //   e.currentTarget.textContent?.length,
               // )
-              console.log("input focused", e)
             }
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -96,18 +107,20 @@ const TaskCell = ({ task }: { task: Task }) => {
           >
             {task.task}
           </div>
-          <button
-            id="cancel-button"
-            className=" ml-2 hover:cursor-pointer"
-            aria-label="Cancel Task Creation"
-          >
-            <CircleOff
-              onClick={() => {
-                cancelChange();
-              }}
-              className={cn("h-4 w-4 text-rose-400 hover:text-rose-600")}
-            />
-          </button>
+          {task.id !== "-1" && (
+            <button
+              id="cancel-button"
+              className=" ml-2 hover:cursor-pointer"
+              aria-label="Cancel Task Creation"
+            >
+              <CircleOff
+                onClick={() => {
+                  cancelChange();
+                }}
+                className={cn("h-4 w-4 text-rose-400 hover:text-rose-600")}
+              />
+            </button>
+          )}
         </div>
       ) : (
         <div
