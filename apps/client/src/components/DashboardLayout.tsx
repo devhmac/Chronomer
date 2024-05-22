@@ -21,7 +21,7 @@ const DashboardLayout = () => {
         </div>
         <div className="mx-auto w-full max-w-[560px] pt-[61px] sm:w-fit xl:pt-0">
           <ActiveTask />
-          <Timer className={"mb-2 shadow-lg dark:shadow-indigo-300/10"} />
+          <Timer className={"mb-2 shadow-lg dark:shadow-indigo-300/20"} />
         </div>
         {/* <div className="- h-full w-[600px] border border-red-200">
             <p>this is chat</p>

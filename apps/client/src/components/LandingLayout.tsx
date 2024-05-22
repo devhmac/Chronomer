@@ -16,9 +16,9 @@ const LandingLayout = () => {
           <p className="text-sm font-semibold text-primary">v0.5 Now Live!</p>
         </div>
         <Header />
-        <div className="mt-5 rounded-lg bg-gradient">
+        <div className="mt-5 rounded-lg hover:bg-gradient">
           <Link href="/dashboard">
-            <Button className="m-0.5 bg-background text-primary hover:bg-secondary">
+            <Button className="hover:muted m-0.5 bg-primary text-popover hover:shadow-xl hover:shadow-indigo-300/40">
               Get Started
             </Button>
           </Link>
@@ -26,7 +26,9 @@ const LandingLayout = () => {
       </MaxWidthWrapper>
 
       {/* <Timer className={" shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px]"} /> */}
-      <Timer className={" shadow-xl shadow-indigo-300/40"} />
+      <div className="w-full rounded-lg shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px] sm:w-auto">
+        <Timer className={" "} />
+      </div>
 
       <MaxWidthWrapper className="mb-12 mt-20 text-center ">
         <h2 className="sub-header-text mb-6 ">Track your Velocity</h2>
@@ -35,11 +37,9 @@ const LandingLayout = () => {
           track.
         </p>
       </MaxWidthWrapper>
-      <div className="w-full sm:w-auto">
-        {/* <ToDoWrapper
-          className={"shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px]"}
-        /> */}
-        <ToDoWrapper className={"shadow-xl  shadow-indigo-300/40"} />
+      <div className="w-full rounded-lg shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px] sm:w-auto">
+        <ToDoWrapper />
+        {/* <ToDoWrapper className={"w-full shadow-xl shadow-indigo-300/40"} /> */}
         {/* really cool echo background */}
         {/* <ToDoWrapper
           className={
