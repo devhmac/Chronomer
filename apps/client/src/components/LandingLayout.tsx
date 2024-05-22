@@ -7,19 +7,20 @@ import ToDoWrapper from "./table/ToDoWrapper";
 
 import TableSkeleton from "./table/skeleton/TableSkeleton";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 const LandingLayout = () => {
   return (
     <div className="flex flex-col items-center justify-center ">
       <MaxWidthWrapper className="sm:mt-30 mb-6 mt-28 flex flex-col items-center justify-center text-center">
         <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 bg-popover/25 px-6 py-2 shadow-md backdrop-blur-sm transition-all hover:bg-accent/50">
-          <p className="text-sm font-semibold text-primary">v0.5 Now Live!</p>
+          <p className="text-sm font-semibold text-primary">v0.6 Now Live!</p>
         </div>
         <Header />
         <div className="mt-5 rounded-lg hover:bg-gradient">
           <Link href="/dashboard">
-            <Button className="hover:muted m-0.5 bg-primary text-popover hover:shadow-xl hover:shadow-indigo-300/40">
-              Get Started
+            <Button className="hover:muted m-0.5 bg-primary  text-popover hover:shadow-md hover:shadow-indigo-300/40">
+              Get Started <ChevronRight className="ml-1 mr-0 h-4 w-4" />
             </Button>
           </Link>
         </div>
