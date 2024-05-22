@@ -16,8 +16,8 @@ const DashboardLayout = () => {
         {/* <div className=""> */}
         {/* <div className="min-w-[300px]"> */}
         {/* <TodoTable columns={columns} data={data} /> */}
-        <div className="w-full sm:w-auto xl:h-full xl:pt-[61px]">
-          <ToDoWrapper className="xl:border-l-0" />
+        <div className="w-full sm:w-auto xl:h-full xl:pt-[61px] ">
+          <ToDoWrapper className="xl:border-l-0 xl:shadow-[rgba(165,_180,_252,_0.2)_5px_0px_10px]" />
         </div>
         <div className="mx-auto w-full max-w-[560px] pt-[61px] sm:w-fit xl:pt-0">
           <ActiveTask />
