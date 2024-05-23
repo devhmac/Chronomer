@@ -8,6 +8,7 @@ import StatusSelect from "./cells/StatusSelect";
 import TimeSpent from "./cells/TimeSpent";
 import Options from "./cells/Options";
 import { cn } from "@/lib/utils/utils";
+import { Badge } from "@/components/ui/badge";
 
 const TaskRow = ({
   task,
@@ -22,9 +23,9 @@ const TaskRow = ({
     <TableRow
       // key={`${task.id}${index}`}
       className={cn(
-        "relative",
+        " relative",
         task.isComplete
-          ? "bg-background-muted text-str text-zinc-500 line-through	"
+          ? "bg-background-muted text-str text-zinc-500 line-through"
           : "",
       )}
       onClick={() => setTaskActive(task.id)}
@@ -38,7 +39,10 @@ const TaskRow = ({
           )}
         </div>
       </TableCell>
-      <TableCell className="min-w-[315px] @[560px]:bg-red-400  md:max-w-[315px]">
+      <TableCell className="flex min-w-[315px] items-center space-x-1   md:max-w-[315px]">
+        {/* <Badge className="mt-0.5" variant="outline">
+          {"hello"}
+        </Badge> */}
         <TaskCell task={task} />
       </TableCell>
       {/* <TableCell>

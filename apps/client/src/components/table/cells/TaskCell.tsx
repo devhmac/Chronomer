@@ -127,7 +127,7 @@ const TaskCell = ({ task }: { task: Task }) => {
           onClick={(e) => {
             setIsEdit(true);
           }}
-          className="cursor-text rounded-md border-input p-2 hover:border"
+          className=" h-full w-full cursor-text rounded-md border border-white/0  p-2 align-middle hover:border hover:border-input"
         >
           <p className={cn("line-clamp-1 w-full ")}>{input}</p>
         </div>
