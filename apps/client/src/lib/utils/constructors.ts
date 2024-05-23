@@ -5,8 +5,9 @@ export class SubTask {
   task: string;
   description: string;
   status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
-  isActive: boolean;
   timeToComplete: number;
+  tags: string[];
+  project: string | null;
   order: number;
   createdAt: Date;
   isComplete: boolean;
@@ -18,7 +19,8 @@ export class SubTask {
     this.task = taskDesc || "";
     this.description = "";
     this.status = "BACKLOG";
-    this.isActive = false;
+    this.tags = [];
+    this.project = null;
     this.timeToComplete = 0;
     this.order = 0;
     this.createdAt = new Date();

@@ -4,9 +4,10 @@ export type SubTask = {
   description: string;
   // status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
   status: string;
-  isActive: boolean;
   timeToComplete: number;
   order: number;
+  tags: string[];
+  project: string;
   isComplete: boolean;
   createdAt: Date;
   completedAt: Date | null;
@@ -19,7 +20,8 @@ export type Task = {
   description: string;
   // status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
   status: string;
-  isActive: boolean;
+  tags: string[];
+  project: string | null;
   subTasks: SubTask[];
   timeToComplete: number;
   order: number;
