@@ -10,7 +10,7 @@ export type SubTask = {
   isComplete: boolean;
   createdAt: Date;
   completedAt: Date | null;
-  timersComplete: number;
+  timeSpent: number;
 };
 
 export type Task = {
@@ -26,5 +26,5 @@ export type Task = {
   isComplete: boolean;
   createdAt: Date;
   completedAt: Date | null;
-  timersComplete: number;
+  timeSpent: number;
 };

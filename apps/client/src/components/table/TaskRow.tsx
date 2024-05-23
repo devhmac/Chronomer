@@ -50,7 +50,7 @@ const TaskRow = ({
       <TableCell className="hidden text-center md:table-cell">
         <TimeSpent
           timeToComplete={task.timeToComplete}
-          timersComplete={task.timersComplete}
+          timersComplete={task.timeSpent}
           taskId={task.id}
         />
       </TableCell>
