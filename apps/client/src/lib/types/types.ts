@@ -12,6 +12,7 @@ export type SubTask = {
   createdAt: Date;
   completedAt: Date | null;
   timeSpent: number;
+  archived: boolean;
 };
 
 export type Task = {
@@ -29,4 +30,5 @@ export type Task = {
   createdAt: Date;
   completedAt: Date | null;
   timeSpent: number;
+  archived: boolean;
 };

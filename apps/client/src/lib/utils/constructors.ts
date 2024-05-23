@@ -13,6 +13,7 @@ export class SubTask {
   isComplete: boolean;
   completedAt: Date | null;
   timeSpent: number;
+  archived: boolean;
 
   constructor(taskDesc?: string) {
     this.id = "-1";
@@ -27,6 +28,7 @@ export class SubTask {
     this.isComplete = false;
     this.completedAt = null;
     this.timeSpent = 0;
+    this.archived = false;
   }
 }
 

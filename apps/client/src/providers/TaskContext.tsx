@@ -66,7 +66,7 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
 
   const getActiveTaskByID = (taskId: string) => {
     if (!user) {
-      return getLocalItem().filter((task: Task) => {
+      return getLocalItem()?.filter((task: Task) => {
         return task.id === taskId;
       })[0];
     }
