@@ -49,7 +49,7 @@ const TaskRow = ({
 <Badge variant="outline">Draft</Badge>
 </TableCell> */}
       <TableCell className="hidden md:table-cell">
-        <StatusSelect task={task} statusText={task.status} taskId={task.id} />
+        <StatusSelect task={task} variant="row" />
       </TableCell>
       <TableCell className="hidden text-center md:table-cell">
         <TimeSpent

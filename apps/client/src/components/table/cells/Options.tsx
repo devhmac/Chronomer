@@ -50,47 +50,46 @@ const Options = ({ task }: { task: Task }) => {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Task Options</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem onClick={() => deleteTask(task)}>
-            <Trash2 className="mr-2 h-4 w-4 text-rose-500" />
-            Delete Task
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-
-          <DropdownMenuLabel className="font-normal">Status</DropdownMenuLabel>
-
-          <DropdownMenuItem className=" ">
-            <StatusSelect
-              task={task}
-              statusText={task.status}
-              taskId={task.id}
-            />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        {/* <DropdownMenuGroup> */}
+        <DropdownMenuItem onClick={() => deleteTask(task)}>
+          <Trash2 className="mr-2 h-4 w-4 text-rose-500" />
+          Delete Task
+        </DropdownMenuItem>
+        {/* <DropdownMenuGroup className="md:hidden">
+            <DropdownMenuSeparator />
+            <DropdownMenuLabel className="font-normal">
+              Status
+            </DropdownMenuLabel>
+            <DropdownMenuItem className="">
+              <StatusSelect task={task} variant="options" />
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuGroup> */}
+        <StatusSelect task={task} variant="options" />
 
         {/* <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <UserPlus className="mr-2 h-4 w-4" />
-              <span>Invite users</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem>
-                  <Mail className="mr-2 h-4 w-4" />
-                  <span>Email</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  <span>Message</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  <span>More...</span>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub> */}
+          <DropdownMenuSubTrigger>
+            <UserPlus className="mr-2 h-4 w-4" />
+            <span>Invite users</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>
+                <Mail className="mr-2 h-4 w-4" />
+                <span>Email</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <MessageSquare className="mr-2 h-4 w-4" />
+                <span>Message</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <PlusCircle className="mr-2 h-4 w-4" />
+                <span>More...</span>
+              </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );
