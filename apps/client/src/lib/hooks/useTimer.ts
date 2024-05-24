@@ -88,6 +88,14 @@ export const useTimer = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (timerRunning) {
+        if (
+          secondsRemaining % 60 === 0 &&
+          secondsRemaining !== timerConfig.timer &&
+          timerConfig.mode === "timer" &&
+          activeTask
+        ) {
+          incrementActiveTaskTime(1);
+        }
         // || dayjs().isAfter(endTS) had this as part of or condition line 40 - to figure out with local store
         if (secondsRemaining === 0) {
           console.log("inside main stop condition");
@@ -107,14 +115,6 @@ export const useTimer = () => {
           return;
         }
         // increment when - every 60 sec, not at start of timer, when active task exists, timer mode is timer
-        if (
-          secondsRemaining % 60 === 0 &&
-          secondsRemaining !== timerConfig.timer &&
-          timerConfig.mode === "timer" &&
-          activeTask
-        ) {
-          incrementActiveTaskTime(1);
-        }
 
         setSecondsRemaining((prev) => prev - 1);
       }
