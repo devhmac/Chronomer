@@ -60,7 +60,11 @@ const Options = ({ task }: { task: Task }) => {
           <DropdownMenuLabel className="font-normal">Status</DropdownMenuLabel>
 
           <DropdownMenuItem className=" ">
-            <StatusSelect task={task} />
+            <StatusSelect
+              task={task}
+              statusText={task.status}
+              taskId={task.id}
+            />
           </DropdownMenuItem>
         </DropdownMenuGroup>
 

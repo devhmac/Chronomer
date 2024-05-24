@@ -23,11 +23,15 @@ const statusMap = {
   BLOCKED: "Blocked",
 };
 
-type props = {
-  task: Task; //make this the task type
-};
-
-const StatusSelect = ({ task }: props) => {
+const StatusSelect = ({
+  taskId,
+  statusText,
+  task,
+}: {
+  taskId: string;
+  statusText: string;
+  task: Task;
+}) => {
   const { updateTask } = useContext(taskContext);
 
   const statusOptions = Object.keys(statusMap);
@@ -36,7 +40,6 @@ const StatusSelect = ({ task }: props) => {
 
   // let initialStatus;
 
-  const [status, setStatus] = useState(task.status);
   // const [complete, setComplete] = useState(task.isComplete);
 
   return (
@@ -44,9 +47,8 @@ const StatusSelect = ({ task }: props) => {
       onValueChange={(val) => {
         const updatedTask = { ...task, status: val };
         updateTask(updatedTask);
-        setStatus(val);
       }}
-      value={status}
+      value={statusText}
     >
       <SelectTrigger className="mr-1 border-none">
         <SelectValue placeholder={initialStatus} />
@@ -54,14 +56,7 @@ const StatusSelect = ({ task }: props) => {
       <SelectContent>
         {statusOptions.map((status) => {
           return (
-            <SelectItem
-              key={status}
-              value={status}
-              onClick={(e) => {
-                const updatedTask = { ...task, status: status };
-                updateTask(updatedTask);
-              }}
-            >
+            <SelectItem key={status} value={status}>
               {statusMap[status as keyof StatusMap]}
             </SelectItem>
           );

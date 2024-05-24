@@ -70,7 +70,7 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       return row ? (
         <div className="text-right">
-          {row.original.timersComplete}/{row.getValue("timeToComplete")}
+          {row.original.timeToComplete}/{row.getValue("timeToComplete")}
         </div>
       ) : (
         <div>No time defined</div>
