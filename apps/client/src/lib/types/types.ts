@@ -6,7 +6,7 @@ export type SubTask = {
   timeToComplete: number;
   order: number;
   tags: string[];
-  project: string;
+  project: string | null;
   isComplete: boolean;
   createdAt: Date;
   completedAt: Date | null;
@@ -19,14 +19,14 @@ export type Task = {
   task: string;
   description: string;
   status: string;
-  tags: string[];
-  project: string | null;
-  subTasks: SubTask[];
   timeToComplete: number;
   order: number;
+  tags: string[];
+  project: string | null;
   isComplete: boolean;
   createdAt: Date;
   completedAt: Date | null;
   timeSpent: number;
   archived: boolean;
+  subTasks: SubTask[];
 };
