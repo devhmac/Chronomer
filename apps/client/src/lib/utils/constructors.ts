@@ -4,13 +4,13 @@ export class SubTask {
   id: string;
   task: string;
   description: string;
-  status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
+  status: string;
   timeToComplete: number;
+  order: number;
   tags: string[];
   project: string | null;
-  order: number;
-  createdAt: Date;
   isComplete: boolean;
+  createdAt: Date;
   completedAt: Date | null;
   timeSpent: number;
   archived: boolean;

@@ -2,7 +2,6 @@ export type SubTask = {
   id: string;
   task: string;
   description: string;
-  // status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
   status: string;
   timeToComplete: number;
   order: number;
@@ -19,7 +18,6 @@ export type Task = {
   id: string;
   task: string;
   description: string;
-  // status: "COMPLETE" | "INPROGRESS" | "BACKLOG" | "BLOCKED";
   status: string;
   tags: string[];
   project: string | null;
