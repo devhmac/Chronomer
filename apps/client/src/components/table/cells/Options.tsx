@@ -66,6 +66,29 @@ const Options = ({ task }: { task: Task }) => {
           </DropdownMenuGroup>
         </DropdownMenuGroup> */}
         <StatusSelect task={task} variant="options" />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            {/* <UserPlus className="mr-2 h-4 w-4" /> */}
+            <span>Invite users</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>
+                {/* <Mail className="mr-2 h-4 w-4" /> */}
+                <span>Email</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <MessageSquare className="mr-2 h-4 w-4" />
+                <span>Message</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                {/* <PlusCircle className="mr-2 h-4 w-4" /> */}
+                <span>More...</span>
+              </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
 
         {/* <DropdownMenuSub>
           <DropdownMenuSubTrigger>

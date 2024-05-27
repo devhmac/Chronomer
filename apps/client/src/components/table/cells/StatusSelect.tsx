@@ -17,7 +17,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, UserPlus } from "lucide-react";
 
 type StatusMap = {
   BACKLOG: string;
@@ -80,7 +80,7 @@ const StatusSelect = ({
     return (
       <DropdownMenuSub>
         <DropdownMenuSubTrigger>
-          {/* <UserPlus className="mr-2 h-4 w-4" /> */}
+          {/* <UserPlus  className="mr-2 h-4 w-4" /> */}
           <span>Invite users</span>
         </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
