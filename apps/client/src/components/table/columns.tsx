@@ -59,7 +59,7 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className=" max-w-[120px]">
-          <StatusSelect task={row.original} />
+          <StatusSelect task={row.original} variant="row" />
         </div>
       );
     },
