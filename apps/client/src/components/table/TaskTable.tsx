@@ -156,13 +156,13 @@ export default function TaskTable({
       <Table className="rounded-md border bg-popover backdrop-blur-sm">
         <TableHeader>
           <TableRow>
-            <TableHead className="hidden w-[50px] sm:table-cell">
+            <TableHead className="w-[50px] ">
               <span className="sr-only">Complete Task</span>
             </TableHead>
             <TableHead>Task</TableHead>
             {/* <TableHead>tag</TableHead> */}
             <TableHead className="hidden md:table-cell">Status</TableHead>
-            <TableHead className="hidden md:table-cell">Time</TableHead>
+            <TableHead className="">Time</TableHead>
             <TableHead>
               <span className="sr-only">Actions</span>
             </TableHead>
