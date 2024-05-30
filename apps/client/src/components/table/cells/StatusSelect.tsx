@@ -64,7 +64,7 @@ const StatusSelect = ({
         }}
         value={task.status}
       >
-        <SelectTrigger className="mr-1 border-none">
+        <SelectTrigger className="  hover:bg-accent">
           <SelectValue placeholder={initialStatus} />
         </SelectTrigger>
         <SelectContent>
@@ -84,7 +84,12 @@ const StatusSelect = ({
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             {/* <UserPlus  className="mr-2 h-4 w-4" /> */}
-            <span>Status: {statusMap[task.status as keyof StatusMap]}</span>
+            <span>
+              Status:{" "}
+              <span className="rounded-md border border-accent bg-accent/25 p-1">
+                {statusMap[task.status as keyof StatusMap]}
+              </span>
+            </span>
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>

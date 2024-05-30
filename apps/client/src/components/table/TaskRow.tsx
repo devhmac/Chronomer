@@ -39,7 +39,7 @@ const TaskRow = ({
           )}
         </div>
       </TableCell>
-      <TableCell className="flex w-[250px] items-center space-x-1 sm:min-w-[315px]   md:max-w-[315px]">
+      <TableCell className="flex w-[250px] items-center space-x-1 sm:min-w-[315px] md:max-w-[315px]">
         {/* <Badge className="mt-0.5" variant="outline">
           {"hello"}
         </Badge> */}
