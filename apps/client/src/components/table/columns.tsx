@@ -59,7 +59,7 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className=" max-w-[120px]">
-          <StatusSelect task={row.original} />
+          <StatusSelect task={row.original} variant="row" />
         </div>
       );
     },
@@ -70,7 +70,7 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       return row ? (
         <div className="text-right">
-          {row.original.timersComplete}/{row.getValue("timeToComplete")}
+          {row.original.timeToComplete}/{row.getValue("timeToComplete")}
         </div>
       ) : (
         <div>No time defined</div>

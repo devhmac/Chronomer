@@ -30,7 +30,7 @@ const TaskRow = ({
       )}
       onClick={() => setTaskActive(task.id)}
     >
-      <TableCell className="hidden sm:table-cell">
+      <TableCell className="">
         <div className="">
           {task.id === "-1" ? (
             <CancelTask task={task} />
@@ -39,7 +39,7 @@ const TaskRow = ({
           )}
         </div>
       </TableCell>
-      <TableCell className="flex min-w-[315px] items-center space-x-1   md:max-w-[315px]">
+      <TableCell className="flex w-[250px] items-center space-x-1 sm:min-w-[315px] md:max-w-[315px]">
         {/* <Badge className="mt-0.5" variant="outline">
           {"hello"}
         </Badge> */}
@@ -49,9 +49,9 @@ const TaskRow = ({
 <Badge variant="outline">Draft</Badge>
 </TableCell> */}
       <TableCell className="hidden md:table-cell">
-        <StatusSelect task={task} />
+        <StatusSelect task={task} variant="row" />
       </TableCell>
-      <TableCell className="hidden text-center md:table-cell">
+      <TableCell className="text-center">
         <TimeSpent
           timeToComplete={task.timeToComplete}
           timersComplete={task.timeSpent}

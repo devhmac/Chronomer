@@ -17,7 +17,7 @@ const TimeSpent = ({ timersComplete, timeToComplete, taskId }: props) => {
   };
 
   const time = minutesToTime(timeToComplete);
-  return <div>{time}</div>;
+  return <div className="rounded-md border p-1 hover:bg-accent">{time}</div>;
 };
 
 export default TimeSpent;

@@ -110,18 +110,18 @@
   height: 0.25rem;
 }
 
-.scrollbar-track-green-lighter::-webkit-scrollbar-track {
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+}
+
+.scrollbar-track-color-lighter::-webkit-scrollbar-track {
   --bg-opacity: 0.5;
   background-color: #00000015;
 }
 
-.scrollbar-thumb-green::-webkit-scrollbar-thumb {
+.scrollbar-thumb-color::-webkit-scrollbar-thumb {
   --bg-opacity: 0.5;
-  background-color: #13131374;
-}
-
-.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-  border-radius: 7px;
+  background-color: #5d9cdb5a;
 }
 
 .glass-bg {

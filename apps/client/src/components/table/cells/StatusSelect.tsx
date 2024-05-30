@@ -9,6 +9,17 @@ import {
 } from "@/components/ui/select";
 import { Task } from "@/lib/types/types";
 import { taskContext } from "@/providers/TaskContext";
+import {
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuGroup,
+} from "@/components/ui/dropdown-menu";
+import { MessageSquare, UserPlus } from "lucide-react";
+import { cn } from "@/lib/utils/utils";
 
 type StatusMap = {
   BACKLOG: string;
@@ -23,11 +34,17 @@ const statusMap = {
   BLOCKED: "Blocked",
 };
 
-type props = {
-  task: Task; //make this the task type
-};
-
-const StatusSelect = ({ task }: props) => {
+const StatusSelect = ({
+  // taskId,
+  // statusText,
+  task,
+  variant,
+}: {
+  // taskId: string;
+  // statusText: string;
+  task: Task;
+  variant: "row" | "options";
+}) => {
   const { updateTask } = useContext(taskContext);
 
   const statusOptions = Object.keys(statusMap);
@@ -36,39 +53,66 @@ const StatusSelect = ({ task }: props) => {
 
   // let initialStatus;
 
-  const [status, setStatus] = useState(task.status);
   // const [complete, setComplete] = useState(task.isComplete);
 
-  return (
-    <Select
-      onValueChange={(val) => {
-        const updatedTask = { ...task, status: val };
-        updateTask(updatedTask);
-        setStatus(val);
-      }}
-      value={status}
-    >
-      <SelectTrigger className="mr-1 border-none">
-        <SelectValue placeholder={initialStatus} />
-      </SelectTrigger>
-      <SelectContent>
-        {statusOptions.map((status) => {
-          return (
-            <SelectItem
-              key={status}
-              value={status}
-              onClick={(e) => {
-                const updatedTask = { ...task, status: status };
-                updateTask(updatedTask);
-              }}
-            >
-              {statusMap[status as keyof StatusMap]}
-            </SelectItem>
-          );
-        })}
-      </SelectContent>
-    </Select>
-  );
+  if (variant === "row")
+    return (
+      <Select
+        onValueChange={(val) => {
+          const updatedTask = { ...task, status: val };
+          updateTask(updatedTask);
+        }}
+        value={task.status}
+      >
+        <SelectTrigger className="  hover:bg-accent">
+          <SelectValue placeholder={initialStatus} />
+        </SelectTrigger>
+        <SelectContent>
+          {statusOptions.map((status) => {
+            return (
+              <SelectItem key={status} value={status}>
+                {statusMap[status as keyof StatusMap]}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </Select>
+    );
+  if (variant === "options")
+    return (
+      <DropdownMenuGroup>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            {/* <UserPlus  className="mr-2 h-4 w-4" /> */}
+            <span>
+              Status:{" "}
+              <span className="rounded-md border border-accent bg-accent/25 p-1">
+                {statusMap[task.status as keyof StatusMap]}
+              </span>
+            </span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              {statusOptions.map((status) => {
+                return (
+                  <DropdownMenuItem
+                    className={cn(status === task.status ? "bg-accent" : "")}
+                    onClick={() => {
+                      const updatedTask = { ...task, status: status };
+                      updateTask(updatedTask);
+                    }}
+                  >
+                    {statusMap[status as keyof StatusMap]}
+                  </DropdownMenuItem>
+                  // <SelectItem key={status} value={status}>
+                  // </SelectItem>
+                );
+              })}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+      </DropdownMenuGroup>
+    );
 };
 
 export default StatusSelect;
