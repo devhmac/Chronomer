@@ -16,8 +16,10 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "@radix-ui/react-dropdown-menu";
+  DropdownMenuGroup,
+} from "@/components/ui/dropdown-menu";
 import { MessageSquare, UserPlus } from "lucide-react";
+import { cn } from "@/lib/utils/utils";
 
 type StatusMap = {
   BACKLOG: string;
@@ -78,29 +80,33 @@ const StatusSelect = ({
     );
   if (variant === "options")
     return (
-      <DropdownMenuSub>
-        <DropdownMenuSubTrigger>
-          {/* <UserPlus  className="mr-2 h-4 w-4" /> */}
-          <span>Invite users</span>
-        </DropdownMenuSubTrigger>
-        <DropdownMenuPortal>
-          <DropdownMenuSubContent>
-            <DropdownMenuItem>
-              {/* <Mail className="mr-2 h-4 w-4" /> */}
-              <span>Email</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <MessageSquare className="mr-2 h-4 w-4" />
-              <span>Message</span>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              {/* <PlusCircle className="mr-2 h-4 w-4" /> */}
-              <span>More...</span>
-            </DropdownMenuItem>
-          </DropdownMenuSubContent>
-        </DropdownMenuPortal>
-      </DropdownMenuSub>
+      <DropdownMenuGroup>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            {/* <UserPlus  className="mr-2 h-4 w-4" /> */}
+            <span>Status: {statusMap[task.status as keyof StatusMap]}</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              {statusOptions.map((status) => {
+                return (
+                  <DropdownMenuItem
+                    className={cn(status === task.status ? "bg-accent" : "")}
+                    onClick={() => {
+                      const updatedTask = { ...task, status: status };
+                      updateTask(updatedTask);
+                    }}
+                  >
+                    {statusMap[status as keyof StatusMap]}
+                  </DropdownMenuItem>
+                  // <SelectItem key={status} value={status}>
+                  // </SelectItem>
+                );
+              })}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+      </DropdownMenuGroup>
     );
 };
 
