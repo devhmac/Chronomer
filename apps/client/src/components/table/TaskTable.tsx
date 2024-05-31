@@ -38,6 +38,7 @@ export default function TaskTable({
   setTaskActive: (taskId: Task["id"]) => void;
   activeTaskId: string | undefined;
 }) {
+  // memoize this into an object of arrays by section?
   const rows = data
     .filter((data) => !data.isComplete)
     .map((task, index) => {
@@ -96,9 +97,7 @@ export default function TaskTable({
         <>
           <h3 className="mb-2 ml-2 mt-4">Complete</h3>
           <Table className="rounded-md border bg-popover backdrop-blur-sm">
-            <TableBody>
-              {tableLoading ? <TableSkeleton /> : completed}
-            </TableBody>
+            <TableBody>{completed}</TableBody>
           </Table>
         </>
       )}
