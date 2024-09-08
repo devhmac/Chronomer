@@ -37,8 +37,9 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId }: props) => {
           percentComplete >= 10 ? `w-[${percentComplete}%]` : "hidden",
         )}
       ></div>
-      <p className="relative z-10">
-        {minutesToTime(timeSpent)} / {minutesToTime(timeToComplete)}{" "}
+      <p className="relative z-10 truncate text-ellipsis">
+        {minutesToTime(timeSpent)}{" "}
+        {timeToComplete > 0 ? `/ ${minutesToTime(timeToComplete)}` : null}
       </p>
     </div>
   );
