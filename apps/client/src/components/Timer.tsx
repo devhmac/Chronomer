@@ -71,7 +71,10 @@ export const Timer = ({ className }: { className?: string }) => {
       >
         <div
           className={cn(
-            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center text-white transition-all  duration-500",
+            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center text-white transition-all duration-200 ",
+            timerConfig.mode === "rest"
+              ? "bg-gradient-to-tr from-purple-500 to-purple-300"
+              : "",
           )}
         >
           {/* <div className="flex items-center justify-between border border-red-400"> */}
