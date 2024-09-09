@@ -18,7 +18,6 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId }: props) => {
     return decimalPercent * 100;
   };
   const percentComplete = derivePercentComplete(timeSpent, timeToComplete);
-  // const percentComplete = 10;
 
   const minutesToTime = (time: number) => {
     const hours = Math.floor(time / 60);
@@ -27,19 +26,40 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId }: props) => {
 
     // return `${padTwoDigits(hours)}:${padTwoDigits(min)}`;
   };
-
+  const messageFormatter = (spent: number, target: number) => {
+    const targetFormatted = minutesToTime(target);
+    const spendFormatted = minutesToTime(spent);
+    if (spent === 0 && target <= 0) {
+      return "set estimate";
+    }
+    if (spent === 0 && target > 0) {
+      return `-- / ${targetFormatted}`;
+    }
+    if (spent > 0 && target <= 0) {
+      return spendFormatted;
+    }
+    return `${spendFormatted} / ${targetFormatted}`;
+  };
   const time = minutesToTime(timeSpent);
   return (
-    <div className="relative overflow-hidden rounded-md border p-1 hover:bg-accent">
+    <div className="relative overflow-hidden rounded-md border px-3 py-1 hover:bg-accent">
       <div
-        className={cn(
-          " absolute inset-0  z-0 min-w-2 bg-green-800",
-          percentComplete >= 10 ? `w-[${percentComplete}%]` : "hidden",
-        )}
+        style={
+          percentComplete >= 10
+            ? { width: `${percentComplete}%` }
+            : { display: "none" }
+        }
+        className={cn(" absolute inset-0  z-0  min-w-2 bg-green-800")}
       ></div>
-      <p className="relative z-10 truncate text-ellipsis">
-        {minutesToTime(timeSpent)}{" "}
-        {timeToComplete > 0 ? `/ ${minutesToTime(timeToComplete)}` : null}
+      <p
+        className={cn(
+          "relative z-10 truncate",
+          timeSpent === 0 && timeToComplete === 0
+            ? "text-muted-foreground"
+            : null,
+        )}
+      >
+        {messageFormatter(timeSpent, timeToComplete)}
       </p>
     </div>
   );
