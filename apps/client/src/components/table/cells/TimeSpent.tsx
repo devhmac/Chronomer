@@ -17,8 +17,7 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId }: props) => {
     const decimalPercent = Number((timeSpent / timeTarget).toFixed(1));
     return decimalPercent * 100;
   };
-  const percentComplete = 50;
-  // derivePercentComplete(timeSpent, timeToComplete);
+  const percentComplete = derivePercentComplete(timeSpent, timeToComplete);
 
   const minutesToTime = (time: number) => {
     const hours = Math.floor(time / 60);
