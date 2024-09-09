@@ -70,7 +70,7 @@ const StatusSelect = ({
         <SelectContent>
           {statusOptions.map((status) => {
             return (
-              <SelectItem key={status} value={status}>
+              <SelectItem key={status} value={status} className="">
                 {statusMap[status as keyof StatusMap]}
               </SelectItem>
             );
@@ -86,7 +86,7 @@ const StatusSelect = ({
             {/* <UserPlus  className="mr-2 h-4 w-4" /> */}
             <span>
               Status:{" "}
-              <span className="rounded-md border border-accent bg-accent/25 p-1">
+              <span className="rounded-md border border-accent bg-accent/25 px-2 py-1 ">
                 {statusMap[task.status as keyof StatusMap]}
               </span>
             </span>
