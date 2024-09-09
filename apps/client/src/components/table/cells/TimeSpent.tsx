@@ -17,7 +17,8 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId }: props) => {
     const decimalPercent = Number((timeSpent / timeTarget).toFixed(1));
     return decimalPercent * 100;
   };
-  const percentComplete = derivePercentComplete(timeSpent, timeToComplete);
+  const percentComplete = 50;
+  // derivePercentComplete(timeSpent, timeToComplete);
 
   const minutesToTime = (time: number) => {
     const hours = Math.floor(time / 60);
@@ -49,7 +50,7 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId }: props) => {
             ? { width: `${percentComplete}%` }
             : { display: "none" }
         }
-        className={cn(" absolute inset-0  z-0  min-w-2 bg-green-800")}
+        className={cn(" bg-statusGreen absolute  inset-0  z-0 min-w-2")}
       ></div>
       <p
         className={cn(
