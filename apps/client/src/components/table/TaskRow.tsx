@@ -55,6 +55,7 @@ const TaskRow = ({
         <TimeSpent
           timeToComplete={task.timeToComplete}
           timeSpent={task.timeSpent}
+          task={task}
           taskId={task.id}
         />
       </TableCell>
