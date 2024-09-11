@@ -98,9 +98,7 @@ export const useTimer = () => {
         }
         // || dayjs().isAfter(endTS) had this as part of or condition line 40 - to figure out with local store
         if (secondsRemaining === 0) {
-          console.log("inside main stop condition");
           if (secondsRemaining === 0) {
-            console.log("inside timer runout stop condition");
             setTimerState((prev) => ({
               ...prev,
               timersComplete: prev.timersComplete + 1,
@@ -108,7 +106,6 @@ export const useTimer = () => {
             // setMode((prev) => (prev === "TIMER" ? "REST" : "TIMER"));
             // mode = "REST";
           }
-          console.log("timers complete", timerState.timersComplete);
           clearInterval(interval);
           completeTimer();
 

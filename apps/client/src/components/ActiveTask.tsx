@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils/utils";
 
 const ActiveTask = () => {
   const { activeTask, clearActiveTask } = useContext(taskContext);
-  console.log("active Task in component", activeTask);
 
   return (
     <div className="glass-bg mb-2  gap-4 overflow-hidden rounded-md p-3">

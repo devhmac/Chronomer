@@ -143,7 +143,6 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       if (incomingTask.id === activeTask?.id) {
         setActiveTask(incomingTask);
       }
-      console.log("iupdated tasks", updatedTasks);
     }
   };
 
@@ -175,9 +174,9 @@ export const TaskContextProvider = ({ children }: { children: ReactNode }) => {
 
   const incrementTaskTimeByID = (TaskId: Task["id"], minutes: number) => {
     const activeTask = getActiveTaskByID(TaskId);
-    console.log("active task in increment", activeTask);
+
     activeTask.timeSpent += minutes;
-    console.log("active task after increment", activeTask);
+
     updateTask(activeTask);
     setActiveTask(activeTask);
   };

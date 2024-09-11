@@ -1,7 +1,3 @@
-export const myFunc = () => {
-  console.log("Hello!");
-};
-
 export type Task = {
   id: string;
   task: string;
