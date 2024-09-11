@@ -14,7 +14,6 @@ const NewTask = () => {
           const createdTask: Task = new Task();
 
           addTask(createdTask);
-          console.log(createdTask);
         }}
         className="text-center"
       >

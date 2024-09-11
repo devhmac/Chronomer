@@ -43,7 +43,7 @@ const Options = ({ task }: { task: Task }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" className="h-7 w-7">
           <Ellipsis className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>

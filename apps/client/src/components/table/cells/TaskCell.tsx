@@ -29,7 +29,7 @@ const TaskCell = ({ task }: { task: Task }) => {
     if (input === task.task) return setIsEdit(false);
 
     const newTask = { ...task, task: input };
-    console.log(isExistingTask);
+
     setIsEdit(false);
     if (isExistingTask) {
       updateTask(newTask);
@@ -85,8 +85,6 @@ const TaskCell = ({ task }: { task: Task }) => {
                 }
                 // let length = inputRef.current?.textContent.length;
                 // inputRef.current?.setSelectionRange(length, length);
-                console.log("input focused", length);
-                console.log("current", inputRef.current);
               }
               // e.currentTarget.setSelectionRange(
               //   e.currentTarget.textContent?.length,

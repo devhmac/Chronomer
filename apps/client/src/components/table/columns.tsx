@@ -43,9 +43,6 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       // New create task method makes this no longer needed
       // const existingTask = row ? row.original : null;
-      {
-        console.log(row);
-      }
       return <TaskCell task={row.original} />;
     },
   },

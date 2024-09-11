@@ -55,11 +55,12 @@ const TaskRow = ({
         <TimeSpent
           timeToComplete={task.timeToComplete}
           timeSpent={task.timeSpent}
+          task={task}
           taskId={task.id}
         />
       </TableCell>
 
-      <TableCell className="-px-2 pr-2">
+      <TableCell className="-px-2 pr-2 ">
         <Options task={task} />
         {isActive ? (
           <span className=" absolute inset-y-0 right-0 z-10 my-auto h-full w-1 bg-[#7dd3fc] "></span>

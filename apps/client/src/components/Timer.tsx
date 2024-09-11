@@ -71,10 +71,11 @@ export const Timer = ({ className }: { className?: string }) => {
       >
         <div
           className={cn(
-            "relative  z-10 overflow-hidden rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center text-white transition-all duration-500 before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:transition-transform before:duration-500 ",
+            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center text-white transition-all duration-200",
+            "relative z-10 overflow-hidden before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:bg-gradient-to-tr before:from-purple-500 before:to-purple-300 before:transition-opacity before:duration-300",
             timerConfig.mode === "rest"
-              ? "before:translate-x-0 before:translate-y-0 before:scale-100 before:bg-gradient-to-tr before:from-purple-500 before:to-purple-300 "
-              : "before:-translate-y-full before:translate-x-full before:scale-0 before:bg-gradient-to-tr before:from-purple-500 before:to-purple-300 ",
+              ? "before:opacity-100"
+              : "before:opacity-0",
           )}
         >
           {/* <div className="flex items-center justify-between border border-red-400"> */}
