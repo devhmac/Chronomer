@@ -31,7 +31,9 @@ const derivePercentComplete = (timeSpent: number, timeTarget: number) => {
 const minutesToTime = (time: number) => {
   const hours = Math.floor(time / 60);
   const min = time % 60;
-  return hours === 0 ? `${min}m` : `${hours}h ${min}m`;
+  if (hours === 0) return `${min}m`;
+  if (min === 0) return `${hours}h`;
+  return `${hours}h ${min}m`;
 
   // return `${padTwoDigits(hours)}:${padTwoDigits(min)}`;
 };
@@ -69,9 +71,6 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId, task }: props) => {
     // Here you can handle the submission of the timer estimate
     const updatedTask = { ...task, timeToComplete: estimatedMinutes };
     updateTask(updatedTask);
-    console.log("minutes ", estimatedMinutes);
-    console.log("updated task, ", updatedTask);
-    console.log(`Timer set for ${hours} hours and ${minutes} minutes`);
   };
   const time = minutesToTime(timeSpent);
   return (
@@ -80,7 +79,7 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId, task }: props) => {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="relative h-auto w-full cursor-pointer overflow-hidden rounded-md border px-3 py-1"
+            className="relative h-auto w-full cursor-pointer overflow-hidden rounded-md border px-1 py-1 text-xs"
           >
             <div
               style={
@@ -92,7 +91,7 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId, task }: props) => {
             />
             <p
               className={cn(
-                "relative z-10 truncate",
+                "relative z-10 truncate	",
                 timeSpent === 0 && timeToComplete === 0
                   ? "text-muted-foreground"
                   : null,

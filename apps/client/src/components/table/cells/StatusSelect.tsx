@@ -64,7 +64,7 @@ const StatusSelect = ({
         }}
         value={task.status}
       >
-        <SelectTrigger className="  hover:bg-accent">
+        <SelectTrigger className="hover:bg-accent">
           <SelectValue placeholder={initialStatus} />
         </SelectTrigger>
         <SelectContent>
