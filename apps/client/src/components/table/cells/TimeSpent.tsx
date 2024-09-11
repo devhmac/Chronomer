@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils/utils";
+import { cn, derivePercentComplete, minutesToTime } from "@/lib/utils/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label"
@@ -22,21 +22,6 @@ function padTwoDigits(num: number) {
   return num.toString().padStart(2, "0");
 }
 
-const derivePercentComplete = (timeSpent: number, timeTarget: number) => {
-  if (timeSpent === 0 || timeTarget === 0) return 0;
-  const decimalPercent = Number((timeSpent / timeTarget).toFixed(1));
-  return decimalPercent * 100;
-};
-
-const minutesToTime = (time: number) => {
-  const hours = Math.floor(time / 60);
-  const min = time % 60;
-  if (hours === 0) return `${min}m`;
-  if (min === 0) return `${hours}h`;
-  return `${hours}h ${min}m`;
-
-  // return `${padTwoDigits(hours)}:${padTwoDigits(min)}`;
-};
 const messageFormatter = (spent: number, target: number) => {
   const targetFormatted = minutesToTime(target);
   const spendFormatted = minutesToTime(spent);
@@ -59,9 +44,14 @@ const estimatedTimeToMinutes = (hours: string, minutes: string) => {
 
 const TimeSpent = ({ timeSpent, timeToComplete, taskId, task }: props) => {
   const { updateTask } = useContext(taskContext);
+  const [open, setOpen] = useState(false);
+  const [hours, setHours] = useState(
+    Math.floor(task.timeToComplete / 60).toString() || "0",
+  );
+  const [minutes, setMinutes] = useState(
+    (task.timeToComplete % 60).toString() || "0",
+  );
 
-  const [hours, setHours] = useState("0");
-  const [minutes, setMinutes] = useState("0");
   const percentComplete = derivePercentComplete(timeSpent, timeToComplete);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -71,12 +61,13 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId, task }: props) => {
     // Here you can handle the submission of the timer estimate
     const updatedTask = { ...task, timeToComplete: estimatedMinutes };
     updateTask(updatedTask);
+    setOpen(false);
   };
   const time = minutesToTime(timeSpent);
   return (
     <>
-      <Popover>
-        <PopoverTrigger asChild>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild onClick={() => setOpen(true)}>
           <Button
             variant="outline"
             className="relative h-auto w-full cursor-pointer overflow-hidden rounded-md border px-1 py-1 text-xs"
