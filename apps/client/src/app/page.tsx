@@ -1,9 +1,11 @@
 import LandingLayout from "@/components/LandingLayout";
+import Nav from "@/components/ui/Nav";
 
 export default function Home() {
-  return (
-    <main>
-      <LandingLayout />
-    </main>
-  );
+	return (
+		<main>
+			<Nav />
+			<LandingLayout />
+		</main>
+	);
 }
