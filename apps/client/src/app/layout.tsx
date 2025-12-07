@@ -34,7 +34,6 @@ export default function RootLayout({
             {/* 434956 or 383d47 for darkmode? #e5e7eb light mode */}
           </div>
           <Nav />
-
           <TimerContextProvider>
             <TaskContextProvider>{children}</TaskContextProvider>
           </TimerContextProvider>
