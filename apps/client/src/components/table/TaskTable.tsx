@@ -68,7 +68,7 @@ export default function TaskTable({
   return (
     // <div className="@container">
     <>
-      <Table className="rounded-md border bg-popover backdrop-blur-sm">
+      <Table className="rounded-md border bg-popover backdrop-blur-xs">
         <TableHeader>
           <TableRow>
             <TableHead className="w-[50px] ">
@@ -96,7 +96,7 @@ export default function TaskTable({
       {completed.length > 0 && (
         <>
           <h3 className="mb-2 ml-2 mt-4">Complete</h3>
-          <Table className="rounded-md border bg-popover backdrop-blur-sm">
+          <Table className="rounded-md border bg-popover backdrop-blur-xs">
             <TableBody>{completed}</TableBody>
           </Table>
         </>

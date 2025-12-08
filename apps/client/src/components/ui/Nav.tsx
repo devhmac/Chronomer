@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Nav = () => {
   return (
-    <nav className="h-15 fixed top-0 z-50 flex w-screen flex-row items-center justify-between  gap-2 bg-popover/50 px-6 py-2 backdrop-blur md:px-20">
+    <nav className="h-15 fixed top-0 z-50 flex w-screen flex-row items-center justify-between  gap-2 bg-popover/50 px-6 py-2 backdrop-blur-sm md:px-20">
       <Link href="/" className="flex items-center gap-2">
         <Image
           src="/assets/logos/logo1_nobg.png"

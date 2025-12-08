@@ -2,7 +2,7 @@ import { Skeleton, SVGSkeleton } from "./Skeleton";
 // import { Skeleton } from "@/components/ui/skeleton";
 
 const TableSkeleton = () => (
-  // <div className="border backdrop-blur-sm">
+  // <div className="border backdrop-blur-xs">
   //   <div className="relative w-full overflow-auto">
   // <tbody className="border-0 ">
   <>

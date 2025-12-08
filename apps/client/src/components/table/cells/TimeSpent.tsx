@@ -78,7 +78,7 @@ const TimeSpent = ({ timeSpent, timeToComplete, taskId, task }: props) => {
                   ? { width: `${percentComplete}%` }
                   : { display: "none" }
               }
-              className={cn(" bg-statusGreen absolute  inset-0  z-0 min-w-2")}
+              className={cn(" bg-status-green absolute  inset-0  z-0 min-w-2")}
             />
             <p
               className={cn(

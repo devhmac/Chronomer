@@ -43,7 +43,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="@container rounded-md border bg-popover backdrop-blur-sm">
+    <div className="@container rounded-md border bg-popover backdrop-blur-xs">
       <Table className="">
         <TableHeader className="bg-secondary">
           {table.getHeaderGroups().map((headerGroup) => (

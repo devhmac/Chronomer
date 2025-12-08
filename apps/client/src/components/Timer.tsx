@@ -65,14 +65,14 @@ export const Timer = ({ className }: { className?: string }) => {
       {/* drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] */}
       <div
         className={cn(
-          " min-w-full rounded-lg border p-6  shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[560px]",
+          " min-w-full rounded-lg border p-6  shadow-md backdrop-blur-sm dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[560px]",
           className,
         )}
       >
         <div
           className={cn(
-            "relative rounded-md bg-gradient-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center text-white transition-all duration-200",
-            "relative z-10 overflow-hidden before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:bg-gradient-to-tr before:from-purple-500 before:to-purple-300 before:transition-opacity before:duration-300",
+            "relative rounded-md bg-linear-to-tr from-sky-300 to-purple-300 px-5 py-14 text-center text-white transition-all duration-200",
+            "relative z-10 overflow-hidden before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:bg-linear-to-tr before:from-purple-500 before:to-purple-300 before:transition-opacity before:duration-300",
             timerConfig.mode === "rest"
               ? "before:opacity-100"
               : "before:opacity-0",
@@ -140,7 +140,7 @@ export const Timer = ({ className }: { className?: string }) => {
             {/* timer start */}
             <Button
               className="w-20"
-              variant={timerRunning ? "outline" : "default"}
+              variant={timerRunning ? "outline-solid" : "default"}
               onClick={() => {
                 setTimerRunning((prev) => !prev);
                 setStartTS(dayjs().utc().format());

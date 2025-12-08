@@ -51,7 +51,7 @@ const TaskCell = ({ task }: { task: Task }) => {
 
   return (
     <div
-      className=" w-full  flex-grow text-left"
+      className=" w-full  grow text-left"
       // onClick={(e) => {
       //   setIsEdit(true);
       // }}
@@ -68,7 +68,7 @@ const TaskCell = ({ task }: { task: Task }) => {
         >
           <div
             ref={inputRef}
-            className="flex-grow  focus:outline-none"
+            className="grow  focus:outline-hidden"
             contentEditable
             role="textbox"
             tabIndex={0}

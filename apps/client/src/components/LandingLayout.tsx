@@ -13,7 +13,7 @@ const LandingLayout = () => {
   return (
     <div className="flex flex-col items-center justify-center ">
       <MaxWidthWrapper className="sm:mt-30 mb-6 mt-28 flex flex-col items-center justify-center text-center">
-        <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 bg-popover/25 px-6 py-2 shadow-md backdrop-blur-sm transition-all hover:bg-accent/50">
+        <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 bg-popover/25 px-6 py-2 shadow-md backdrop-blur-xs transition-all hover:bg-accent/50">
           <p className="text-sm font-semibold text-primary">v0.6 Now Live!</p>
         </div>
         <Header />
@@ -26,7 +26,7 @@ const LandingLayout = () => {
         </div>
       </MaxWidthWrapper>
 
-      {/* <Timer className={" shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px]"} /> */}
+      {/* <Timer className={" shadow-[rgba(165,180,252,0.4)_0px_30px_90px]"} /> */}
       <div className="w-full rounded-lg sm:w-auto">
         <Timer className={"landing-highlight"} />
       </div>
@@ -39,7 +39,7 @@ const LandingLayout = () => {
         </p>
       </MaxWidthWrapper>
       <div className="w-full rounded-lg sm:w-auto">
-        {/* shadow-[rgba(165,_180,_252,_0.4)_0px_30px_90px] */}
+        {/* shadow-[rgba(165,180,252,0.4)_0px_30px_90px] */}
         <ToDoWrapper className="landing-highlight" />
         {/* <ToDoWrapper className={"w-full shadow-xl shadow-indigo-300/40"} /> */}
         {/* really cool echo background */}

@@ -53,7 +53,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
       {
         <motion.div
           className={cn(
-            "scrollbar-thumb-color scrollbar-thumb-rounded scrollbar-track-color-lighter scrollbar-w-2 scrolling-touch h-grow h-full overflow-auto rounded-lg border p-3 shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]",
+            "scrollbar-thumb-color scrollbar-thumb-rounded scrollbar-track-color-lighter scrollbar-w-2 scrolling-touch h-grow h-full overflow-auto rounded-lg border p-3 shadow-md backdrop-blur-sm dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none sm:min-w-[540px]",
             className,
 
             isOpen ? "" : "",
@@ -89,7 +89,7 @@ const ToDoWrapper = ({ className }: { className?: string }) => {
       }
       {/* border */}
       {/* {!isOpen && (
-        <div className="h-full w-4 rounded-r-lg  border shadow-md backdrop-blur dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none"></div>
+        <div className="h-full w-4 rounded-r-lg  border shadow-md backdrop-blur-sm dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none"></div>
       )} */}
       {/* <button
         className="hidden  transform xl:contents"
