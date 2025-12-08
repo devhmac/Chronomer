@@ -11,6 +11,8 @@
     /* --background: 217°, 0%, 94%; */
     --foreground: 222.2 84% 4.9%;
 
+    --brand: oklch(0.623 0.214 259.815);
+
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
 
@@ -66,6 +68,7 @@
     /* --background: 226 54.8% 8.450000000000001%; bluer Background */
     --foreground: 210 40% 98%;
 
+    --brand: oklch(0.707 0.165 254.624);
     /* original */
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
