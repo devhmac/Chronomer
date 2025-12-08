@@ -1,21 +1,25 @@
-'use client';
+"use client";
 
-import { normalizeNodeId } from 'platejs';
-import { Plate, usePlateEditor } from 'platejs/react';
+import { normalizeNodeId } from "platejs";
+import { Plate, usePlateEditor } from "platejs/react";
 
-import { BasicNodesKit } from '@/components/editor/plugins/basic-nodes-kit';
-import { Editor, EditorContainer } from '@/components/ui/editor';
+import { EditorKits } from "@/components/editor/plugins/basic-nodes-kit.tsx editor-kits";
+import { Editor, EditorContainer } from "@/components/ui/editor";
 
 export function PlateEditor() {
   const editor = usePlateEditor({
-    plugins: BasicNodesKit,
+    plugins: EditorKits,
     value,
   });
 
   return (
     <Plate editor={editor}>
       <EditorContainer>
-        <Editor variant="demo" placeholder="Type..." />
+        <Editor
+          variant="default"
+          className="bg-background"
+          placeholder="Type..."
+        />
       </EditorContainer>
     </Plate>
   );
@@ -23,33 +27,33 @@ export function PlateEditor() {
 
 const value = normalizeNodeId([
   {
-    children: [{ text: 'Basic Editor' }],
-    type: 'h1',
+    children: [{ text: "Basic Editor" }],
+    type: "h1",
   },
   {
-    children: [{ text: 'Heading 2' }],
-    type: 'h2',
+    children: [{ text: "Heading 2" }],
+    type: "h2",
   },
   {
-    children: [{ text: 'Heading 3' }],
-    type: 'h3',
+    children: [{ text: "Heading 3" }],
+    type: "h3",
   },
   {
-    children: [{ text: 'This is a blockquote element' }],
-    type: 'blockquote',
+    children: [{ text: "This is a blockquote element" }],
+    type: "blockquote",
   },
   {
     children: [
-      { text: 'Basic marks: ' },
-      { bold: true, text: 'bold' },
-      { text: ', ' },
-      { italic: true, text: 'italic' },
-      { text: ', ' },
-      { text: 'underline', underline: true },
-      { text: ', ' },
-      { strikethrough: true, text: 'strikethrough' },
-      { text: '.' },
+      { text: "Basic marks: " },
+      { bold: true, text: "bold" },
+      { text: ", " },
+      { italic: true, text: "italic" },
+      { text: ", " },
+      { text: "underline", underline: true },
+      { text: ", " },
+      { strikethrough: true, text: "strikethrough" },
+      { text: "." },
     ],
-    type: 'p',
+    type: "p",
   },
 ]);

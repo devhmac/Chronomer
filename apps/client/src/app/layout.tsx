@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { TimerContextProvider } from "@/providers/TimerContext";
 import Nav from "@/components/ui/Nav";
 import { TaskContextProvider } from "@/providers/TaskContext";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,9 +34,11 @@ export default function RootLayout({
 					<div className="dots dark:dark-dots">
 						{/* 434956 or 383d47 for darkmode? #e5e7eb light mode */}
 					</div>
-					<TimerContextProvider>
-						<TaskContextProvider>{children}</TaskContextProvider>
-					</TimerContextProvider>
+					<TooltipProvider>
+						<TimerContextProvider>
+							<TaskContextProvider>{children}</TaskContextProvider>
+						</TimerContextProvider>
+					</TooltipProvider>
 				</ThemeProvider>
 				<Analytics />
 			</body>
