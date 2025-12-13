@@ -7,9 +7,9 @@ import { DndKit } from "./dnd-kit";
 import { MarkdownKit } from "./markdown-kit";
 
 export const EditorKits = [
-  ...BasicBlocksKit,
-  ...BasicMarksKit,
-  ...DndKit,
-  ...MarkdownKit,
-  ...AutoformatKit,
+	...BasicBlocksKit,
+	...BasicMarksKit,
+	...DndKit,
+	...MarkdownKit,
+	// ...AutoformatKit,
 ];
