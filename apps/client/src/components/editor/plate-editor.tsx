@@ -10,16 +10,26 @@ import { Editor, EditorContainer } from "@/components/ui/editor";
 interface TextEditorProps {
   content?: Value;
 }
+export const NOTES_LOCAL_STORE_KEY = "demo-notes";
 
 export function PlateEditor({ content }: TextEditorProps) {
-  const value = content;
   const editor = usePlateEditor({
     plugins: EditorKit,
-    value,
+    value: () => {
+      if (typeof window === "undefined") return;
+      const savedValue = localStorage.getItem(NOTES_LOCAL_STORE_KEY);
+      return savedValue ? JSON.parse(savedValue) : null;
+    },
   });
 
   return (
-    <Plate editor={editor}>
+    <Plate
+      editor={editor}
+      onChange={({ value }) => {
+        console.log(value);
+        localStorage.setItem(NOTES_LOCAL_STORE_KEY, JSON.stringify(value));
+      }}
+    >
       <EditorContainer>
         <Editor variant="demo" />
       </EditorContainer>
