@@ -9,7 +9,7 @@ import {
   useEffect,
 } from "react";
 import { Task } from "@/lib/types/types";
-import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
 // import Task from "shared-types";
 

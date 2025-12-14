@@ -11,16 +11,16 @@ import { ChevronRight } from "lucide-react";
 
 const LandingLayout = () => {
   return (
-    <div className="flex flex-col items-center justify-center ">
-      <MaxWidthWrapper className="sm:mt-30 mb-6 mt-28 flex flex-col items-center justify-center text-center">
-        <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 bg-popover/25 px-6 py-2 shadow-md backdrop-blur-xs transition-all hover:bg-accent/50">
-          <p className="text-sm font-semibold text-primary">v0.6 Now Live!</p>
+    <div className="flex flex-col items-center justify-center">
+      <MaxWidthWrapper className="mt-28 mb-6 flex flex-col items-center justify-center text-center sm:mt-30">
+        <div className="bg-popover/25 hover:bg-accent/50 mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200/50 px-6 py-2 shadow-md backdrop-blur-xs transition-all">
+          <p className="text-primary text-sm font-semibold">v0.6 Now Live!</p>
         </div>
         <Header />
-        <div className="mt-5 rounded-lg hover:bg-gradient">
+        <div className="hover:bg-gradient mt-5 rounded-lg">
           <Link href="/dashboard">
-            <Button className="hover:muted m-0.5 bg-primary  text-popover hover:shadow-md hover:shadow-indigo-300/40">
-              Get Started <ChevronRight className="ml-1 mr-0 h-4 w-4" />
+            <Button className="hover:muted bg-primary text-popover m-0.5 hover:shadow-md hover:shadow-indigo-300/40">
+              Get Started <ChevronRight className="mr-0 ml-1 h-4 w-4" />
             </Button>
           </Link>
         </div>
@@ -31,8 +31,8 @@ const LandingLayout = () => {
         <Timer className={"landing-highlight"} />
       </div>
 
-      <MaxWidthWrapper className="mb-12 mt-24 text-center ">
-        <h2 className="sub-header-text mb-6 ">Track your Velocity</h2>
+      <MaxWidthWrapper className="mt-24 mb-12 text-center">
+        <h2 className="sub-header-text mb-6">Track your Velocity</h2>
         <p className="landing-sub-text">
           Time based tasks management to organize your workflow and keep you on
           track.

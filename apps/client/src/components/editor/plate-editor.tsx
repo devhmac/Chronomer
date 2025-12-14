@@ -1,59 +1,30 @@
 "use client";
 
-import { normalizeNodeId } from "platejs";
+import { normalizeNodeId, type Value } from "platejs";
 import { Plate, usePlateEditor } from "platejs/react";
 
-import { EditorKits } from "@/components/editor/plugins/editor-kits";
+import { EditorKit } from "@/components/editor/editor-kit";
+import { SettingsDialog } from "@/components/editor/settings-dialog";
 import { Editor, EditorContainer } from "@/components/ui/editor";
 
-export function PlateEditor() {
-	const editor = usePlateEditor({
-		plugins: EditorKits,
-		value,
-	});
-
-	return (
-		<Plate editor={editor}>
-			<EditorContainer>
-				<Editor
-					variant="default"
-					className="bg-background"
-					placeholder="Type..."
-				/>
-			</EditorContainer>
-		</Plate>
-	);
+interface TextEditorProps {
+  content?: Value;
 }
 
-const value = normalizeNodeId([
-	{
-		children: [{ text: "Basic Editor" }],
-		type: "h1",
-	},
-	{
-		children: [{ text: "Heading 2" }],
-		type: "h2",
-	},
-	{
-		children: [{ text: "Heading 3" }],
-		type: "h3",
-	},
-	{
-		children: [{ text: "This is a blockquote element" }],
-		type: "blockquote",
-	},
-	{
-		children: [
-			{ text: "Basic marks: " },
-			{ bold: true, text: "bold" },
-			{ text: ", " },
-			{ italic: true, text: "italic" },
-			{ text: ", " },
-			{ text: "underline", underline: true },
-			{ text: ", " },
-			{ strikethrough: true, text: "strikethrough" },
-			{ text: "." },
-		],
-		type: "p",
-	},
-]);
+export function PlateEditor({ content }: TextEditorProps) {
+  const value = content;
+  const editor = usePlateEditor({
+    plugins: EditorKit,
+    value,
+  });
+
+  return (
+    <Plate editor={editor}>
+      <EditorContainer>
+        <Editor variant="demo" />
+      </EditorContainer>
+
+      <SettingsDialog />
+    </Plate>
+  );
+}

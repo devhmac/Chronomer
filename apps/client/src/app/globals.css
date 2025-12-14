@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -102,11 +102,11 @@
 }
 
 @utility dots {
-  @apply absolute -z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)];
+  @apply absolute -z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] bg-size-[16px_16px];
 }
 
 @utility dark-dots {
-  @apply absolute -z-10 h-full w-full bg-[radial-gradient(#282c33_1px,transparent_1px)] bg-size-[16px_16px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)];
+  @apply absolute -z-10 h-full w-full bg-[radial-gradient(#282c33_1px,transparent_1px)] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] bg-size-[16px_16px];
 }
 
 @utility bg-gradient {
@@ -260,7 +260,7 @@
 }
 
 .glass-bg {
-  @apply border shadow-md backdrop-blur-sm dark:border-[rgba(255,255,255,0.3)] dark:bg-accent/25 dark:backdrop-blur-none;
+  @apply dark:bg-accent/25 border shadow-md backdrop-blur-sm dark:border-[rgba(255,255,255,0.3)] dark:backdrop-blur-none;
 }
 
 .main-header-text {
@@ -272,8 +272,7 @@
 }
 
 .landing-sub-text {
-  @apply text-lg text-slate-600 dark:text-slate-300
-  sm:text-xl;
+  @apply text-lg text-slate-600 sm:text-xl dark:text-slate-300;
 }
 
 .landing-highlight-dimensions {
@@ -281,8 +280,7 @@
 }
 
 .landing-highlight {
-  @apply shadow-[rgba(115,147,179,0.4)_0px_30px_90px]
-  dark:shadow-[rgba(165,180,252,0.4)_0px_30px_90px];
+  @apply shadow-[rgba(115,147,179,0.4)_0px_30px_90px] dark:shadow-[rgba(165,180,252,0.4)_0px_30px_90px];
 }
 
 /*

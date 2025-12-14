@@ -1,25 +1,23 @@
 "use client";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { Tldraw, toRichText } from "tldraw";
+import { Editor, Tldraw, toRichText } from "tldraw";
 
 import "tldraw/tldraw.css";
 
 export default function CanvasPage() {
-  const handleMount = (editor) => {
-    editor.createShape({
-      type: "text",
-      x: 200,
-      y: 200,
-      props: {
-        richText: toRichText("Hello world!"),
-      },
-    });
-
-    editor.selectAll();
-
-    editor.zoomToSelection({
-      animation: { duration: 5000 },
-    });
+  const handleMount = (editor: Editor) => {
+    // editor.createShape({
+    //   type: "text",
+    //   x: 10,
+    //   y: 10,
+    //   props: {
+    //     richText: toRichText("Fresh canvas"),
+    //   },
+    // });
+    // editor.selectAll();
+    // editor.zoomToSelection({
+    //   animation: { duration: 5000 },
+    // });
   };
 
   return (
