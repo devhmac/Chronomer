@@ -10,6 +10,7 @@ import { Editor, EditorContainer } from "@/components/ui/editor";
 import { NOTE_BLOCK_TYPE } from '@/components/editor/plugins/note-block-kit';
 import { TAG_TYPE } from '@/components/editor/plugins/tag-kit';
 import { useNotesStore, type NoteBlockData } from "@/stores/notes-store";
+import { hasTextContent } from "@/lib/utils/note-blocks";
 
 interface DailyEditorProps {
   date: string; // YYYY-MM-DD
@@ -50,6 +51,7 @@ function buildEditorValue(date: string): Value {
 function extractNoteBlocks(value: Value): NoteBlockData[] {
   return value
     .filter((node: any) => node.type === NOTE_BLOCK_TYPE)
+    .filter((node: any) => hasTextContent(node.children ?? []))
     .map((node: any) => {
       const children = node.children ?? [];
       let title = "Untitled";
