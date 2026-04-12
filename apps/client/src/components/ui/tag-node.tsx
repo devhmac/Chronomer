@@ -61,9 +61,13 @@ const onSelectTag = getMentionOnSelectItem();
 export function TagInputElement(props: PlateElementProps<TComboboxInputElement>) {
   const { editor, element } = props;
   const [search, setSearch] = React.useState('');
-  const allTags = useNotesStore((s) => s.getAllTags());
+  const blocks = useNotesStore((s) => s.blocks);
 
   const items = React.useMemo(() => {
+    const tagSet = new Set<string>();
+    Object.values(blocks).forEach((b) => b.tags.forEach((t) => tagSet.add(t)));
+    const allTags = Array.from(tagSet).sort();
+
     const existing = allTags.map((tag, i) => ({
       key: `existing-${i}`,
       text: tag,
@@ -74,7 +78,7 @@ export function TagInputElement(props: PlateElementProps<TComboboxInputElement>)
     }
 
     return existing;
-  }, [allTags, search]);
+  }, [blocks, search]);
 
   return (
     <PlateElement {...props} as="span">
