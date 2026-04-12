@@ -69,11 +69,13 @@ function CanvasSync({
   filterKey: string;
 }) {
   const editor = useTldrawEditor();
-  const updateCanvasPosition = useNotesStore((s) => s.updateCanvasPosition);
-  const prevBlockIdsRef = useRef<Set<string>>(new Set());
+  const isSyncingRef = useRef(false);
 
+  // Sync blocks to tldraw shapes
   useEffect(() => {
     if (!editor) return;
+
+    isSyncingRef.current = true;
 
     const positioned = computePositions(blocks);
     const currentBlockIds = new Set(blocks.map((b) => b.id));
@@ -122,14 +124,23 @@ function CanvasSync({
       }
     }
 
-    prevBlockIdsRef.current = currentBlockIds;
+    // Allow position saves again after a tick
+    requestAnimationFrame(() => {
+      isSyncingRef.current = false;
+    });
   }, [editor, blocks, filterKey]);
 
+  // Save positions when user drags shapes (not during programmatic sync)
   useEffect(() => {
     if (!editor) return;
 
+    const updateCanvasPosition = useNotesStore.getState().updateCanvasPosition;
+
     let timeout: ReturnType<typeof setTimeout>;
     const handleChange = () => {
+      // Skip saves triggered by our own programmatic shape creation/updates
+      if (isSyncingRef.current) return;
+
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         const shapes = editor.getCurrentPageShapes();
@@ -153,7 +164,7 @@ function CanvasSync({
       unsub();
       clearTimeout(timeout);
     };
-  }, [editor, updateCanvasPosition]);
+  }, [editor]);
 
   return null;
 }
@@ -161,16 +172,29 @@ function CanvasSync({
 export default function CanvasPage() {
   const [filterMode, setFilterMode] = useState<FilterMode>("today");
   const [selectedTag, setSelectedTag] = useState<string>("");
+  const [today, setToday] = useState<string>("");
 
-  const today = format(new Date(), "yyyy-MM-dd");
-  const allTags = useNotesStore((s) => s.getAllTags());
-  const blocksByDate = useNotesStore((s) => s.getBlocksByDate(today));
-  const blocksByTag = useNotesStore((s) =>
-    selectedTag ? s.getBlocksByTag(selectedTag) : []
-  );
+  // Compute today's date on the client only to avoid SSR hydration mismatch
+  useEffect(() => {
+    setToday(format(new Date(), "yyyy-MM-dd"));
+  }, []);
 
-  const blocks = filterMode === "today" ? blocksByDate : blocksByTag;
+  // Read blocks imperatively to avoid re-render loops.
+  // The canvas position listener writes back to the store, which would
+  // re-trigger reactive selectors and cause infinite updates.
+  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
   const filterKey = filterMode === "today" ? today : `tag:${selectedTag}`;
+
+  useEffect(() => {
+    const state = useNotesStore.getState();
+    if (filterMode === "tag") {
+      setBlocks(selectedTag ? state.getBlocksByTag(selectedTag) : []);
+    } else {
+      setBlocks(today ? state.getBlocksByDate(today) : []);
+    }
+    setAllTags(state.getAllTags());
+  }, [filterMode, selectedTag, today]);
 
   return (
     <main className="relative h-screen w-full">
