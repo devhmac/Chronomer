@@ -75,14 +75,47 @@ function shouldDeleteNoteBlock(editor: SlateEditor): { noteBlockPath: Path } | n
   return { noteBlockPath };
 }
 
+/**
+ * If the cursor is not inside a note-block, wrap the current block in one.
+ * Called before insertText and insertFragment to ensure all content
+ * entering the editor is associated with a block.
+ */
+function ensureInsideNoteBlock(editor: SlateEditor): void {
+  if (!editor.selection) return;
+
+  const noteBlockEntry = editor.api.above({
+    match: (n: any) => n.type === NOTE_BLOCK_TYPE,
+  });
+
+  if (!noteBlockEntry) {
+    const blockEntry = editor.api.block();
+    if (blockEntry) {
+      editor.tf.wrapNodes(
+        { type: NOTE_BLOCK_TYPE, id: ulid(), tags: [], children: [] },
+        { at: blockEntry[1] }
+      );
+    }
+  }
+}
+
 const BaseNoteBlockPlugin = createSlatePlugin({
   key: NOTE_BLOCK_TYPE,
   node: {
     isElement: true,
     type: NOTE_BLOCK_TYPE,
   },
-}).overrideEditor(({ editor, tf: { insertBreak, deleteBackward } }) => ({
+}).overrideEditor(({ editor, tf: { insertBreak, deleteBackward, insertText, insertFragment } }) => ({
   transforms: {
+    insertText(text, options) {
+      if (!options?.at) ensureInsideNoteBlock(editor);
+      insertText(text, options);
+    },
+
+    insertFragment(fragment) {
+      ensureInsideNoteBlock(editor);
+      insertFragment(fragment);
+    },
+
     insertBreak() {
       const exit = shouldExitNoteBlock(editor);
 
