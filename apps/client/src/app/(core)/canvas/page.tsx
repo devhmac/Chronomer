@@ -70,13 +70,16 @@ function CanvasSync({
   filterKey: string;
 }) {
   const editor = useTldrawEditor();
-  const isSyncingRef = useRef(false);
+  const hasSyncedRef = useRef(false);
+  const listenerRef = useRef<(() => void) | null>(null);
 
   // Sync blocks to tldraw shapes
   useEffect(() => {
     if (!editor) return;
 
-    isSyncingRef.current = true;
+    // Tear down position listener during sync to prevent feedback loops
+    listenerRef.current?.();
+    listenerRef.current = null;
 
     const positioned = computePositions(blocks);
     const currentBlockIds = new Set(blocks.map((b) => b.id));
@@ -125,47 +128,44 @@ function CanvasSync({
       }
     }
 
-    // Allow position saves again after a tick
-    requestAnimationFrame(() => {
-      isSyncingRef.current = false;
-    });
-  }, [editor, blocks, filterKey]);
+    // Re-attach position listener after sync settles
+    hasSyncedRef.current = true;
+    const timeoutId = setTimeout(() => {
+      if (!editor) return;
 
-  // Save positions when user drags shapes (not during programmatic sync)
-  useEffect(() => {
-    if (!editor) return;
-
-    const updateCanvasPosition = useNotesStore.getState().updateCanvasPosition;
-
-    let timeout: ReturnType<typeof setTimeout>;
-    const handleChange = () => {
-      // Skip saves triggered by our own programmatic shape creation/updates
-      if (isSyncingRef.current) return;
-
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        const shapes = editor.getCurrentPageShapes();
-        for (const shape of shapes) {
-          if (shape.type === "note-card") {
-            const blockId = (shape.props as any).blockId;
-            if (blockId) {
-              updateCanvasPosition(blockId, { x: shape.x, y: shape.y });
+      let saveTimeout: ReturnType<typeof setTimeout>;
+      const unsub = editor.store.listen(
+        () => {
+          clearTimeout(saveTimeout);
+          saveTimeout = setTimeout(() => {
+            const shapes = editor.getCurrentPageShapes();
+            for (const shape of shapes) {
+              if (shape.type === "note-card") {
+                const blockId = (shape.props as any).blockId;
+                if (blockId) {
+                  useNotesStore
+                    .getState()
+                    .updateCanvasPosition(blockId, { x: shape.x, y: shape.y });
+                }
+              }
             }
-          }
-        }
-      }, 300);
-    };
+          }, 500);
+        },
+        { source: "user", scope: "document" }
+      );
 
-    const unsub = editor.store.listen(handleChange, {
-      source: "user",
-      scope: "document",
-    });
+      listenerRef.current = () => {
+        unsub();
+        clearTimeout(saveTimeout);
+      };
+    }, 100);
 
     return () => {
-      unsub();
-      clearTimeout(timeout);
+      clearTimeout(timeoutId);
+      listenerRef.current?.();
+      listenerRef.current = null;
     };
-  }, [editor]);
+  }, [editor, blocks, filterKey]);
 
   return null;
 }
