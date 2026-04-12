@@ -56,7 +56,7 @@ export function TagElement(props: PlateElementProps<TMentionElement>) {
   );
 }
 
-const onSelectTag = getMentionOnSelectItem({ key: 'tag' });
+const onSelectTag = getMentionOnSelectItem();
 
 export function TagInputElement(props: PlateElementProps<TComboboxInputElement>) {
   const { editor, element } = props;
