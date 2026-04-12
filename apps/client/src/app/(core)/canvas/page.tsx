@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { format } from "date-fns";
+import { useMounted } from "@/hooks/use-mounted";
 import {
   Editor,
   Tldraw,
@@ -172,12 +173,8 @@ function CanvasSync({
 export default function CanvasPage() {
   const [filterMode, setFilterMode] = useState<FilterMode>("today");
   const [selectedTag, setSelectedTag] = useState<string>("");
-  const [today, setToday] = useState<string>("");
-
-  // Compute today's date on the client only to avoid SSR hydration mismatch
-  useEffect(() => {
-    setToday(format(new Date(), "yyyy-MM-dd"));
-  }, []);
+  const mounted = useMounted();
+  const today = mounted ? format(new Date(), "yyyy-MM-dd") : "";
 
   // Read blocks imperatively to avoid re-render loops.
   // The canvas position listener writes back to the store, which would

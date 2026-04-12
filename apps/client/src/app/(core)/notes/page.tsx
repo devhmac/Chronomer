@@ -5,13 +5,20 @@ import { format, addDays, subDays } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DailyEditor } from "@/components/editor/daily-editor";
 import { Toaster } from "sonner";
+import { useMounted } from "@/hooks/use-mounted";
 
 function formatDateKey(date: Date): string {
   return format(date, "yyyy-MM-dd");
 }
 
 export default function NotesPage() {
+  const mounted = useMounted();
   const [currentDate, setCurrentDate] = useState(() => new Date());
+
+  if (!mounted) {
+    return <div className="bg-background h-screen w-full" />;
+  }
+
   const dateKey = formatDateKey(currentDate);
   const isToday = formatDateKey(new Date()) === dateKey;
 
